@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { BarChart3, ShieldCheck } from "lucide-react";
+import { ShieldCheck } from "lucide-react";
 
 export function Footer() {
   return (
@@ -8,17 +8,19 @@ export function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div>
-            <div className="mb-4 flex items-center gap-2.5">
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-brand to-royal">
-                <BarChart3 size={18} className="text-white" />
-              </div>
-              <span className="text-base font-extrabold text-white">
-                Analytix Engineering
-              </span>
+            <div className="mb-4">
+              <img
+                src="/logo.png"
+                alt="Analytix Engineering SARL"
+                className="h-12 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-[13px] leading-relaxed text-white/40">
               Transforming organizations through data engineering, operational
               excellence, and professional development.
+            </p>
+            <p className="mt-2 text-[11px] text-white/25">
+              Une filiale de Opes-Analytica LLC
             </p>
           </div>
 
@@ -73,7 +75,7 @@ export function Footer() {
 
         <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/5 pt-6">
           <p className="text-xs text-white/25">
-            © {new Date().getFullYear()} Analytix Engineering. All rights
+            © {new Date().getFullYear()} Analytix Engineering SARL. All rights
             reserved.
           </p>
           <div className="flex items-center gap-1.5">

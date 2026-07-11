@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  BarChart3,
   Menu,
   X,
   Lock,
@@ -42,26 +41,14 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2.5">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand to-royal">
-            <BarChart3 size={22} className="text-white" />
-          </div>
-          <div>
-            <div
-              className={`text-lg font-extrabold tracking-tight ${
-                isTransparent ? "text-white" : "text-navy"
-              }`}
-            >
-              Analytix
-            </div>
-            <div
-              className={`-mt-0.5 text-[9px] font-bold uppercase tracking-[0.2em] ${
-                isTransparent ? "text-white/50" : "text-slate-400"
-              }`}
-            >
-              Engineering
-            </div>
-          </div>
+        <Link to="/" className="flex items-center">
+          <img
+            src="/logo.png"
+            alt="Analytix Engineering SARL"
+            className={`h-12 w-auto transition-all duration-300 ${
+              isTransparent ? "brightness-0 invert" : ""
+            }`}
+          />
         </Link>
 
         {/* Desktop Nav */}

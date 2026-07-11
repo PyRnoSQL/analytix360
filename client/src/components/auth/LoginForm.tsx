@@ -49,9 +49,11 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
     >
       {/* Header */}
       <div className="mb-8 text-center">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand">
-          <Lock size={24} className="text-white" />
-        </div>
+        <img
+          src="/logo.png"
+          alt="Analytix Engineering SARL"
+          className="mx-auto mb-4 h-14 w-auto"
+        />
         <h2 className="text-2xl font-extrabold text-navy">Customer Portal</h2>
         <p className="mt-2 text-sm text-slate-500">
           Access your projects, invoices, and training records

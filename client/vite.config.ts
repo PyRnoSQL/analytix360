@@ -10,10 +10,10 @@ export default defineConfig({
     tailwindcss(),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.svg", "icons/*.png"],
+      includeAssets: ["favicon.png", "logo.png", "icons/*.png"],
       manifest: {
-        name: "Analytix Engineering",
-        short_name: "Analytix",
+        name: "Analytix Engineering SARL",
+        short_name: "Analytix360",
         description:
           "Data & Analytics Engineering, Quality Excellence, Professional Training",
         theme_color: "#0F172A",
