@@ -96,3 +96,4 @@ This creates all tables (profiles, invoices, payments, projects, trainings, enro
 ## License
 
 MIT
+# Analytix360 Platform
