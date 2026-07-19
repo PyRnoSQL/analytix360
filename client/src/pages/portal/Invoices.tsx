@@ -133,8 +133,9 @@ export function PortalInvoices() {
         </div>
         <p className="text-[13px] leading-relaxed text-slate-500">
           All payments are processed securely via encrypted channels. We support
-          MTN Mobile Money, Orange Money, Visa, Mastercard, and bank transfers.
-          Each transaction generates a unique reference and downloadable receipt.
+          MTN Mobile Money, Orange Money, Airtel Money, Wave, YooMoney, Visa,
+          Mastercard, and bank transfers. Each transaction generates a unique
+          reference and downloadable receipt.
         </p>
       </div>
 

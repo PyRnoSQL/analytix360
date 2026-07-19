@@ -8,6 +8,7 @@ import {
   ShieldCheck,
   Smartphone,
   CreditCard,
+  Wallet,
 } from "lucide-react";
 import {
   createPaymentSession,
@@ -27,7 +28,7 @@ interface Props {
 }
 
 type Step = "loading" | "method" | "scan" | "processing" | "success" | "error";
-type PayMethod = "mtn_momo" | "orange_money" | "card";
+type PayMethod = "mtn_momo" | "orange_money" | "airtel_money" | "wave" | "yoomoney" | "card";
 
 const METHODS = [
   {
@@ -45,6 +46,30 @@ const METHODS = [
     textColor: "#FFF",
     icon: Smartphone,
     desc: "Pay with Orange Money",
+  },
+  {
+    id: "airtel_money" as PayMethod,
+    name: "Airtel Money",
+    color: "#ED1C24",
+    textColor: "#FFF",
+    icon: Smartphone,
+    desc: "Pay with Airtel Money",
+  },
+  {
+    id: "wave" as PayMethod,
+    name: "Wave",
+    color: "#1DC3E2",
+    textColor: "#FFF",
+    icon: Wallet,
+    desc: "Pay with Wave mobile wallet",
+  },
+  {
+    id: "yoomoney" as PayMethod,
+    name: "YooMoney",
+    color: "#8B3FFD",
+    textColor: "#FFF",
+    icon: Wallet,
+    desc: "Pay with YooMoney",
   },
   {
     id: "card" as PayMethod,

@@ -34,7 +34,7 @@ export interface Payment {
   customer_id: string;
   amount: number;
   currency: string;
-  method: "mtn_momo" | "orange_money" | "visa" | "mastercard" | "bank_transfer";
+  method: "mtn_momo" | "orange_money" | "airtel_money" | "wave" | "yoomoney" | "visa" | "mastercard" | "bank_transfer";
   status: "pending" | "processing" | "completed" | "failed" | "refunded";
   gateway_ref: string | null;
   gateway_response: Record<string, unknown> | null;
