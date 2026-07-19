@@ -63,7 +63,11 @@ app.use("/api", apiRouter);
 // ─── Serve React SPA (production) ───
 const clientDist = path.resolve(__dirname, "../../client/dist");
 
-app.use(express.static(clientDist, { maxAge: "1y", immutable: true }));
+// Hashed assets (e.g. /assets/index-CxpJWkSd.js) — cache forever
+app.use("/assets", express.static(path.join(clientDist, "assets"), { maxAge: "1y", immutable: true }));
+
+// Everything else (logos, favicon, index.html, manifest) — short cache so updates appear quickly
+app.use(express.static(clientDist, { maxAge: "1h" }));
 
 // SPA fallback: any non-API route serves index.html
 app.get(/^\/(?!api\/).*/, (_req, res) => {
