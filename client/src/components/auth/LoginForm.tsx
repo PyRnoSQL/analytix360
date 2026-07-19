@@ -19,7 +19,7 @@ interface Props {
 }
 
 export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
-  const { signIn, signInWithGoogle, signInWithMicrosoft } = useAuth();
+  const { signIn, signInWithGoogle, signInWithMicrosoft, isDemo } = useAuth();
   const [showPw, setShowPw] = useState(false);
   const [serverError, setServerError] = useState<string | null>(null);
 
@@ -29,6 +29,7 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
     formState: { errors, isSubmitting },
   } = useForm<LoginForm>({
     resolver: zodResolver(loginSchema),
+    defaultValues: isDemo ? { email: "demo@analytix-eng.com", password: "demo12345" } : {},
   });
 
   const onSubmit = async (data: LoginForm) => {
@@ -59,6 +60,14 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
           Access your projects, invoices, and training records
         </p>
       </div>
+
+      {/* Demo mode banner */}
+      {isDemo && (
+        <div className="mb-4 rounded-xl bg-amber/10 p-3 text-center text-sm">
+          <span className="font-semibold text-amber">Demo Mode</span>
+          <span className="text-slate-600"> — Click Sign In to explore the portal</span>
+        </div>
+      )}
 
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">

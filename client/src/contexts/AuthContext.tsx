@@ -10,11 +10,39 @@ import { supabase } from "@/config/supabase";
 import type { Profile } from "@/types";
 import type { User, Session } from "@supabase/supabase-js";
 
+// ─── Demo Mode ───
+// When Supabase isn't configured, enable demo login so the portal can be explored.
+const IS_DEMO =
+  !import.meta.env.VITE_SUPABASE_URL ||
+  import.meta.env.VITE_SUPABASE_URL.includes("placeholder");
+
+const DEMO_USER: User = {
+  id: "demo-user-001",
+  email: "demo@analytix-eng.com",
+  app_metadata: {},
+  user_metadata: { full_name: "Demo User" },
+  aud: "authenticated",
+  created_at: new Date().toISOString(),
+} as User;
+
+const DEMO_PROFILE: Profile = {
+  id: "demo-user-001",
+  email: "demo@analytix-eng.com",
+  full_name: "Demo User",
+  company: "Analytix Engineering SARL",
+  phone: "+237 6 59 06 19 89",
+  role: "admin",
+  avatar_url: null,
+  created_at: new Date().toISOString(),
+  updated_at: new Date().toISOString(),
+};
+
 interface AuthState {
   user: User | null;
   profile: Profile | null;
   session: Session | null;
   loading: boolean;
+  isDemo: boolean;
   signIn: (email: string, password: string) => Promise<{ error: string | null }>;
   signUp: (
     email: string,
@@ -53,8 +81,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return data as Profile;
   }, []);
 
-  // Listen for auth state changes
+  // Listen for auth state changes (real mode only)
   useEffect(() => {
+    if (IS_DEMO) {
+      setLoading(false);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session: s } }) => {
       setSession(s);
       setUser(s?.user ?? null);
@@ -81,10 +114,15 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => subscription.unsubscribe();
   }, [fetchProfile]);
 
-  const signIn = async (email: string, password: string) => {
+  const signIn = async (_email: string, _password: string) => {
+    if (IS_DEMO) {
+      setUser(DEMO_USER);
+      setProfile(DEMO_PROFILE);
+      return { error: null };
+    }
     const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
+      email: _email,
+      password: _password,
     });
     return { error: error?.message ?? null };
   };
@@ -94,6 +132,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     password: string,
     fullName: string
   ) => {
+    if (IS_DEMO) {
+      setUser(DEMO_USER);
+      setProfile({ ...DEMO_PROFILE, full_name: fullName, email });
+      return { error: null };
+    }
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -103,6 +146,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithGoogle = async () => {
+    if (IS_DEMO) {
+      setUser(DEMO_USER);
+      setProfile(DEMO_PROFILE);
+      return;
+    }
     await supabase.auth.signInWithOAuth({
       provider: "google",
       options: { redirectTo: `${window.location.origin}/portal` },
@@ -110,6 +158,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signInWithMicrosoft = async () => {
+    if (IS_DEMO) {
+      setUser(DEMO_USER);
+      setProfile(DEMO_PROFILE);
+      return;
+    }
     await supabase.auth.signInWithOAuth({
       provider: "azure",
       options: {
@@ -120,11 +173,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    if (!IS_DEMO) {
+      await supabase.auth.signOut();
+    }
+    setUser(null);
     setProfile(null);
+    setSession(null);
   };
 
   const resetPassword = async (email: string) => {
+    if (IS_DEMO) {
+      return { error: null };
+    }
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset-password`,
     });
@@ -140,6 +200,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         profile,
         session,
         loading,
+        isDemo: IS_DEMO,
         signIn,
         signUp,
         signInWithGoogle,
