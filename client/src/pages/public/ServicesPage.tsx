@@ -4,6 +4,35 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Database, Target, GraduationCap } from "lucide-react";
 import { SERVICES } from "@/config/constants";
 
+// ─── Client Logos (split into two rows for dual marquee) ───
+const CLIENT_LOGOS_ROW1 = [
+  { name: "ExxonMobil", domain: "exxonmobil.com" },
+  { name: "Shell", domain: "shell.com" },
+  { name: "BP", domain: "bp.com" },
+  { name: "Aker Solutions", domain: "akersolutions.com" },
+  { name: "Tullow Oil", domain: "tullowoil.com" },
+  { name: "Eni-Saipem", domain: "saipem.com" },
+  { name: "Noble Energy", domain: "nblenergy.com" },
+  { name: "Schlumberger", domain: "slb.com" },
+  { name: "Microsoft", domain: "microsoft.com" },
+  { name: "T-Mobile", domain: "t-mobile.com" },
+  { name: "Intuit", domain: "intuit.com" },
+];
+
+const CLIENT_LOGOS_ROW2 = [
+  { name: "Abbott", domain: "abbott.com" },
+  { name: "Becton Dickinson", domain: "bd.com" },
+  { name: "Novartis", domain: "novartis.com" },
+  { name: "Alcon", domain: "alcon.com" },
+  { name: "Medtronic", domain: "medtronic.com" },
+  { name: "Volvo", domain: "volvo.com" },
+  { name: "ZF", domain: "zf.com" },
+  { name: "Textron", domain: "textron.com" },
+  { name: "Johnson Controls", domain: "johnsoncontrols.com" },
+  { name: "CACI International", domain: "caci.com" },
+  { name: "SHL Medical", domain: "shl-medical.com" },
+];
+
 const icons = [Database, Target, GraduationCap];
 const colors: Record<string, string> = {
   brand: "bg-brand text-white",
@@ -92,6 +121,81 @@ export function ServicesPage() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Trusted By */}
+      <section className="overflow-hidden bg-slate-50 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="text-[13px] font-bold uppercase tracking-[0.15em] text-brand">
+              Trusted By Industry Leaders
+            </span>
+            <h2 className="mt-3 text-[clamp(24px,3.5vw,36px)] font-extrabold text-navy">
+              Companies We've Helped
+            </h2>
+          </motion.div>
+
+          {/* Row 1 — scrolls left */}
+          <div className="relative mb-6">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 to-transparent" />
+            <div className="flex animate-[marquee_35s_linear_infinite]">
+              {[...CLIENT_LOGOS_ROW1, ...CLIENT_LOGOS_ROW1].map((c, i) => (
+                <div
+                  key={`r1-${i}`}
+                  className="mx-4 flex h-16 w-40 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-4 grayscale transition-all duration-300 hover:border-brand/30 hover:grayscale-0"
+                >
+                  <img
+                    src={`https://logo.clearbit.com/${c.domain}`}
+                    alt={c.name}
+                    className="h-8 max-w-[120px] object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.parentElement!.innerHTML = `<span class="text-xs font-bold text-slate-400">${c.name}</span>`;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Row 2 — scrolls right */}
+          <div className="relative">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-slate-50 to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-slate-50 to-transparent" />
+            <div className="flex animate-[marquee-reverse_40s_linear_infinite]">
+              {[...CLIENT_LOGOS_ROW2, ...CLIENT_LOGOS_ROW2].map((c, i) => (
+                <div
+                  key={`r2-${i}`}
+                  className="mx-4 flex h-16 w-40 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-4 grayscale transition-all duration-300 hover:border-brand/30 hover:grayscale-0"
+                >
+                  <img
+                    src={`https://logo.clearbit.com/${c.domain}`}
+                    alt={c.name}
+                    className="h-8 max-w-[120px] object-contain"
+                    loading="lazy"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                      target.parentElement!.innerHTML = `<span class="text-xs font-bold text-slate-400">${c.name}</span>`;
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <p className="mt-8 text-center text-sm font-semibold text-slate-400">
+            ...and many more across 6 continents
+          </p>
         </div>
       </section>
 
