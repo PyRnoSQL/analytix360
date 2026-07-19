@@ -6,31 +6,31 @@ import { SERVICES } from "@/config/constants";
 
 // ─── Client Logos (split into two rows for dual marquee) ───
 const CLIENT_LOGOS_ROW1 = [
-  { name: "ExxonMobil", domain: "exxonmobil.com" },
-  { name: "Shell", domain: "shell.com" },
-  { name: "BP", domain: "bp.com" },
-  { name: "Aker Solutions", domain: "akersolutions.com" },
-  { name: "Tullow Oil", domain: "tullowoil.com" },
-  { name: "Eni-Saipem", domain: "saipem.com" },
-  { name: "Noble Energy", domain: "nblenergy.com" },
-  { name: "Schlumberger", domain: "slb.com" },
-  { name: "Microsoft", domain: "microsoft.com" },
-  { name: "T-Mobile", domain: "t-mobile.com" },
-  { name: "Intuit", domain: "intuit.com" },
+  { name: "ExxonMobil", file: "exxonmobil.png" },
+  { name: "Shell", file: "shell.png" },
+  { name: "BP", file: "bp.png" },
+  { name: "Aker Solutions", file: "aker-solutions.png" },
+  { name: "Tullow Oil", file: "tullow-oil.png" },
+  { name: "Eni-Saipem", file: "saipem.png" },
+  { name: "Noble Energy", file: "noble-energy.png" },
+  { name: "Schlumberger", file: "schlumberger.png" },
+  { name: "Microsoft", file: "microsoft.png" },
+  { name: "T-Mobile", file: "t-mobile.png" },
+  { name: "Intuit", file: "intuit.png" },
 ];
 
 const CLIENT_LOGOS_ROW2 = [
-  { name: "Abbott", domain: "abbott.com" },
-  { name: "Becton Dickinson", domain: "bd.com" },
-  { name: "Novartis", domain: "novartis.com" },
-  { name: "Alcon", domain: "alcon.com" },
-  { name: "Medtronic", domain: "medtronic.com" },
-  { name: "Volvo", domain: "volvo.com" },
-  { name: "ZF", domain: "zf.com" },
-  { name: "Textron", domain: "textron.com" },
-  { name: "Johnson Controls", domain: "johnsoncontrols.com" },
-  { name: "CACI International", domain: "caci.com" },
-  { name: "SHL Medical", domain: "shl-medical.com" },
+  { name: "Abbott", file: "abbott.png" },
+  { name: "Becton Dickinson", file: "bd.png" },
+  { name: "Novartis", file: "novartis.png" },
+  { name: "Alcon", file: "alcon.png" },
+  { name: "Medtronic", file: "medtronic.png" },
+  { name: "Volvo", file: "volvo.png" },
+  { name: "ZF", file: "zf.png" },
+  { name: "Textron", file: "textron.png" },
+  { name: "Johnson Controls", file: "johnson-controls.png" },
+  { name: "CACI International", file: "caci.png" },
+  { name: "SHL Medical", file: "shl-medical.png" },
 ];
 
 const icons = [Database, Target, GraduationCap];
@@ -149,17 +149,20 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW1, ...CLIENT_LOGOS_ROW1].map((c, i) => (
                 <div
                   key={`r1-${i}`}
-                  className="mx-4 flex h-16 w-40 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-4 grayscale transition-all duration-300 hover:border-brand/30 hover:grayscale-0"
+                  className="group mx-3 flex h-16 w-44 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-5 opacity-60 grayscale transition-all duration-300 hover:border-slate-300 hover:opacity-100 hover:grayscale-0 hover:shadow-sm"
                 >
                   <img
-                    src={`https://logo.clearbit.com/${c.domain}`}
+                    src={`/logos/${c.file}`}
                     alt={c.name}
-                    className="h-8 max-w-[120px] object-contain"
+                    className="h-8 max-w-[130px] object-contain"
                     loading="lazy"
                     onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.parentElement!.innerHTML = `<span class="text-xs font-bold text-slate-400">${c.name}</span>`;
+                      const el = e.target as HTMLImageElement;
+                      el.style.display = "none";
+                      const span = document.createElement("span");
+                      span.className = "text-sm font-bold tracking-tight text-slate-500";
+                      span.textContent = c.name;
+                      el.parentElement!.appendChild(span);
                     }}
                   />
                 </div>
@@ -175,17 +178,20 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW2, ...CLIENT_LOGOS_ROW2].map((c, i) => (
                 <div
                   key={`r2-${i}`}
-                  className="mx-4 flex h-16 w-40 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-4 grayscale transition-all duration-300 hover:border-brand/30 hover:grayscale-0"
+                  className="group mx-3 flex h-16 w-44 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-5 opacity-60 grayscale transition-all duration-300 hover:border-slate-300 hover:opacity-100 hover:grayscale-0 hover:shadow-sm"
                 >
                   <img
-                    src={`https://logo.clearbit.com/${c.domain}`}
+                    src={`/logos/${c.file}`}
                     alt={c.name}
-                    className="h-8 max-w-[120px] object-contain"
+                    className="h-8 max-w-[130px] object-contain"
                     loading="lazy"
                     onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = "none";
-                      target.parentElement!.innerHTML = `<span class="text-xs font-bold text-slate-400">${c.name}</span>`;
+                      const el = e.target as HTMLImageElement;
+                      el.style.display = "none";
+                      const span = document.createElement("span");
+                      span.className = "text-sm font-bold tracking-tight text-slate-500";
+                      span.textContent = c.name;
+                      el.parentElement!.appendChild(span);
                     }}
                   />
                 </div>
