@@ -19,9 +19,6 @@ export function Footer() {
               Transforming organizations through data engineering, operational
               excellence, and professional development.
             </p>
-            <p className="mt-2 text-[11px] text-white/25">
-              Une filiale de Opes-Analytica LLC
-            </p>
           </div>
 
           {/* Services */}

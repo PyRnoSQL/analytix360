@@ -6,6 +6,8 @@ import {
   CheckCircle2,
   Download,
   ShieldCheck,
+  Smartphone,
+  CreditCard,
 } from "lucide-react";
 import {
   createPaymentSession,
@@ -24,15 +26,46 @@ interface Props {
   onSuccess: (payment: PaymentStatus) => void;
 }
 
-type Step = "loading" | "scan" | "processing" | "success" | "error";
+type Step = "loading" | "method" | "scan" | "processing" | "success" | "error";
+type PayMethod = "mtn_momo" | "orange_money" | "card";
+
+const METHODS = [
+  {
+    id: "mtn_momo" as PayMethod,
+    name: "MTN MoMo",
+    color: "#FFCC00",
+    textColor: "#000",
+    icon: Smartphone,
+    desc: "Pay with MTN Mobile Money",
+  },
+  {
+    id: "orange_money" as PayMethod,
+    name: "Orange Money",
+    color: "#FF6600",
+    textColor: "#FFF",
+    icon: Smartphone,
+    desc: "Pay with Orange Money",
+  },
+  {
+    id: "card" as PayMethod,
+    name: "Visa / Mastercard",
+    color: "#1A1F71",
+    textColor: "#FFF",
+    icon: CreditCard,
+    desc: "Pay with debit or credit card",
+  },
+];
 
 export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
-  const [step, setStep] = useState<Step>("loading");
+  const [step, setStep] = useState<Step>("method");
+  const [method, setMethod] = useState<PayMethod | null>(null);
   const [session, setSession] = useState<PaymentSession | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [isDemo, setIsDemo] = useState(false);
 
-  // Initialize payment session
+  // Initialize payment session after method selection
   useEffect(() => {
+    if (step !== "loading" || !method) return;
     let cancelled = false;
 
     async function init() {
@@ -41,22 +74,24 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
           invoiceId: invoice.id,
           amount: invoice.amount,
           description: invoice.description,
-          customerEmail: "", // filled from auth context in real usage
+          customerEmail: "",
           customerName: "",
+          method: method === "card" ? "visa" : method ?? undefined,
         });
         if (!cancelled) {
           setSession(s);
+          setIsDemo(false);
           setStep("scan");
         }
-      } catch (err) {
+      } catch {
         if (!cancelled) {
-          // Fallback: generate local QR for demo / offline
+          // Fallback: generate local QR for demo/offline
           const ref = generateReference();
           const qrData = buildQRPayload({
             reference: ref,
             amount: invoice.amount,
             currency: invoice.currency,
-            merchantName: "Analytix Engineering",
+            merchantName: "Analytix Engineering SARL",
             merchantId: "AE-001",
           });
           setSession({
@@ -66,20 +101,19 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
             expiresAt: new Date(Date.now() + 15 * 60000).toISOString(),
             reference: ref,
           });
+          setIsDemo(true);
           setStep("scan");
         }
       }
     }
 
     init();
-    return () => {
-      cancelled = true;
-    };
-  }, [invoice]);
+    return () => { cancelled = true; };
+  }, [step, method, invoice]);
 
-  // Poll for payment status once we have a session
+  // Poll for payment status (only in real mode)
   useEffect(() => {
-    if (!session || step !== "scan") return;
+    if (!session || step !== "scan" || isDemo) return;
 
     const stopPolling = pollPaymentStatus(
       session.transactionId,
@@ -96,7 +130,26 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
     );
 
     return stopPolling;
-  }, [session, step, onSuccess]);
+  }, [session, step, isDemo, onSuccess]);
+
+  const handleMethodSelect = (m: PayMethod) => {
+    setMethod(m);
+    setStep("loading");
+  };
+
+  const handleSimulatePayment = () => {
+    setStep("processing");
+    setTimeout(() => {
+      setStep("success");
+      onSuccess({
+        status: "completed",
+        transactionId: session?.transactionId ?? "",
+        amount: invoice.amount,
+        method: method ?? "mtn_momo",
+        paidAt: new Date().toISOString(),
+      });
+    }, 2500);
+  };
 
   const handleBackdropClick = useCallback(
     (e: React.MouseEvent) => {
@@ -104,6 +157,8 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
     },
     [onClose]
   );
+
+  const selectedMethod = METHODS.find((m) => m.id === method);
 
   return (
     <AnimatePresence>
@@ -125,10 +180,52 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute right-4 top-4 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition-colors"
+            className="absolute right-4 top-4 rounded-full p-2 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600"
           >
             <X size={20} />
           </button>
+
+          {/* ─── Method Selection ─── */}
+          {step === "method" && (
+            <div>
+              <h3 className="text-xl font-bold text-navy">Choose Payment Method</h3>
+              <p className="mt-1 text-sm text-slate-500">
+                Select how you'd like to pay{" "}
+                <span className="font-semibold text-navy">
+                  {formatCurrency(invoice.amount)}
+                </span>
+              </p>
+
+              <div className="mt-6 space-y-3">
+                {METHODS.map((m) => (
+                  <button
+                    key={m.id}
+                    onClick={() => handleMethodSelect(m.id)}
+                    className="flex w-full items-center gap-4 rounded-2xl border-2 border-slate-100 p-4 text-left transition-all hover:border-brand/30 hover:shadow-md"
+                  >
+                    <div
+                      className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl"
+                      style={{ backgroundColor: m.color }}
+                    >
+                      <m.icon size={22} style={{ color: m.textColor }} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-bold text-navy">{m.name}</p>
+                      <p className="text-xs text-slate-400">{m.desc}</p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Security badge */}
+              <div className="mt-5 flex items-center justify-center gap-1.5 rounded-lg bg-emerald/5 px-3 py-2">
+                <ShieldCheck size={14} className="text-emerald" />
+                <span className="text-[11px] font-semibold text-emerald">
+                  All transactions are 256-bit encrypted
+                </span>
+              </div>
+            </div>
+          )}
 
           {/* ─── Loading ─── */}
           {step === "loading" && (
@@ -145,7 +242,11 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
             <div className="flex flex-col items-center text-center">
               <h3 className="text-xl font-bold text-navy">Scan to Pay</h3>
               <p className="mt-1 text-sm text-slate-500">
-                Open your banking or Mobile Money app and scan
+                Open{" "}
+                <span className="font-semibold" style={{ color: selectedMethod?.color }}>
+                  {selectedMethod?.name}
+                </span>{" "}
+                and scan the QR code
               </p>
 
               {/* QR Code */}
@@ -162,44 +263,66 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
 
               {/* Amount */}
               <div className="w-full rounded-xl bg-pearl p-4">
-                <p className="text-xs font-semibold text-slate-500">
-                  Amount Due
-                </p>
+                <p className="text-xs font-semibold text-slate-500">Amount Due</p>
                 <p className="mt-1 text-2xl font-extrabold text-navy">
                   {formatCurrency(invoice.amount)}
                 </p>
-                <p className="mt-1 text-xs text-slate-400">
-                  Ref: {session.reference}
-                </p>
+                <p className="mt-1 text-xs text-slate-400">Ref: {session.reference}</p>
               </div>
 
-              {/* Accepted methods */}
-              <div className="mt-4 flex flex-wrap justify-center gap-2">
-                {["MTN MoMo", "Orange Money", "Visa / MC"].map((m) => (
-                  <span
-                    key={m}
-                    className="rounded-full bg-brand/5 px-3 py-1 text-xs font-semibold text-brand"
-                  >
-                    {m}
-                  </span>
-                ))}
-              </div>
+              {/* Selected method badge */}
+              {selectedMethod && (
+                <div
+                  className="mt-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-bold"
+                  style={{ backgroundColor: selectedMethod.color + "20", color: selectedMethod.color }}
+                >
+                  <selectedMethod.icon size={14} />
+                  Paying with {selectedMethod.name}
+                </div>
+              )}
 
               {/* Waiting indicator */}
-              <div className="mt-5 flex items-center gap-2 text-amber">
-                <span className="h-2 w-2 rounded-full bg-amber animate-pulse-dot" />
-                <span className="text-xs font-semibold">
-                  Waiting for payment...
-                </span>
+              <div className="mt-4 flex items-center gap-2 text-amber">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-amber" />
+                <span className="text-xs font-semibold">Waiting for payment...</span>
               </div>
 
+              {/* Simulate Payment (demo mode) */}
+              {isDemo && (
+                <button
+                  onClick={handleSimulatePayment}
+                  className="mt-4 w-full rounded-xl bg-emerald px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-emerald/90"
+                >
+                  ✓ Simulate Payment (Demo)
+                </button>
+              )}
+
+              {/* Change method */}
+              <button
+                onClick={() => { setStep("method"); setSession(null); setMethod(null); }}
+                className="mt-3 text-xs font-semibold text-slate-400 transition-colors hover:text-brand"
+              >
+                ← Change payment method
+              </button>
+
               {/* Security badge */}
-              <div className="mt-5 flex items-center gap-1.5 rounded-lg bg-emerald/5 px-3 py-2">
+              <div className="mt-4 flex items-center gap-1.5 rounded-lg bg-emerald/5 px-3 py-2">
                 <ShieldCheck size={14} className="text-emerald" />
                 <span className="text-[11px] font-semibold text-emerald">
                   256-bit encrypted · Secure transaction
                 </span>
               </div>
+            </div>
+          )}
+
+          {/* ─── Processing ─── */}
+          {step === "processing" && (
+            <div className="flex flex-col items-center py-12 text-center">
+              <div className="h-14 w-14 animate-spin rounded-full border-4 border-emerald border-t-transparent" />
+              <h3 className="mt-5 text-xl font-bold text-navy">Processing Payment...</h3>
+              <p className="mt-2 text-sm text-slate-500">
+                Verifying your payment with {selectedMethod?.name}
+              </p>
             </div>
           )}
 
@@ -222,19 +345,22 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
                 {formatCurrency(invoice.amount)}
               </p>
               <p className="mt-1 text-xs text-slate-400">
-                Receipt #{invoice.reference} · Confirmation sent to your email
+                Receipt #{invoice.reference} · {selectedMethod?.name}
+              </p>
+              <p className="mt-1 text-xs text-slate-400">
+                Confirmation sent to your email
               </p>
 
               <div className="mt-6 flex w-full gap-3">
                 <button
                   onClick={onClose}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-slate-200 px-4 py-3 text-sm font-semibold text-navy hover:bg-slate-50 transition-colors"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl border-2 border-slate-200 px-4 py-3 text-sm font-semibold text-navy transition-colors hover:bg-slate-50"
                 >
                   <Download size={16} /> Receipt PDF
                 </button>
                 <button
                   onClick={onClose}
-                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-white hover:bg-brand/90 transition-colors"
+                  className="flex flex-1 items-center justify-center gap-2 rounded-xl bg-brand px-4 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand/90"
                 >
                   Done
                 </button>
@@ -248,15 +374,13 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
               <div className="flex h-16 w-16 items-center justify-center rounded-full bg-rose/10">
                 <X size={32} className="text-rose" />
               </div>
-              <h3 className="mt-4 text-xl font-bold text-navy">
-                Payment Failed
-              </h3>
+              <h3 className="mt-4 text-xl font-bold text-navy">Payment Failed</h3>
               <p className="mt-2 text-sm text-slate-500">
                 {error ?? "Something went wrong. Please try again."}
               </p>
               <button
-                onClick={() => setStep("loading")}
-                className="mt-6 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand/90 transition-colors"
+                onClick={() => setStep("method")}
+                className="mt-6 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-brand/90"
               >
                 Try Again
               </button>
