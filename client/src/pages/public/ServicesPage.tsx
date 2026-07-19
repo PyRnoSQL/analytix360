@@ -149,7 +149,7 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW1, ...CLIENT_LOGOS_ROW1].map((c, i) => (
                 <div
                   key={`r1-${i}`}
-                  className="group mx-3 flex h-16 w-44 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-5 opacity-60 grayscale transition-all duration-300 hover:border-slate-300 hover:opacity-100 hover:grayscale-0 hover:shadow-sm"
+                  className="mx-4 flex h-16 w-44 flex-shrink-0 items-center justify-center px-5"
                 >
                   <img
                     src={`/logos/${c.file}`}
@@ -178,7 +178,7 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW2, ...CLIENT_LOGOS_ROW2].map((c, i) => (
                 <div
                   key={`r2-${i}`}
-                  className="group mx-3 flex h-16 w-44 flex-shrink-0 items-center justify-center rounded-xl border border-slate-200 bg-slate-100 px-5 opacity-60 grayscale transition-all duration-300 hover:border-slate-300 hover:opacity-100 hover:grayscale-0 hover:shadow-sm"
+                  className="mx-4 flex h-16 w-44 flex-shrink-0 items-center justify-center px-5"
                 >
                   <img
                     src={`/logos/${c.file}`}
