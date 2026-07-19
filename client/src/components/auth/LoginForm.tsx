@@ -46,7 +46,7 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="w-full max-w-md rounded-3xl bg-white p-10 shadow-2xl"
+      className="w-full max-w-md rounded-3xl bg-slate-50 p-10 shadow-2xl"
     >
       {/* Header */}
       <div className="mb-8 text-center">
@@ -83,7 +83,7 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
             Email
           </label>
           <div
-            className={`flex items-center gap-3 rounded-xl border-2 bg-pearl px-4 py-3 transition-colors ${
+            className={`flex items-center gap-3 rounded-xl border-2 bg-slate-100 px-4 py-3 transition-colors ${
               errors.email ? "border-rose" : "border-slate-200 focus-within:border-brand"
             }`}
           >
@@ -106,7 +106,7 @@ export function LoginForm({ onSuccess, onSwitchToRegister }: Props) {
             Password
           </label>
           <div
-            className={`flex items-center gap-3 rounded-xl border-2 bg-pearl px-4 py-3 transition-colors ${
+            className={`flex items-center gap-3 rounded-xl border-2 bg-slate-100 px-4 py-3 transition-colors ${
               errors.password ? "border-rose" : "border-slate-200 focus-within:border-brand"
             }`}
           >

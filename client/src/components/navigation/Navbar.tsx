@@ -137,7 +137,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-slate-100 bg-white md:hidden"
+            className="overflow-hidden border-t border-slate-100 bg-slate-50 md:hidden"
           >
             <nav className="flex flex-col gap-1 p-4">
               {NAV_ITEMS.map((item) => (

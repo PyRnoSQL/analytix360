@@ -17,7 +17,7 @@ export function PortalDocuments() {
         {docs.map((doc, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.04 }}
-            className="flex items-center gap-3.5 rounded-xl border border-slate-200 bg-white px-5 py-3.5">
+            className="flex items-center gap-3.5 rounded-xl border border-slate-200 bg-slate-50 px-5 py-3.5">
             <FileText size={20} className="text-brand" />
             <div className="flex-1">
               <p className="text-sm font-semibold text-navy">{doc.name}</p>

@@ -59,7 +59,7 @@ export function AdminDashboard() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-xl border border-slate-200 bg-white p-4"
+            className="rounded-xl border border-slate-200 bg-slate-50 p-4"
           >
             <p className="text-[11px] font-semibold text-slate-500">
               {c.label}
@@ -76,7 +76,7 @@ export function AdminDashboard() {
       {/* Charts row */}
       <div className="mb-6 grid gap-5 lg:grid-cols-3">
         {/* Revenue */}
-        <div className="col-span-2 rounded-xl border border-slate-200 bg-white p-5">
+        <div className="col-span-2 rounded-xl border border-slate-200 bg-slate-50 p-5">
           <h3 className="mb-4 text-sm font-bold text-navy">Revenue Trend</h3>
           <ResponsiveContainer width="100%" height={220}>
             <AreaChart data={revenue}>
@@ -105,7 +105,7 @@ export function AdminDashboard() {
         </div>
 
         {/* Project pie */}
-        <div className="rounded-xl border border-slate-200 bg-white p-5">
+        <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
           <h3 className="mb-4 text-sm font-bold text-navy">Project Status</h3>
           <ResponsiveContainer width="100%" height={160}>
             <PieChart>
@@ -143,7 +143,7 @@ export function AdminDashboard() {
       </div>
 
       {/* Training chart */}
-      <div className="rounded-xl border border-slate-200 bg-white p-5">
+      <div className="rounded-xl border border-slate-200 bg-slate-50 p-5">
         <h3 className="mb-4 text-sm font-bold text-navy">
           Training Performance
         </h3>

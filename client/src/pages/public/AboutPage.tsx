@@ -23,7 +23,7 @@ export function AboutPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="mb-6 text-lg leading-relaxed text-navy">

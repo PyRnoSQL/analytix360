@@ -192,7 +192,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ SERVICES ═══ */}
-      <section className="bg-white px-6 py-24">
+      <section className="bg-slate-50 px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -231,7 +231,7 @@ export function HomePage() {
                 >
                   <Link
                     to="/services"
-                    className="group block h-full rounded-2xl border border-slate-200 bg-pearl p-9 transition-all hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5"
+                    className="group block h-full rounded-2xl border border-slate-200 bg-slate-50 p-9 transition-all hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5"
                   >
                     <div
                       className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colorClasses.split(" ").slice(1).join(" ")}`}
@@ -310,7 +310,7 @@ export function HomePage() {
       </section>
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="bg-pearl px-6 py-24">
+      <section className="bg-slate-100 px-6 py-24">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -334,7 +334,7 @@ export function HomePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-white p-8"
+                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-8"
               >
                 <div className="mb-4 flex gap-0.5">
                   {Array.from({ length: 5 }).map((_, j) => (

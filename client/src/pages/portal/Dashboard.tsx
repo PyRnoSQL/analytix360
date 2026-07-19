@@ -24,7 +24,7 @@ export function PortalDashboard() {
         {cards.map((c, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-2xl border border-slate-200 bg-white p-5">
+            className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
             <div className="flex items-start justify-between">
               <div>
                 <p className="text-xs font-semibold text-slate-500">{c.label}</p>
@@ -38,7 +38,7 @@ export function PortalDashboard() {
         ))}
       </div>
 
-      <div className="rounded-2xl border border-slate-200 bg-white p-6">
+      <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
         <h3 className="mb-4 font-bold text-navy">Recent Activity</h3>
         {activity.map((a, i) => (
           <div key={i} className={`flex items-center gap-3 py-3 ${i < activity.length - 1 ? "border-b border-slate-100" : ""}`}>

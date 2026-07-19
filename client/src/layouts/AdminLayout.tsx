@@ -71,7 +71,7 @@ export function AdminLayout() {
           </div>
         </aside>
 
-        <main className="flex-1 overflow-y-auto bg-pearl p-6 md:p-7">
+        <main className="flex-1 overflow-y-auto bg-slate-100 p-6 md:p-7">
           <motion.div
             key={location.pathname}
             initial={{ opacity: 0, y: 12 }}

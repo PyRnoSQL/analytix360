@@ -39,7 +39,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-white px-6 py-16">
+      <section className="bg-slate-50 px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <div className="mb-12 flex flex-wrap gap-3">
             {SERVICES.map((svc, i) => {
@@ -66,7 +66,7 @@ export function ServicesPage() {
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} className="space-y-3">
               {s.features.map((f) => (
-                <div key={f} className="flex items-center gap-3 rounded-xl bg-pearl px-5 py-4">
+                <div key={f} className="flex items-center gap-3 rounded-xl bg-slate-100 px-5 py-4">
                   <CheckCircle2 size={20} className={checkColors[s.color]} />
                   <span className="text-[15px] font-medium text-navy">{f}</span>
                 </div>
@@ -77,14 +77,14 @@ export function ServicesPage() {
       </section>
 
       {/* Methodology */}
-      <section className="bg-pearl px-6 py-20">
+      <section className="bg-slate-100 px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <h2 className="mb-12 text-center text-3xl font-extrabold text-navy">Our Approach</h2>
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {["Discover & Assess", "Design & Architect", "Build & Implement", "Monitor & Optimize"].map((step, i) => (
               <motion.div key={step} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ delay: i * 0.1 }}
-                className="rounded-2xl border-t-4 border-brand bg-white p-7 text-center">
+                className="rounded-2xl border-t-4 border-brand bg-slate-50 p-7 text-center">
                 <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-brand/5 text-xl font-extrabold text-brand">
                   {i + 1}
                 </div>

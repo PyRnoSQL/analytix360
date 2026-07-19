@@ -71,7 +71,7 @@ export function ContactPage() {
 
   if (submitted) {
     return (
-      <div className="flex min-h-[80vh] items-center justify-center bg-pearl pt-20">
+      <div className="flex min-h-[80vh] items-center justify-center bg-slate-100 pt-20">
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -115,7 +115,7 @@ export function ContactPage() {
       </section>
 
       {/* Form + Info */}
-      <section className="bg-white px-6 py-16">
+      <section className="bg-slate-50 px-6 py-16">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-2">
           {/* Form */}
           <motion.div
@@ -123,7 +123,7 @@ export function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.1 }}
           >
-            <div className="rounded-2xl bg-pearl p-9">
+            <div className="rounded-2xl bg-slate-100 p-9">
               <h3 className="mb-6 text-xl font-bold text-navy">
                 Send a Message
               </h3>
@@ -249,7 +249,7 @@ export function ContactPage() {
               {offices.map((office) => (
                 <div
                   key={office.city}
-                  className="rounded-xl border border-slate-100 bg-pearl p-4"
+                  className="rounded-xl border border-slate-100 bg-slate-100 p-4"
                 >
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-lg bg-brand/5">

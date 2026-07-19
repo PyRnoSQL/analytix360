@@ -86,7 +86,7 @@ export function PortalInvoices() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="flex flex-wrap items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5"
+            className="flex flex-wrap items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-5"
           >
             <div className="min-w-[200px] flex-1">
               <p className="text-sm font-bold text-navy">{inv.description}</p>

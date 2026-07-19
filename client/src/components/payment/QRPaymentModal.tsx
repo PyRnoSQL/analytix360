@@ -199,7 +199,7 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
           transition={{ type: "spring", damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl"
+          className="relative w-full max-w-md rounded-3xl bg-slate-50 p-8 shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
           {/* Close button */}
@@ -287,7 +287,7 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
               </div>
 
               {/* Amount */}
-              <div className="w-full rounded-xl bg-pearl p-4">
+              <div className="w-full rounded-xl bg-slate-100 p-4">
                 <p className="text-xs font-semibold text-slate-500">Amount Due</p>
                 <p className="mt-1 text-2xl font-extrabold text-navy">
                   {formatCurrency(invoice.amount)}

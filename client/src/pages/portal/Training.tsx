@@ -15,7 +15,7 @@ export function PortalTraining() {
         {trainings.map((t, i) => (
           <motion.div key={i} initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="rounded-2xl border border-slate-200 bg-white p-6">
+            className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div>
                 <p className="font-bold text-navy">{t.name}</p>
