@@ -56,6 +56,14 @@ function Counter({
 
 const iconMap = { brand: Database, emerald: Target, amber: GraduationCap };
 const industryIcons = [Building2, Activity, Briefcase, Layers, Cpu, TrendingUp];
+const industrySlugs = [
+  "government-public-sector",
+  "healthcare-life-sciences",
+  "financial-services-insurance",
+  "telecommunications",
+  "manufacturing-industry",
+  "energy-utilities",
+];
 
 const stats = [
   { value: 150, suffix: "+", label: "Projects Delivered" },
@@ -281,12 +289,19 @@ export function HomePage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.06 }}
-                  className="glass rounded-2xl p-6 text-center transition-colors"
                 >
-                  {Icon && (
-                    <Icon size={32} className="mx-auto mb-3 text-sky" />
-                  )}
-                  <p className="text-[13px] font-semibold text-white">{name}</p>
+                  <Link
+                    to={`/industries/${industrySlugs[i]}`}
+                    className="glass group block rounded-2xl p-6 text-center transition-all hover:-translate-y-1 hover:bg-white/10"
+                  >
+                    {Icon && (
+                      <Icon size={32} className="mx-auto mb-3 text-sky transition-colors group-hover:text-white" />
+                    )}
+                    <p className="text-[13px] font-semibold text-white">{name}</p>
+                    <span className="mt-2 inline-block text-[11px] font-semibold text-sky/0 transition-all group-hover:text-sky">
+                      Learn more →
+                    </span>
+                  </Link>
                 </motion.div>
               );
             })}

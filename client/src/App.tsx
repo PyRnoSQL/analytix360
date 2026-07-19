@@ -12,6 +12,7 @@ const HomePage = lazy(() => import("@/pages/public/HomePage").then(m => ({ defau
 const ServicesPage = lazy(() => import("@/pages/public/ServicesPage").then(m => ({ default: m.ServicesPage })));
 const AboutPage = lazy(() => import("@/pages/public/AboutPage").then(m => ({ default: m.AboutPage })));
 const ContactPage = lazy(() => import("@/pages/public/ContactPage").then(m => ({ default: m.ContactPage })));
+const IndustryPage = lazy(() => import("@/pages/public/IndustryPage").then(m => ({ default: m.IndustryPage })));
 const LoginPage = lazy(() => import("@/pages/public/LoginPage").then(m => ({ default: m.LoginPage })));
 const PortalDashboard = lazy(() => import("@/pages/portal/Dashboard").then(m => ({ default: m.PortalDashboard })));
 const PortalInvoices = lazy(() => import("@/pages/portal/Invoices").then(m => ({ default: m.PortalInvoices })));
@@ -48,6 +49,7 @@ export default function App() {
                 <Route path="/services" element={<ServicesPage />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/industries/:slug" element={<IndustryPage />} />
               </Route>
 
               {/* Auth */}
