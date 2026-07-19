@@ -61,7 +61,18 @@ app.use("/api/health", healthRouter);
 app.use("/api", apiRouter);
 
 // ─── Serve React SPA (production) ───
-const clientDist = path.resolve(__dirname, "../../client/dist");
+// Try multiple resolution strategies for Railway compatibility
+const clientDistFromDirname = path.resolve(__dirname, "../../client/dist");
+const clientDistFromCwd = path.resolve(process.cwd(), "client/dist");
+
+// Use whichever path actually contains index.html
+import { existsSync } from "fs";
+const clientDist = existsSync(path.join(clientDistFromCwd, "index.html"))
+  ? clientDistFromCwd
+  : clientDistFromDirname;
+
+console.log(`  Static files: ${clientDist}`);
+console.log(`  Logos dir exists: ${existsSync(path.join(clientDist, "logos"))}`);
 
 // Hashed assets (e.g. /assets/index-CxpJWkSd.js) — cache forever
 app.use("/assets", express.static(path.join(clientDist, "assets"), { maxAge: "1y", immutable: true }));
