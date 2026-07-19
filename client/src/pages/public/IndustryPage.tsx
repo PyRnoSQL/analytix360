@@ -10,7 +10,6 @@ import {
   Cpu,
   TrendingUp,
   AlertTriangle,
-  CheckCircle2,
   Target,
   BarChart3,
   Shield,
@@ -629,7 +628,7 @@ export function IndustryPage() {
       </section>
 
       {/* ═══ OVERVIEW ═══ */}
-      <section className="px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <motion.p
             initial="hidden"
@@ -644,7 +643,7 @@ export function IndustryPage() {
       </section>
 
       {/* ═══ CHALLENGES ═══ */}
-      <section className="bg-pearl px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial="hidden"
@@ -666,30 +665,23 @@ export function IndustryPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
           >
             {sector.challenges.map((challenge, i) => (
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-rose/30 hover:shadow-md"
               >
-                <div className="mb-4 flex items-center gap-3">
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-rose/10">
-                    <AlertTriangle size={18} className="text-rose" />
+                <div className="flex items-center gap-3">
+                  <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-rose/10">
+                    <AlertTriangle size={16} className="text-rose" />
                   </div>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                    Challenge {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <h3 className="text-[15px] font-bold text-navy">
+                    {challenge.title}
+                  </h3>
                 </div>
-                <h3 className="mb-2 text-lg font-bold text-navy">
-                  {challenge.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-500">
-                  {challenge.description}
-                </p>
-                {/* Accent border on hover */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-gradient-to-r from-rose to-amber transition-all duration-300 group-hover:w-full" />
+                <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-gradient-to-r from-rose to-amber transition-all duration-300 group-hover:w-full" />
               </motion.div>
             ))}
           </motion.div>
@@ -697,7 +689,7 @@ export function IndustryPage() {
       </section>
 
       {/* ═══ HOW WE HELP ═══ */}
-      <section className="px-6 py-20">
+      <section className="bg-slate-100/60 px-6 py-20">
         <div className="mx-auto max-w-7xl">
           <motion.div
             initial="hidden"
@@ -719,7 +711,7 @@ export function IndustryPage() {
             whileInView="visible"
             viewport={{ once: true }}
             variants={stagger}
-            className="grid gap-8 md:grid-cols-2"
+            className="grid gap-4 md:grid-cols-2"
           >
             {sector.solutions.map((solution, i) => {
               const SolIcon = solution.icon;
@@ -727,21 +719,16 @@ export function IndustryPage() {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="group flex gap-5 rounded-2xl border border-slate-100 bg-white p-7 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+                  className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-slate-50 px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-brand/30 hover:shadow-md"
                 >
                   <div
-                    className={`flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-2xl ${sector.accentBg}/10`}
+                    className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${sector.accentBg}/10`}
                   >
-                    <SolIcon size={24} className={sector.accentColor} />
+                    <SolIcon size={20} className={sector.accentColor} />
                   </div>
-                  <div>
-                    <h3 className="mb-2 text-lg font-bold text-navy">
-                      {solution.title}
-                    </h3>
-                    <p className="text-sm leading-relaxed text-slate-500">
-                      {solution.description}
-                    </p>
-                  </div>
+                  <h3 className="text-[15px] font-bold text-navy">
+                    {solution.title}
+                  </h3>
                 </motion.div>
               );
             })}
@@ -793,45 +780,29 @@ export function IndustryPage() {
       </section>
 
       {/* ═══ CASE STUDY ═══ */}
-      <section className="px-6 py-20">
+      <section className="bg-slate-50 px-6 py-20">
         <div className="mx-auto max-w-4xl">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
             variants={fadeUp}
-            className="overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-lg"
+            className="overflow-hidden rounded-3xl shadow-lg"
           >
-            <div className={`bg-gradient-to-r ${sector.gradient} px-8 py-6`}>
+            <div className={`bg-gradient-to-r ${sector.gradient} px-8 py-8`}>
               <span className="text-[11px] font-bold uppercase tracking-wider text-white/60">
                 Case Study
               </span>
-              <h3 className="mt-1 text-2xl font-extrabold text-white">
+              <h3 className="mt-2 text-2xl font-extrabold text-white">
                 {sector.caseStudy.title}
               </h3>
-            </div>
-            <div className="p-8">
-              <p className="mb-6 text-[15px] leading-relaxed text-slate-600">
-                {sector.caseStudy.description}
-              </p>
-              <div className="space-y-3">
-                {sector.caseStudy.results.map((result, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <CheckCircle2
-                      size={18}
-                      className={`mt-0.5 flex-shrink-0 ${sector.accentColor}`}
-                    />
-                    <p className="text-sm font-medium text-navy">{result}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* ═══ CTA ═══ */}
-      <section className="bg-pearl px-6 py-20">
+      <section className="bg-slate-100/60 px-6 py-20">
         <div className="mx-auto max-w-3xl text-center">
           <motion.div
             initial="hidden"
@@ -867,7 +838,7 @@ export function IndustryPage() {
       </section>
 
       {/* ═══ OTHER SECTORS ═══ */}
-      <section className="bg-white px-6 py-16">
+      <section className="bg-slate-50 px-6 py-16">
         <div className="mx-auto max-w-7xl">
           <h3 className="mb-8 text-center text-lg font-bold text-navy">
             Explore Other Sectors
