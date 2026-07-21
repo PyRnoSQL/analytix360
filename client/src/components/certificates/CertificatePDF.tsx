@@ -10,9 +10,10 @@ import {
   Path,
   pdf,
 } from "@react-pdf/renderer";
+import QRCode from "qrcode";
 import type { CertificateData } from "./CertificateTemplate";
 
-// ─── Register Fonts ───
+// ─── Fonts ───
 Font.register({
   family: "Inter",
   fonts: [
@@ -47,7 +48,6 @@ const s = StyleSheet.create({
     paddingVertical: 28,
     paddingHorizontal: 18,
     flexDirection: "column",
-    justifyContent: "flex-start",
   },
   badgeOuter: {
     width: 70, height: 70, borderRadius: 35,
@@ -80,29 +80,29 @@ const s = StyleSheet.create({
     paddingBottom: 22,
     paddingHorizontal: 36,
     flexDirection: "column",
-    justifyContent: "space-between",
   },
 
-  // Top: just logo
   logo: { width: 130, height: 38, objectFit: "contain" as const },
 
-  // Middle content
-  date: { fontSize: 13, color: "#64748B", fontFamily: "Inter", marginTop: 14 },
+  // Center section — grows to fill and centers content
+  centerSection: {
+    flex: 1,
+    justifyContent: "center",
+  },
+
+  date: { fontSize: 13, color: "#64748B", fontFamily: "Inter" },
   recipientName: { fontSize: 30, color: "#0F172A", fontFamily: "Inter", fontWeight: 800, marginTop: 4 },
   completionText: { fontSize: 11, color: "#64748B", fontFamily: "Inter", marginTop: 5 },
   courseTitle: { fontSize: 32, color: "#0F172A", fontFamily: "Tinos", fontWeight: 700, marginTop: 8, lineHeight: 1.15 },
   skillsDesc: { fontSize: 9.5, color: "#475569", fontFamily: "Inter", marginTop: 12, lineHeight: 1.7, maxWidth: 480 },
 
-  // Bottom section
-  bottomArea: { marginTop: "auto" },
-
-  // Signature row - right aligned
+  // Signature row
   sigRow: { flexDirection: "row", justifyContent: "flex-end", marginBottom: 12 },
   sigBlock: { alignItems: "flex-end" },
   sigName: { fontSize: 10, color: "#0F172A", fontFamily: "Inter", fontWeight: 700, marginTop: 2 },
   sigTitle: { fontSize: 8, color: "#64748B", fontFamily: "Inter" },
 
-  // Footer row: disclaimer left, verify+QR right
+  // Footer
   footerRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
   disclaimer: { fontSize: 6.5, color: "#94A3B8", fontFamily: "Inter", lineHeight: 1.6, maxWidth: 310 },
   verifyArea: { flexDirection: "row", alignItems: "flex-end", gap: 6 },
@@ -116,25 +116,15 @@ const s = StyleSheet.create({
 function SignatureSVG() {
   return (
     <Svg width={110} height={24} viewBox="0 0 120 25">
-      <Path
-        d="M5 18 Q20 3, 38 14 T62 8 Q75 4, 88 19 L105 10"
-        fill="none" stroke="#0F172A" strokeWidth={1.2}
-        strokeLinecap="round" strokeLinejoin="round"
-      />
+      <Path d="M5 18 Q20 3, 38 14 T62 8 Q75 4, 88 19 L105 10" fill="none" stroke="#0F172A" strokeWidth={1.2} strokeLinecap="round" strokeLinejoin="round" />
     </Svg>
   );
 }
 
-function generateQRDataUrl(): string {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200"><rect width="100" height="100" fill="white"/><rect x="5" y="5" width="25" height="25" fill="#0F172A"/><rect x="70" y="5" width="25" height="25" fill="#0F172A"/><rect x="5" y="70" width="25" height="25" fill="#0F172A"/><rect x="8" y="8" width="19" height="19" fill="white"/><rect x="73" y="8" width="19" height="19" fill="white"/><rect x="8" y="73" width="19" height="19" fill="white"/><rect x="12" y="12" width="11" height="11" fill="#0F172A"/><rect x="77" y="12" width="11" height="11" fill="#0F172A"/><rect x="12" y="77" width="11" height="11" fill="#0F172A"/><rect x="35" y="5" width="5" height="5" fill="#0F172A"/><rect x="45" y="5" width="5" height="5" fill="#0F172A"/><rect x="55" y="5" width="5" height="5" fill="#0F172A"/><rect x="35" y="15" width="5" height="5" fill="#0F172A"/><rect x="50" y="15" width="5" height="5" fill="#0F172A"/><rect x="35" y="35" width="5" height="5" fill="#0F172A"/><rect x="45" y="35" width="5" height="5" fill="#0F172A"/><rect x="55" y="35" width="5" height="5" fill="#0F172A"/><rect x="45" y="45" width="5" height="5" fill="#0F172A"/><rect x="35" y="55" width="5" height="5" fill="#0F172A"/><rect x="55" y="55" width="5" height="5" fill="#0F172A"/><rect x="70" y="35" width="5" height="5" fill="#0F172A"/><rect x="80" y="45" width="5" height="5" fill="#0F172A"/><rect x="90" y="55" width="5" height="5" fill="#0F172A"/><rect x="70" y="70" width="25" height="25" fill="#0F172A"/><rect x="73" y="73" width="19" height="19" fill="white"/><rect x="77" y="77" width="11" height="11" fill="#0F172A"/></svg>`;
-  return `data:image/svg+xml;base64,${btoa(svg)}`;
-}
-
-function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logoUrl: string }) {
+function CertificatePDFDocument({ data, logoUrl, qrUrl }: { data: CertificateData; logoUrl: string; qrUrl: string }) {
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
   });
-  const qrDataUrl = generateQRDataUrl();
 
   return (
     <Document title={`${data.recipientName} - ${data.courseTitle}`} author="Analytix Engineering SARL">
@@ -151,7 +141,6 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
           </View>
           <Text style={s.profCert}>Professional</Text>
           <Text style={s.profCert}>Certificate</Text>
-
           {data.courseModules && data.courseModules.length > 0 && (
             <>
               <View style={s.moduleBadge}>
@@ -162,7 +151,6 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
               ))}
             </>
           )}
-
           <View style={s.hoursBadge}>
             <Text style={s.hoursText}>{data.courseHours} Hours</Text>
             <Text style={s.hoursLabel}>of instruction</Text>
@@ -171,15 +159,15 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
 
         {/* MAIN CONTENT */}
         <View style={s.main}>
-          {/* Top: Logo only */}
+          {/* Top: Logo */}
           {logoUrl ? (
             <Image src={logoUrl} style={s.logo} />
           ) : (
             <Text style={{ fontSize: 13, fontFamily: "Inter", fontWeight: 700, color: "#0F172A" }}>Analytix Engineering SARL</Text>
           )}
 
-          {/* Middle: Date, Name, Course, Skills */}
-          <View>
+          {/* Center: vertically centered content */}
+          <View style={s.centerSection}>
             <Text style={s.date}>{formattedDate}</Text>
             <Text style={s.recipientName}>{data.recipientName}</Text>
             <Text style={s.completionText}>has successfully completed the professional training program</Text>
@@ -189,31 +177,26 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
             )}
           </View>
 
-          {/* Bottom: Signature + Disclaimer + Verify */}
-          <View style={s.bottomArea}>
-            {/* Signature - bottom right */}
-            <View style={s.sigRow}>
-              <View style={s.sigBlock}>
-                <SignatureSVG />
-                <Text style={s.sigName}>{data.boardDirectorName}</Text>
-                <Text style={s.sigTitle}>{data.boardDirectorTitle}</Text>
-              </View>
+          {/* Bottom: Signature + Footer */}
+          <View style={s.sigRow}>
+            <View style={s.sigBlock}>
+              <SignatureSVG />
+              <Text style={s.sigName}>{data.boardDirectorName}</Text>
+              <Text style={s.sigTitle}>{data.boardDirectorTitle}</Text>
             </View>
+          </View>
 
-            {/* Footer: Disclaimer left, Verify+QR right */}
-            <View style={s.footerRow}>
-              <Text style={s.disclaimer}>
-                This professional certificate was issued by Analytix Engineering SARL upon successful completion of all required coursework, assessments, and practical exercises. This certificate does not confer academic credit or a university degree. It attests to the holder's demonstrated competency in the subject matter as evaluated by Analytix Engineering's Certification Board.
-              </Text>
-
-              <View style={s.verifyArea}>
-                <View style={s.verifyText}>
-                  <Text style={s.verifyLabel}>Verify this certificate at:</Text>
-                  <Text style={s.verifyUrl}>analytix-eng.com/verify</Text>
-                  <Text style={s.certId}>ID: {data.certificateNumber}</Text>
-                </View>
-                <Image src={qrDataUrl} style={s.qrImage} />
+          <View style={s.footerRow}>
+            <Text style={s.disclaimer}>
+              This professional certificate was issued by Analytix Engineering SARL upon successful completion of all required coursework, assessments, and practical exercises. This certificate does not confer academic credit or a university degree. It attests to the holder's demonstrated competency in the subject matter as evaluated by Analytix Engineering's Certification Board.
+            </Text>
+            <View style={s.verifyArea}>
+              <View style={s.verifyText}>
+                <Text style={s.verifyLabel}>Verify this certificate at:</Text>
+                <Text style={s.verifyUrl}>analytix-eng.com/verify</Text>
+                <Text style={s.certId}>ID: {data.certificateNumber}</Text>
               </View>
+              {qrUrl ? <Image src={qrUrl} style={s.qrImage} /> : null}
             </View>
           </View>
         </View>
@@ -225,21 +208,39 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
 
 // ─── Export ───
 export async function generateCertificatePDF(data: CertificateData): Promise<void> {
+  // Load logo as base64
   let logoUrl = "";
   try {
-    const response = await fetch(`${window.location.origin}/logo.png`);
-    if (!response.ok) throw new Error(`Logo fetch failed: ${response.status}`);
-    const blob = await response.blob();
-    logoUrl = await new Promise<string>((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.readAsDataURL(blob);
-    });
+    const res = await fetch(`${window.location.origin}/logo.png`);
+    if (res.ok) {
+      const blob = await res.blob();
+      logoUrl = await new Promise<string>((resolve) => {
+        const r = new FileReader();
+        r.onloadend = () => resolve(r.result as string);
+        r.readAsDataURL(blob);
+      });
+    }
   } catch (e) {
-    console.warn("Logo load failed, PDF will generate without logo:", e);
+    console.warn("Logo load failed:", e);
   }
 
-  const blob = await pdf(<CertificatePDFDocument data={data} logoUrl={logoUrl} />).toBlob();
+  // Generate real QR code as data URL
+  let qrUrl = "";
+  try {
+    qrUrl = await QRCode.toDataURL(data.verificationUrl, {
+      width: 200,
+      margin: 1,
+      color: { dark: "#0F172A", light: "#FFFFFF" },
+      errorCorrectionLevel: "M",
+    });
+  } catch (e) {
+    console.warn("QR generation failed:", e);
+  }
+
+  const blob = await pdf(
+    <CertificatePDFDocument data={data} logoUrl={logoUrl} qrUrl={qrUrl} />
+  ).toBlob();
+
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;
