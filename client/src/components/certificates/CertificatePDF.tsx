@@ -143,7 +143,7 @@ function generateQRDataUrl(): string {
 }
 
 // ─── PDF Document ───
-function CertificatePDFDocument({ data }: { data: CertificateData }) {
+function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logoUrl: string }) {
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
   });
@@ -185,7 +185,7 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
         {/* MAIN CONTENT */}
         <View style={s.main}>
           <View style={s.topRow}>
-            <Image src="/logo.png" style={s.logo} />
+            <Image src={logoUrl} style={s.logo} />
             <View style={s.sigBlock}>
               <SignatureSVG />
               <Text style={s.sigName}>{data.boardDirectorName}</Text>
@@ -229,7 +229,21 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
 
 // ─── Export function ───
 export async function generateCertificatePDF(data: CertificateData): Promise<void> {
-  const blob = await pdf(<CertificatePDFDocument data={data} />).toBlob();
+  // Convert logo to base64 so @react-pdf/renderer can embed it
+  let logoUrl = "";
+  try {
+    const response = await fetch(`${window.location.origin}/logo.png`);
+    const blob = await response.blob();
+    logoUrl = await new Promise<string>((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.readAsDataURL(blob);
+    });
+  } catch (e) {
+    console.error("Failed to load logo:", e);
+  }
+
+  const blob = await pdf(<CertificatePDFDocument data={data} logoUrl={logoUrl} />).toBlob();
   const url = URL.createObjectURL(blob);
   const link = document.createElement("a");
   link.href = url;

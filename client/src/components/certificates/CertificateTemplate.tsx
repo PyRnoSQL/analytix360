@@ -37,7 +37,7 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       await generateCertificatePDF(data);
     } catch (err) {
       console.error("PDF generation error:", err);
-      alert("Failed to generate PDF. Please try again.");
+      alert("Failed to generate PDF: " + (err instanceof Error ? err.message : String(err)));
     } finally {
       setGenerating(false);
     }
