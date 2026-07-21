@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
-import { Download, Shield } from "lucide-react";
+import { Download, Shield, Loader2 } from "lucide-react";
+import { generateCertificatePDF } from "./CertificatePDF";
 
 export interface CertificateData {
   certificateNumber: string;
@@ -27,12 +29,18 @@ interface Props {
 }
 
 export function CertificateTemplate({ data, onDownload, showControls = true }: Props) {
-  const handlePrint = () => {
-    // Add a class to body so print CSS can isolate the certificate
-    document.body.classList.add("printing-certificate");
-    window.print();
-    // Remove the class after print dialog closes
-    setTimeout(() => document.body.classList.remove("printing-certificate"), 1000);
+  const [generating, setGenerating] = useState(false);
+
+  const handleDownloadPDF = async () => {
+    setGenerating(true);
+    try {
+      await generateCertificatePDF(data);
+    } catch (err) {
+      console.error("PDF generation error:", err);
+      alert("Failed to generate PDF. Please try again.");
+    } finally {
+      setGenerating(false);
+    }
   };
 
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
@@ -44,8 +52,13 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       {/* Controls — hidden during print */}
       {showControls && (
         <div className="mb-6 flex items-center justify-center gap-4 print:hidden">
-          <button onClick={handlePrint} className="flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand/90">
-            <Download size={16} /> Download PDF
+          <button
+            onClick={handleDownloadPDF}
+            disabled={generating}
+            className="flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand/90 disabled:opacity-50"
+          >
+            {generating ? <Loader2 size={16} className="animate-spin" /> : <Download size={16} />}
+            {generating ? "Generating PDF..." : "Download PDF"}
           </button>
           {onDownload && (
             <button onClick={onDownload} className="flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-semibold text-navy hover:bg-slate-50">
@@ -208,39 +221,6 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
         </div>
       </div>
 
-      {/* Print Styles */}
-      <style>{`
-        @media print {
-          @page { size: A4 landscape; margin: 0; }
-          * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-          }
-          body.printing-certificate > *:not(#root),
-          body.printing-certificate nav,
-          body.printing-certificate aside,
-          body.printing-certificate footer,
-          body.printing-certificate header,
-          body.printing-certificate .print\\:hidden {
-            display: none !important;
-          }
-          body.printing-certificate #root > * {
-            all: unset;
-          }
-          body.printing-certificate #certificate-content {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 297mm !important;
-            height: 210mm !important;
-            max-width: 297mm !important;
-            box-shadow: none !important;
-            margin: 0 !important;
-            z-index: 999999;
-          }
-        }
-      `}</style>
     </div>
   );
 }
