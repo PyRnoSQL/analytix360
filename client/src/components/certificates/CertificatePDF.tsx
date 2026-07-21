@@ -25,7 +25,10 @@ Font.register({
 
 Font.register({
   family: "Tinos",
-  src: "https://fonts.gstatic.com/s/tinos/v24/buE4poGnedXvwgX8dGVh8TI-.ttf",
+  fonts: [
+    { src: "https://fonts.gstatic.com/s/tinos/v24/buE4poGnedXvwgX8dGVh8TI-.ttf", fontWeight: 400 },
+    { src: "https://fonts.gstatic.com/s/tinos/v24/buE1poGnedXvwj1AW0Fp2i43-cxL.ttf", fontWeight: 700 },
+  ],
 });
 
 Font.register({
@@ -34,91 +37,85 @@ Font.register({
 });
 
 // A4 Landscape = 842 x 595 points
-// Sidebar = 22% = ~185pt, Main = 78% = ~657pt
-
 const s = StyleSheet.create({
-  page: {
-    flexDirection: "row",
-    backgroundColor: "#FFFFFF",
-    width: 842,
-    height: 595,
-  },
+  page: { flexDirection: "row", backgroundColor: "#FFFFFF" },
 
-  // ─── LEFT SIDEBAR ───
+  // LEFT SIDEBAR
   sidebar: {
     width: 185,
     backgroundColor: "#0F172A",
-    paddingVertical: 30,
-    paddingHorizontal: 20,
+    paddingVertical: 28,
+    paddingHorizontal: 18,
     flexDirection: "column",
+    justifyContent: "flex-start",
   },
   badgeOuter: {
-    width: 72, height: 72, borderRadius: 36,
+    width: 70, height: 70, borderRadius: 35,
     borderWidth: 2, borderColor: "#C9A84C99",
     alignSelf: "center", justifyContent: "center", alignItems: "center",
     marginBottom: 8,
   },
   badgeInner: {
-    width: 56, height: 56, borderRadius: 28,
+    width: 54, height: 54, borderRadius: 27,
     borderWidth: 1, borderColor: "#C9A84C50",
     backgroundColor: "#C9A84C15",
     justifyContent: "center", alignItems: "center",
   },
-  badgeTextTop: { fontSize: 6.5, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", textAlign: "center" },
-  badgeTextMiddle: { fontSize: 13, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800, textAlign: "center" },
-  badgeTextBottom: { fontSize: 5, color: "#C9A84C99", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", textAlign: "center" },
+  badgeTextTop: { fontSize: 6, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", textAlign: "center" },
+  badgeTextMid: { fontSize: 12, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800, textAlign: "center" },
+  badgeTextBot: { fontSize: 5, color: "#C9A84C99", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", textAlign: "center" },
   profCert: { fontSize: 7, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", textAlign: "center", marginBottom: 2 },
-  moduleBadge: {
-    backgroundColor: "#2563EB", borderRadius: 6,
-    paddingVertical: 6, paddingHorizontal: 10,
-    marginBottom: 10, marginTop: 14,
-  },
-  moduleBadgeText: { fontSize: 10, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800 },
-  moduleItem: { fontSize: 8, color: "#FFFFFFCC", fontFamily: "Inter", fontWeight: 600, marginBottom: 6, lineHeight: 1.4 },
-  hoursBadge: {
-    backgroundColor: "#FFFFFF15", borderRadius: 6,
-    paddingVertical: 7, paddingHorizontal: 10,
-    marginTop: "auto", alignItems: "center",
-  },
-  hoursText: { fontSize: 10, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 700 },
-  hoursLabel: { fontSize: 7, color: "#FFFFFF80", fontFamily: "Inter" },
+  moduleBadge: { backgroundColor: "#2563EB", borderRadius: 5, paddingVertical: 5, paddingHorizontal: 10, marginBottom: 10, marginTop: 14 },
+  moduleBadgeText: { fontSize: 9, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800 },
+  moduleItem: { fontSize: 7.5, color: "#FFFFFFCC", fontFamily: "Inter", fontWeight: 600, marginBottom: 5, lineHeight: 1.4 },
+  hoursBadge: { backgroundColor: "#FFFFFF15", borderRadius: 5, paddingVertical: 6, paddingHorizontal: 10, marginTop: "auto", alignItems: "center" },
+  hoursText: { fontSize: 9, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 700 },
+  hoursLabel: { fontSize: 6, color: "#FFFFFF80", fontFamily: "Inter" },
 
-  // ─── MAIN CONTENT ───
+  // MAIN CONTENT
   main: {
-    width: 657,
+    flex: 1,
     backgroundColor: "#F5F0E8",
-    paddingTop: 30,
-    paddingBottom: 24,
-    paddingHorizontal: 40,
+    paddingTop: 28,
+    paddingBottom: 22,
+    paddingHorizontal: 36,
     flexDirection: "column",
     justifyContent: "space-between",
   },
-  topRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
-  logo: { width: 140, height: 42 },
+
+  // Top: just logo
+  logo: { width: 130, height: 38, objectFit: "contain" as const },
+
+  // Middle content
+  date: { fontSize: 13, color: "#64748B", fontFamily: "Inter", marginTop: 14 },
+  recipientName: { fontSize: 30, color: "#0F172A", fontFamily: "Inter", fontWeight: 800, marginTop: 4 },
+  completionText: { fontSize: 11, color: "#64748B", fontFamily: "Inter", marginTop: 5 },
+  courseTitle: { fontSize: 32, color: "#0F172A", fontFamily: "Tinos", fontWeight: 700, marginTop: 8, lineHeight: 1.15 },
+  skillsDesc: { fontSize: 9.5, color: "#475569", fontFamily: "Inter", marginTop: 12, lineHeight: 1.7, maxWidth: 480 },
+
+  // Bottom section
+  bottomArea: { marginTop: "auto" },
+
+  // Signature row - right aligned
+  sigRow: { flexDirection: "row", justifyContent: "flex-end", marginBottom: 12 },
   sigBlock: { alignItems: "flex-end" },
-  sigName: { fontSize: 11, color: "#0F172A", fontFamily: "Inter", fontWeight: 700, marginTop: 3 },
-  sigTitle: { fontSize: 8.5, color: "#64748B", fontFamily: "Inter" },
+  sigName: { fontSize: 10, color: "#0F172A", fontFamily: "Inter", fontWeight: 700, marginTop: 2 },
+  sigTitle: { fontSize: 8, color: "#64748B", fontFamily: "Inter" },
 
-  date: { fontSize: 14, color: "#64748B", fontFamily: "Inter", marginTop: 16 },
-  recipientName: { fontSize: 32, color: "#0F172A", fontFamily: "Inter", fontWeight: 800, marginTop: 5 },
-  completionText: { fontSize: 12, color: "#64748B", fontFamily: "Inter", marginTop: 6 },
-  courseTitle: { fontSize: 34, color: "#0F172A", fontFamily: "Tinos", marginTop: 10, lineHeight: 1.15 },
-  skillsDesc: { fontSize: 10, color: "#475569", fontFamily: "Inter", marginTop: 14, lineHeight: 1.7, maxWidth: 500 },
-
-  bottomRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
-  disclaimer: { fontSize: 7, color: "#94A3B8", fontFamily: "Inter", lineHeight: 1.6, maxWidth: 320 },
-  verifyBlock: { alignItems: "flex-end" },
-  verifyLabel: { fontSize: 8, color: "#64748B", fontFamily: "Inter", fontWeight: 600 },
-  verifyUrl: { fontSize: 8, color: "#2563EB", fontFamily: "Inter", fontWeight: 700 },
-  certId: { fontSize: 7, color: "#CBD5E1", fontFamily: "Inter", marginTop: 2 },
-  qrImage: { width: 50, height: 50, marginTop: 5 },
-  verifyRight: { flexDirection: "row", alignItems: "flex-end", gap: 8 },
+  // Footer row: disclaimer left, verify+QR right
+  footerRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
+  disclaimer: { fontSize: 6.5, color: "#94A3B8", fontFamily: "Inter", lineHeight: 1.6, maxWidth: 310 },
+  verifyArea: { flexDirection: "row", alignItems: "flex-end", gap: 6 },
+  verifyText: { alignItems: "flex-end" },
+  verifyLabel: { fontSize: 7.5, color: "#64748B", fontFamily: "Inter", fontWeight: 600 },
+  verifyUrl: { fontSize: 7.5, color: "#2563EB", fontFamily: "Inter", fontWeight: 700 },
+  certId: { fontSize: 6.5, color: "#CBD5E1", fontFamily: "Inter", marginTop: 1 },
+  qrImage: { width: 48, height: 48 },
 });
 
-// ─── Signature SVG ───
 function SignatureSVG() {
   return (
-    <Svg width={120} height={26} viewBox="0 0 120 25">
+    <Svg width={110} height={24} viewBox="0 0 120 25">
       <Path
         d="M5 18 Q20 3, 38 14 T62 8 Q75 4, 88 19 L105 10"
         fill="none" stroke="#0F172A" strokeWidth={1.2}
@@ -128,41 +125,11 @@ function SignatureSVG() {
   );
 }
 
-// ─── QR Code placeholder ───
 function generateQRDataUrl(): string {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
-    <rect width="100" height="100" fill="white"/>
-    <rect x="5" y="5" width="25" height="25" fill="#0F172A"/>
-    <rect x="70" y="5" width="25" height="25" fill="#0F172A"/>
-    <rect x="5" y="70" width="25" height="25" fill="#0F172A"/>
-    <rect x="8" y="8" width="19" height="19" fill="white"/>
-    <rect x="73" y="8" width="19" height="19" fill="white"/>
-    <rect x="8" y="73" width="19" height="19" fill="white"/>
-    <rect x="12" y="12" width="11" height="11" fill="#0F172A"/>
-    <rect x="77" y="12" width="11" height="11" fill="#0F172A"/>
-    <rect x="12" y="77" width="11" height="11" fill="#0F172A"/>
-    <rect x="35" y="5" width="5" height="5" fill="#0F172A"/>
-    <rect x="45" y="5" width="5" height="5" fill="#0F172A"/>
-    <rect x="55" y="5" width="5" height="5" fill="#0F172A"/>
-    <rect x="35" y="15" width="5" height="5" fill="#0F172A"/>
-    <rect x="50" y="15" width="5" height="5" fill="#0F172A"/>
-    <rect x="35" y="35" width="5" height="5" fill="#0F172A"/>
-    <rect x="45" y="35" width="5" height="5" fill="#0F172A"/>
-    <rect x="55" y="35" width="5" height="5" fill="#0F172A"/>
-    <rect x="45" y="45" width="5" height="5" fill="#0F172A"/>
-    <rect x="35" y="55" width="5" height="5" fill="#0F172A"/>
-    <rect x="55" y="55" width="5" height="5" fill="#0F172A"/>
-    <rect x="70" y="35" width="5" height="5" fill="#0F172A"/>
-    <rect x="80" y="45" width="5" height="5" fill="#0F172A"/>
-    <rect x="90" y="55" width="5" height="5" fill="#0F172A"/>
-    <rect x="70" y="70" width="25" height="25" rx="3" fill="#0F172A"/>
-    <rect x="73" y="73" width="19" height="19" fill="white"/>
-    <rect x="77" y="77" width="11" height="11" fill="#0F172A"/>
-  </svg>`;
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200"><rect width="100" height="100" fill="white"/><rect x="5" y="5" width="25" height="25" fill="#0F172A"/><rect x="70" y="5" width="25" height="25" fill="#0F172A"/><rect x="5" y="70" width="25" height="25" fill="#0F172A"/><rect x="8" y="8" width="19" height="19" fill="white"/><rect x="73" y="8" width="19" height="19" fill="white"/><rect x="8" y="73" width="19" height="19" fill="white"/><rect x="12" y="12" width="11" height="11" fill="#0F172A"/><rect x="77" y="12" width="11" height="11" fill="#0F172A"/><rect x="12" y="77" width="11" height="11" fill="#0F172A"/><rect x="35" y="5" width="5" height="5" fill="#0F172A"/><rect x="45" y="5" width="5" height="5" fill="#0F172A"/><rect x="55" y="5" width="5" height="5" fill="#0F172A"/><rect x="35" y="15" width="5" height="5" fill="#0F172A"/><rect x="50" y="15" width="5" height="5" fill="#0F172A"/><rect x="35" y="35" width="5" height="5" fill="#0F172A"/><rect x="45" y="35" width="5" height="5" fill="#0F172A"/><rect x="55" y="35" width="5" height="5" fill="#0F172A"/><rect x="45" y="45" width="5" height="5" fill="#0F172A"/><rect x="35" y="55" width="5" height="5" fill="#0F172A"/><rect x="55" y="55" width="5" height="5" fill="#0F172A"/><rect x="70" y="35" width="5" height="5" fill="#0F172A"/><rect x="80" y="45" width="5" height="5" fill="#0F172A"/><rect x="90" y="55" width="5" height="5" fill="#0F172A"/><rect x="70" y="70" width="25" height="25" fill="#0F172A"/><rect x="73" y="73" width="19" height="19" fill="white"/><rect x="77" y="77" width="11" height="11" fill="#0F172A"/></svg>`;
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
 
-// ─── PDF Document ───
 function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logoUrl: string }) {
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
@@ -170,7 +137,7 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
   const qrDataUrl = generateQRDataUrl();
 
   return (
-    <Document title={`${data.recipientName} — ${data.courseTitle}`} author="Analytix Engineering SARL">
+    <Document title={`${data.recipientName} - ${data.courseTitle}`} author="Analytix Engineering SARL">
       <Page size="A4" orientation="landscape" style={s.page}>
 
         {/* LEFT SIDEBAR */}
@@ -178,8 +145,8 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
           <View style={s.badgeOuter}>
             <View style={s.badgeInner}>
               <Text style={s.badgeTextTop}>Analytix</Text>
-              <Text style={s.badgeTextMiddle}>AE</Text>
-              <Text style={s.badgeTextBottom}>Certified</Text>
+              <Text style={s.badgeTextMid}>AE</Text>
+              <Text style={s.badgeTextBot}>Certified</Text>
             </View>
           </View>
           <Text style={s.profCert}>Professional</Text>
@@ -204,15 +171,14 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
 
         {/* MAIN CONTENT */}
         <View style={s.main}>
-          <View style={s.topRow}>
-            {logoUrl ? <Image src={logoUrl} style={s.logo} /> : <Text style={{ fontSize: 14, fontFamily: "Inter", fontWeight: 700, color: "#0F172A" }}>Analytix Engineering SARL</Text>}
-            <View style={s.sigBlock}>
-              <SignatureSVG />
-              <Text style={s.sigName}>{data.boardDirectorName}</Text>
-              <Text style={s.sigTitle}>{data.boardDirectorTitle}</Text>
-            </View>
-          </View>
+          {/* Top: Logo only */}
+          {logoUrl ? (
+            <Image src={logoUrl} style={s.logo} />
+          ) : (
+            <Text style={{ fontSize: 13, fontFamily: "Inter", fontWeight: 700, color: "#0F172A" }}>Analytix Engineering SARL</Text>
+          )}
 
+          {/* Middle: Date, Name, Course, Skills */}
           <View>
             <Text style={s.date}>{formattedDate}</Text>
             <Text style={s.recipientName}>{data.recipientName}</Text>
@@ -223,21 +189,31 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
             )}
           </View>
 
-          <View style={s.bottomRow}>
-            <Text style={s.disclaimer}>
-              This professional certificate was issued by Analytix Engineering SARL upon successful
-              completion of all required coursework, assessments, and practical exercises. This certificate
-              does not confer academic credit or a university degree. It attests to the holder's demonstrated
-              competency in the subject matter as evaluated by Analytix Engineering's Certification Board.
-            </Text>
-
-            <View style={s.verifyRight}>
-              <View style={s.verifyBlock}>
-                <Text style={s.verifyLabel}>Verify this certificate at:</Text>
-                <Text style={s.verifyUrl}>analytix-eng.com/verify</Text>
-                <Text style={s.certId}>ID: {data.certificateNumber}</Text>
+          {/* Bottom: Signature + Disclaimer + Verify */}
+          <View style={s.bottomArea}>
+            {/* Signature - bottom right */}
+            <View style={s.sigRow}>
+              <View style={s.sigBlock}>
+                <SignatureSVG />
+                <Text style={s.sigName}>{data.boardDirectorName}</Text>
+                <Text style={s.sigTitle}>{data.boardDirectorTitle}</Text>
               </View>
-              <Image src={qrDataUrl} style={s.qrImage} />
+            </View>
+
+            {/* Footer: Disclaimer left, Verify+QR right */}
+            <View style={s.footerRow}>
+              <Text style={s.disclaimer}>
+                This professional certificate was issued by Analytix Engineering SARL upon successful completion of all required coursework, assessments, and practical exercises. This certificate does not confer academic credit or a university degree. It attests to the holder's demonstrated competency in the subject matter as evaluated by Analytix Engineering's Certification Board.
+              </Text>
+
+              <View style={s.verifyArea}>
+                <View style={s.verifyText}>
+                  <Text style={s.verifyLabel}>Verify this certificate at:</Text>
+                  <Text style={s.verifyUrl}>analytix-eng.com/verify</Text>
+                  <Text style={s.certId}>ID: {data.certificateNumber}</Text>
+                </View>
+                <Image src={qrDataUrl} style={s.qrImage} />
+              </View>
             </View>
           </View>
         </View>
@@ -247,9 +223,8 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
   );
 }
 
-// ─── Export function ───
+// ─── Export ───
 export async function generateCertificatePDF(data: CertificateData): Promise<void> {
-  // Convert logo to base64 so @react-pdf/renderer can embed it
   let logoUrl = "";
   try {
     const response = await fetch(`${window.location.origin}/logo.png`);
