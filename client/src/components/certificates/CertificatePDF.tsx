@@ -127,17 +127,32 @@ function SignatureSVG() {
 function generateQRDataUrl(): string {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
     <rect width="100" height="100" fill="white"/>
-    <text x="50" y="45" text-anchor="middle" font-size="7" fill="#0F172A" font-family="monospace">SCAN TO</text>
-    <text x="50" y="56" text-anchor="middle" font-size="7" fill="#0F172A" font-family="monospace">VERIFY</text>
-    <rect x="5" y="5" width="20" height="20" fill="#0F172A"/>
-    <rect x="75" y="5" width="20" height="20" fill="#0F172A"/>
-    <rect x="5" y="75" width="20" height="20" fill="#0F172A"/>
-    <rect x="8" y="8" width="14" height="14" fill="white"/>
-    <rect x="78" y="8" width="14" height="14" fill="white"/>
-    <rect x="8" y="78" width="14" height="14" fill="white"/>
-    <rect x="11" y="11" width="8" height="8" fill="#0F172A"/>
-    <rect x="81" y="11" width="8" height="8" fill="#0F172A"/>
-    <rect x="11" y="81" width="8" height="8" fill="#0F172A"/>
+    <rect x="5" y="5" width="25" height="25" fill="#0F172A"/>
+    <rect x="70" y="5" width="25" height="25" fill="#0F172A"/>
+    <rect x="5" y="70" width="25" height="25" fill="#0F172A"/>
+    <rect x="8" y="8" width="19" height="19" fill="white"/>
+    <rect x="73" y="8" width="19" height="19" fill="white"/>
+    <rect x="8" y="73" width="19" height="19" fill="white"/>
+    <rect x="12" y="12" width="11" height="11" fill="#0F172A"/>
+    <rect x="77" y="12" width="11" height="11" fill="#0F172A"/>
+    <rect x="12" y="77" width="11" height="11" fill="#0F172A"/>
+    <rect x="35" y="5" width="5" height="5" fill="#0F172A"/>
+    <rect x="45" y="5" width="5" height="5" fill="#0F172A"/>
+    <rect x="55" y="5" width="5" height="5" fill="#0F172A"/>
+    <rect x="35" y="15" width="5" height="5" fill="#0F172A"/>
+    <rect x="50" y="15" width="5" height="5" fill="#0F172A"/>
+    <rect x="35" y="35" width="5" height="5" fill="#0F172A"/>
+    <rect x="45" y="35" width="5" height="5" fill="#0F172A"/>
+    <rect x="55" y="35" width="5" height="5" fill="#0F172A"/>
+    <rect x="45" y="45" width="5" height="5" fill="#0F172A"/>
+    <rect x="35" y="55" width="5" height="5" fill="#0F172A"/>
+    <rect x="55" y="55" width="5" height="5" fill="#0F172A"/>
+    <rect x="70" y="35" width="5" height="5" fill="#0F172A"/>
+    <rect x="80" y="45" width="5" height="5" fill="#0F172A"/>
+    <rect x="90" y="55" width="5" height="5" fill="#0F172A"/>
+    <rect x="70" y="70" width="25" height="25" rx="3" fill="#0F172A"/>
+    <rect x="73" y="73" width="19" height="19" fill="white"/>
+    <rect x="77" y="77" width="11" height="11" fill="#0F172A"/>
   </svg>`;
   return `data:image/svg+xml;base64,${btoa(svg)}`;
 }
