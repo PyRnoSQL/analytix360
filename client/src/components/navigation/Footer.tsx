@@ -46,6 +46,7 @@ export function Footer() {
             {[
               { label: "About", to: "/about" },
               { label: "Contact", to: "/contact" },
+              { label: "Verify Certificate", to: "/verify" },
               { label: "Customer Portal", to: "/portal" },
               { label: "Careers", to: "/contact" },
             ].map((l) => (

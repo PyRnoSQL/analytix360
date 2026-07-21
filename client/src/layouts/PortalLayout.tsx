@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Settings,
   LogOut,
+  Award,
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navbar } from "@/components/navigation/Navbar";
@@ -16,6 +17,7 @@ const sidebarItems = [
   { path: "/portal", icon: LayoutDashboard, label: "Overview", exact: true },
   { path: "/portal/invoices", icon: Receipt, label: "Invoices & Payments" },
   { path: "/portal/training", icon: BookOpen, label: "Training" },
+  { path: "/portal/certificates", icon: Award, label: "My Certificates" },
   { path: "/portal/documents", icon: FileText, label: "Documents" },
   { path: "/portal/messages", icon: MessageSquare, label: "Messages" },
   { path: "/portal/settings", icon: Settings, label: "Settings" },

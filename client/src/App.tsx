@@ -20,6 +20,7 @@ const PortalInvoices = lazy(() => import("@/pages/portal/Invoices").then(m => ({
 const PortalTraining = lazy(() => import("@/pages/portal/Training").then(m => ({ default: m.PortalTraining })));
 const PortalDocuments = lazy(() => import("@/pages/portal/Documents").then(m => ({ default: m.PortalDocuments })));
 const PortalSettings = lazy(() => import("@/pages/portal/Settings").then(m => ({ default: m.PortalSettings })));
+const PortalCertificates = lazy(() => import("@/pages/portal/Certificates").then(m => ({ default: m.CertificatesPage })));
 const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard").then(m => ({ default: m.AdminDashboard })));
 const FinancialDashboard = lazy(() => import("@/pages/admin/FinancialDashboard").then(m => ({ default: m.FinancialDashboard })));
 
@@ -65,6 +66,7 @@ export default function App() {
                 <Route path="/portal/invoices" element={<PortalInvoices />} />
                 <Route path="/portal/training" element={<PortalTraining />} />
                 <Route path="/portal/documents" element={<PortalDocuments />} />
+                <Route path="/portal/certificates" element={<PortalCertificates />} />
                 <Route path="/portal/settings" element={<PortalSettings />} />
               </Route>
 

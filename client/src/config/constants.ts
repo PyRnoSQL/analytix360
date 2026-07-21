@@ -31,6 +31,7 @@ export const NAV_ITEMS = [
   { id: "services", label: "Services", path: "/services" },
   { id: "about", label: "About", path: "/about" },
   { id: "contact", label: "Contact", path: "/contact" },
+  { id: "verify", label: "Verify Certificate", path: "/verify" },
 ] as const;
 
 // ─── Services ───
