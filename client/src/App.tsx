@@ -13,6 +13,7 @@ const ServicesPage = lazy(() => import("@/pages/public/ServicesPage").then(m => 
 const AboutPage = lazy(() => import("@/pages/public/AboutPage").then(m => ({ default: m.AboutPage })));
 const ContactPage = lazy(() => import("@/pages/public/ContactPage").then(m => ({ default: m.ContactPage })));
 const IndustryPage = lazy(() => import("@/pages/public/IndustryPage").then(m => ({ default: m.IndustryPage })));
+const VerifyCertificatePage = lazy(() => import("@/pages/public/VerifyCertificatePage").then(m => ({ default: m.VerifyCertificatePage })));
 const LoginPage = lazy(() => import("@/pages/public/LoginPage").then(m => ({ default: m.LoginPage })));
 const PortalDashboard = lazy(() => import("@/pages/portal/Dashboard").then(m => ({ default: m.PortalDashboard })));
 const PortalInvoices = lazy(() => import("@/pages/portal/Invoices").then(m => ({ default: m.PortalInvoices })));
@@ -21,6 +22,8 @@ const PortalDocuments = lazy(() => import("@/pages/portal/Documents").then(m => 
 const PortalSettings = lazy(() => import("@/pages/portal/Settings").then(m => ({ default: m.PortalSettings })));
 const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard").then(m => ({ default: m.AdminDashboard })));
 const FinancialDashboard = lazy(() => import("@/pages/admin/FinancialDashboard").then(m => ({ default: m.FinancialDashboard })));
+const CertificatePage = lazy(() => import("@/pages/portal/CertificatePage").then(m => ({ default: m.CertificatePage })));
+const VerifyCertificate = lazy(() => import("@/pages/public/VerifyCertificate").then(m => ({ default: m.VerifyCertificate })));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 5 * 60_000, retry: 1 } },
@@ -51,10 +54,18 @@ export default function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/industries/:slug" element={<IndustryPage />} />
+                <Route path="/verify" element={<VerifyCertificatePage />} />
+                <Route path="/verify/:certId" element={<VerifyCertificatePage />} />
               </Route>
 
               {/* Auth */}
               <Route path="/login" element={<LoginPage />} />
+
+              {/* Public Verification (no layout needed) */}
+              <Route element={<PublicLayout />}>
+                <Route path="/verify" element={<VerifyCertificate />} />
+                <Route path="/verify/:certId" element={<VerifyCertificate />} />
+              </Route>
 
               {/* Customer Portal */}
               <Route element={<ProtectedRoute><PortalLayout /></ProtectedRoute>}>
@@ -63,6 +74,7 @@ export default function App() {
                 <Route path="/portal/training" element={<PortalTraining />} />
                 <Route path="/portal/documents" element={<PortalDocuments />} />
                 <Route path="/portal/settings" element={<PortalSettings />} />
+                <Route path="/portal/certificate" element={<CertificatePage />} />
               </Route>
 
               {/* Admin */}
