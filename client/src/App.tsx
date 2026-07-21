@@ -22,8 +22,6 @@ const PortalDocuments = lazy(() => import("@/pages/portal/Documents").then(m => 
 const PortalSettings = lazy(() => import("@/pages/portal/Settings").then(m => ({ default: m.PortalSettings })));
 const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard").then(m => ({ default: m.AdminDashboard })));
 const FinancialDashboard = lazy(() => import("@/pages/admin/FinancialDashboard").then(m => ({ default: m.FinancialDashboard })));
-const CertificatePage = lazy(() => import("@/pages/portal/CertificatePage").then(m => ({ default: m.CertificatePage })));
-const VerifyCertificate = lazy(() => import("@/pages/public/VerifyCertificate").then(m => ({ default: m.VerifyCertificate })));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 5 * 60_000, retry: 1 } },
@@ -61,12 +59,6 @@ export default function App() {
               {/* Auth */}
               <Route path="/login" element={<LoginPage />} />
 
-              {/* Public Verification (no layout needed) */}
-              <Route element={<PublicLayout />}>
-                <Route path="/verify" element={<VerifyCertificate />} />
-                <Route path="/verify/:certId" element={<VerifyCertificate />} />
-              </Route>
-
               {/* Customer Portal */}
               <Route element={<ProtectedRoute><PortalLayout /></ProtectedRoute>}>
                 <Route path="/portal" element={<PortalDashboard />} />
@@ -74,7 +66,6 @@ export default function App() {
                 <Route path="/portal/training" element={<PortalTraining />} />
                 <Route path="/portal/documents" element={<PortalDocuments />} />
                 <Route path="/portal/settings" element={<PortalSettings />} />
-                <Route path="/portal/certificate" element={<CertificatePage />} />
               </Route>
 
               {/* Admin */}
