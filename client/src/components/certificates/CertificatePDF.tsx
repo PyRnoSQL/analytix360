@@ -28,6 +28,11 @@ Font.register({
   src: "https://fonts.gstatic.com/s/tinos/v24/buE4poGnedXvwgX8dGVh8TI-.ttf",
 });
 
+Font.register({
+  family: "monospace",
+  src: "https://fonts.gstatic.com/s/robotomono/v23/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_ROW4.ttf",
+});
+
 // A4 Landscape = 842 x 595 points
 // Sidebar = 22% = ~185pt, Main = 78% = ~657pt
 
