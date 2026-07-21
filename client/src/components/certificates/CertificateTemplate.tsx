@@ -16,6 +16,8 @@ export interface CertificateData {
   verificationHash: string;
   issuedAt: string;
   expiresAt?: string | null;
+  skillsDescription?: string;
+  courseModules?: string[];
 }
 
 interface Props {
@@ -25,20 +27,10 @@ interface Props {
 }
 
 export function CertificateTemplate({ data, onDownload, showControls = true }: Props) {
-  const handlePrint = () => {
-    window.print();
-  };
+  const handlePrint = () => window.print();
 
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-
-  const formattedIssueDate = new Date(data.issuedAt).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
+    year: "numeric", month: "long", day: "numeric",
   });
 
   return (
@@ -46,203 +38,179 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       {/* Controls — hidden during print */}
       {showControls && (
         <div className="mb-6 flex items-center justify-center gap-4 print:hidden">
-          <button
-            onClick={handlePrint}
-            className="flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand/90"
-          >
+          <button onClick={handlePrint} className="flex items-center gap-2 rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white shadow-lg hover:bg-brand/90">
             <Download size={16} /> Download PDF
           </button>
           {onDownload && (
-            <button
-              onClick={onDownload}
-              className="flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-semibold text-navy hover:bg-slate-50"
-            >
+            <button onClick={onDownload} className="flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-semibold text-navy hover:bg-slate-50">
               <Shield size={16} /> Verify Certificate
             </button>
           )}
         </div>
       )}
 
-      {/* Certificate — 297mm × 210mm (A4 Landscape) */}
+      {/* Certificate — A4 Landscape */}
       <div
         id="certificate-content"
         className="relative mx-auto overflow-hidden bg-white shadow-2xl print:shadow-none"
         style={{ width: "297mm", maxWidth: "100%", aspectRatio: "297 / 210" }}
       >
-        {/* ─── Ornamental Border ─── */}
-        <div className="absolute inset-0">
-          {/* Outer gold border */}
-          <div className="absolute inset-[8px] border-[3px] border-[#C9A84C]" />
-          {/* Inner navy border */}
-          <div className="absolute inset-[14px] border-[1.5px] border-[#0F172A]" />
-          {/* Inner gold border */}
-          <div className="absolute inset-[18px] border-[0.5px] border-[#C9A84C]/40" />
+        {/* Background watermark */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10 L70 40 L40 70 L10 40Z' fill='none' stroke='%230F172A' stroke-width='0.3'/%3E%3C/svg%3E")`,
+          backgroundSize: "80px 80px",
+        }} />
 
-          {/* Corner ornaments */}
-          {[
-            "top-[10px] left-[10px]",
-            "top-[10px] right-[10px] rotate-90",
-            "bottom-[10px] right-[10px] rotate-180",
-            "bottom-[10px] left-[10px] -rotate-90",
-          ].map((pos, i) => (
-            <div key={i} className={`absolute ${pos}`}>
-              <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-                <path d="M5 5 L25 5 L25 8 L8 8 L8 25 L5 25 Z" fill="#C9A84C" />
-                <path d="M5 5 L15 5 L15 7 L7 7 L7 15 L5 15 Z" fill="#0F172A" />
-              </svg>
-            </div>
-          ))}
+        <div className="relative flex h-full">
 
-          {/* Subtle watermark pattern */}
-          <div className="absolute inset-[30px] opacity-[0.02]" style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 5 L35 20 L20 35 L5 20Z' fill='none' stroke='%230F172A' stroke-width='0.5'/%3E%3C/svg%3E")`,
-            backgroundSize: "40px 40px",
-          }} />
-        </div>
-
-        {/* ─── Certificate Content ─── */}
-        <div className="relative flex h-full flex-col items-center justify-between px-[60px] py-[40px]">
-
-          {/* Top: Logo + Title */}
-          <div className="text-center">
-            <img
-              src="/logo.png"
-              alt="Analytix Engineering SARL"
-              className="mx-auto mb-2 h-[50px] w-auto"
-            />
-            <p className="text-[9px] font-semibold uppercase tracking-[0.3em] text-[#C9A84C]">
-              Une filiale de Opes-Analytica LLC
-            </p>
-          </div>
-
-          {/* Certificate Title */}
-          <div className="text-center">
-            <h1
-              className="text-[11px] font-bold uppercase tracking-[0.4em] text-[#0F172A]"
-              style={{ letterSpacing: "0.4em" }}
-            >
-              Certificate of Completion
-            </h1>
-            <div className="mx-auto mt-2 h-[2px] w-[200px] bg-gradient-to-r from-transparent via-[#C9A84C] to-transparent" />
-            <p className="mt-3 text-[9px] text-[#64748B]">
-              This is to certify that
-            </p>
-          </div>
-
-          {/* Recipient Name */}
-          <div className="text-center">
-            <h2
-              className="text-[32px] font-light text-[#0F172A]"
-              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
-            >
-              {data.recipientName}
-            </h2>
-            <div className="mx-auto mt-1 h-[1px] w-[300px] bg-[#C9A84C]/30" />
-          </div>
-
-          {/* Course Details */}
-          <div className="max-w-[500px] text-center">
-            <p className="text-[9px] leading-relaxed text-[#64748B]">
-              has successfully completed all requirements for the professional training program
-            </p>
-            <h3 className="mt-2 text-[16px] font-bold text-[#1E3A8A]">
-              {data.courseTitle}
-            </h3>
-            <p className="mt-1 text-[9px] font-semibold uppercase tracking-[0.2em] text-[#C9A84C]">
-              {data.courseCategory}
-            </p>
-            <p className="mt-2 text-[9px] text-[#64748B]">
-              comprising {data.courseHours} hours of instruction, assessment, and practical application
-            </p>
-            <p className="mt-1 text-[9px] text-[#64748B]">
-              Completed on <span className="font-semibold text-[#0F172A]">{formattedDate}</span>
-            </p>
-          </div>
-
-          {/* Signatures */}
-          <div className="flex w-full max-w-[500px] items-end justify-between">
-            {/* CEO Signature */}
-            <div className="text-center">
-              <div className="mb-1 h-[30px] flex items-end justify-center">
-                <svg width="120" height="25" viewBox="0 0 120 25" className="opacity-70">
-                  <path
-                    d="M5 20 Q15 5, 30 15 T55 10 Q65 5, 75 18 T100 12 L115 15"
-                    fill="none" stroke="#0F172A" strokeWidth="1.2"
-                    strokeLinecap="round" strokeLinejoin="round"
-                  />
-                </svg>
-              </div>
-              <div className="h-[1px] w-[140px] bg-[#0F172A]" />
-              <p className="mt-1 text-[9px] font-bold text-[#0F172A]">{data.ceoName}</p>
-              <p className="text-[7px] text-[#64748B]">{data.ceoTitle}</p>
-            </div>
-
-            {/* Seal / Emblem */}
-            <div className="flex flex-col items-center">
-              <div className="flex h-[55px] w-[55px] items-center justify-center rounded-full border-[2px] border-[#C9A84C] bg-[#C9A84C]/5">
-                <div className="flex h-[42px] w-[42px] items-center justify-center rounded-full border-[1px] border-[#C9A84C]/60">
+          {/* ═══ LEFT SIDEBAR — Course Modules ═══ */}
+          <div className="flex w-[210px] flex-shrink-0 flex-col bg-gradient-to-b from-[#0F172A] via-[#1E293B] to-[#0F172A] px-[20px] py-[30px]">
+            {/* Certification badge */}
+            <div className="mb-[16px] text-center">
+              <div className="mx-auto flex h-[70px] w-[70px] items-center justify-center rounded-full border-[2px] border-[#C9A84C]/60">
+                <div className="flex h-[56px] w-[56px] items-center justify-center rounded-full border-[1px] border-[#C9A84C]/30 bg-[#C9A84C]/10">
                   <div className="text-center">
-                    <p className="text-[5px] font-bold uppercase tracking-[0.15em] text-[#C9A84C]">Analytix</p>
-                    <p className="text-[4px] font-semibold text-[#C9A84C]/70">CERTIFIED</p>
+                    <p className="text-[7px] font-bold uppercase tracking-[0.2em] text-[#C9A84C]">Analytix</p>
+                    <p className="text-[10px] font-extrabold text-white">AE</p>
+                    <p className="text-[5px] font-bold uppercase tracking-[0.15em] text-[#C9A84C]/70">Certified</p>
                   </div>
                 </div>
               </div>
+              <p className="mt-[8px] text-[7px] font-bold uppercase tracking-[0.25em] text-[#C9A84C]">
+                Professional
+              </p>
+              <p className="text-[7px] font-bold uppercase tracking-[0.25em] text-[#C9A84C]">
+                Certificate
+              </p>
             </div>
 
-            {/* Board Director Signature */}
-            <div className="text-center">
-              <div className="mb-1 h-[30px] flex items-end justify-center">
-                <svg width="120" height="25" viewBox="0 0 120 25" className="opacity-70">
+            {/* Course count */}
+            {data.courseModules && data.courseModules.length > 0 && (
+              <>
+                <div className="mb-[10px] rounded-lg bg-[#2563EB] px-[10px] py-[6px]">
+                  <p className="text-[10px] font-extrabold text-white">
+                    {data.courseModules.length} Modules
+                  </p>
+                </div>
+
+                {/* Module list */}
+                <div className="flex-1 space-y-[6px]">
+                  {data.courseModules.map((mod, i) => (
+                    <p key={i} className="text-[7px] font-semibold leading-[1.4] text-white/80">
+                      {mod}
+                    </p>
+                  ))}
+                </div>
+              </>
+            )}
+
+            {/* Hours badge */}
+            <div className="mt-auto rounded-lg bg-white/10 px-[10px] py-[6px] text-center">
+              <p className="text-[8px] font-bold text-white">{data.courseHours} Hours</p>
+              <p className="text-[6px] text-white/50">of instruction</p>
+            </div>
+          </div>
+
+          {/* ═══ MAIN CONTENT ═══ */}
+          <div className="flex flex-1 flex-col justify-between px-[40px] py-[30px]">
+
+            {/* Top row: Logo + Signature */}
+            <div className="flex items-start justify-between">
+              {/* Logo */}
+              <img
+                src="/logo.png"
+                alt="Analytix Engineering SARL"
+                className="h-[45px] w-auto"
+              />
+
+              {/* CEO Signature */}
+              <div className="text-right">
+                <svg width="130" height="30" viewBox="0 0 130 30" className="ml-auto opacity-70">
                   <path
-                    d="M10 18 Q25 3, 40 15 T65 8 Q80 5, 90 20 L110 10"
+                    d="M8 22 Q18 4, 35 16 T60 10 Q72 4, 85 20 T110 12 L125 16"
+                    fill="none" stroke="#0F172A" strokeWidth="1.3"
+                    strokeLinecap="round" strokeLinejoin="round"
+                  />
+                </svg>
+                <p className="mt-[2px] text-[10px] font-bold text-[#0F172A]">{data.ceoName}</p>
+                <p className="text-[8px] text-[#64748B]">{data.ceoTitle}</p>
+              </div>
+            </div>
+
+            {/* Date */}
+            <p className="mt-[14px] text-[12px] text-[#64748B]">{formattedDate}</p>
+
+            {/* Recipient Name */}
+            <h2
+              className="mt-[6px] text-[28px] font-extrabold tracking-tight text-[#0F172A]"
+            >
+              {data.recipientName}
+            </h2>
+
+            <p className="mt-[6px] text-[11px] text-[#64748B]">
+              has successfully completed the professional training program
+            </p>
+
+            {/* Course Title */}
+            <h1
+              className="mt-[10px] text-[32px] font-extrabold leading-[1.15] text-[#0F172A]"
+              style={{ fontFamily: "Georgia, 'Times New Roman', serif" }}
+            >
+              {data.courseTitle}
+            </h1>
+
+            {/* Skills Description */}
+            {data.skillsDescription && (
+              <p className="mt-[12px] max-w-[480px] text-[9px] leading-[1.7] text-[#475569]">
+                {data.skillsDescription}
+              </p>
+            )}
+
+            {/* Bottom: Disclaimer + Board signature + Verify */}
+            <div className="mt-auto flex items-end justify-between">
+              {/* Disclaimer */}
+              <div className="max-w-[320px]">
+                <p className="text-[6.5px] leading-[1.6] text-[#94A3B8]">
+                  This professional certificate was issued by Analytix Engineering SARL upon successful
+                  completion of all required coursework, assessments, and practical exercises. This certificate
+                  does not confer academic credit or a university degree. It attests to the holder's demonstrated
+                  competency in the subject matter as evaluated by Analytix Engineering's Certification Board.
+                </p>
+              </div>
+
+              {/* Board Director Signature + Verify */}
+              <div className="text-right">
+                {/* Board signature */}
+                <svg width="110" height="25" viewBox="0 0 110 25" className="ml-auto opacity-70">
+                  <path
+                    d="M5 18 Q20 3, 38 14 T62 8 Q75 4, 88 19 L105 10"
                     fill="none" stroke="#0F172A" strokeWidth="1.2"
                     strokeLinecap="round" strokeLinejoin="round"
                   />
                 </svg>
-              </div>
-              <div className="h-[1px] w-[140px] bg-[#0F172A]" />
-              <p className="mt-1 text-[9px] font-bold text-[#0F172A]">{data.boardDirectorName}</p>
-              <p className="text-[7px] text-[#64748B]">{data.boardDirectorTitle}</p>
-            </div>
-          </div>
+                <p className="mt-[2px] text-[9px] font-bold text-[#0F172A]">{data.boardDirectorName}</p>
+                <p className="text-[7px] text-[#64748B]">{data.boardDirectorTitle}</p>
 
-          {/* Bottom: Verification QR + Certificate Info */}
-          <div className="flex w-full max-w-[580px] items-end justify-between">
-            {/* QR Code */}
-            <div className="flex items-center gap-3">
-              <div className="rounded-lg border border-[#E2E8F0] bg-white p-1.5">
-                <QRCodeSVG
-                  value={data.verificationUrl}
-                  size={50}
-                  level="M"
-                  bgColor="#FFFFFF"
-                  fgColor="#0F172A"
-                />
+                {/* Verification */}
+                <div className="mt-[10px] flex items-center justify-end gap-[8px]">
+                  <div>
+                    <p className="text-[7px] font-semibold text-[#64748B]">Verify this certificate at:</p>
+                    <p className="text-[7px] font-bold text-[#2563EB]">analytix-eng.com/verify</p>
+                    <p className="mt-[2px] font-mono text-[6px] text-[#CBD5E1]">
+                      ID: {data.certificateNumber}
+                    </p>
+                  </div>
+                  <div className="rounded-md border border-[#E2E8F0] bg-white p-[3px]">
+                    <QRCodeSVG
+                      value={data.verificationUrl}
+                      size={45}
+                      level="M"
+                      bgColor="#FFFFFF"
+                      fgColor="#0F172A"
+                    />
+                  </div>
+                </div>
               </div>
-              <div>
-                <p className="text-[7px] font-semibold text-[#64748B]">Scan to verify</p>
-                <p className="text-[6px] text-[#94A3B8]">or visit analytix-eng.com/verify</p>
-              </div>
-            </div>
-
-            {/* Certificate Details */}
-            <div className="text-right">
-              <p className="text-[7px] text-[#94A3B8]">
-                Certificate No: <span className="font-bold text-[#0F172A]">{data.certificateNumber}</span>
-              </p>
-              <p className="text-[7px] text-[#94A3B8]">
-                Issued: <span className="font-semibold text-[#64748B]">{formattedIssueDate}</span>
-              </p>
-              {data.expiresAt && (
-                <p className="text-[7px] text-[#94A3B8]">
-                  Valid until: <span className="font-semibold text-[#64748B]">
-                    {new Date(data.expiresAt).toLocaleDateString("en-US", { year: "numeric", month: "long" })}
-                  </span>
-                </p>
-              )}
-              <p className="mt-0.5 text-[5px] font-mono text-[#CBD5E1]">
-                SHA-512: {data.verificationHash.substring(0, 24)}...
-              </p>
             </div>
           </div>
         </div>
@@ -251,21 +219,12 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       {/* Print Styles */}
       <style>{`
         @media print {
-          @page {
-            size: A4 landscape;
-            margin: 0;
-          }
+          @page { size: A4 landscape; margin: 0; }
           body * { visibility: hidden; }
-          #certificate-content,
-          #certificate-content * {
-            visibility: visible;
-          }
+          #certificate-content, #certificate-content * { visibility: visible; }
           #certificate-content {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 297mm;
-            height: 210mm;
+            position: fixed; top: 0; left: 0;
+            width: 297mm; height: 210mm;
             box-shadow: none !important;
           }
         }

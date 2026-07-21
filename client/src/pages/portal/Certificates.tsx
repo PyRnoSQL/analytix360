@@ -20,6 +20,17 @@ const DEMO_CERTS: CertificateData[] = [
     verificationHash: "a7f3d2e1b9c84f56a1e2d3f4b5c6a7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4",
     issuedAt: "2026-06-20",
     expiresAt: null,
+    skillsDescription: "Those who earn the Advanced Data Pipeline Engineering certificate have completed eight modules developed by Analytix Engineering, that include hands-on, practice-based assessments and are designed to prepare them for senior data engineering roles. They are competent in tools and platforms including Apache Spark, Apache Airflow, dbt, PostgreSQL, and cloud data warehouses. They know how to design, build, test, and maintain production-grade data pipelines for enterprise analytics.",
+    courseModules: [
+      "Foundations: Data Engineering Principles",
+      "Data Modeling & Warehouse Design",
+      "Building ETL Pipelines with Python",
+      "Apache Spark: Core Concepts & Processing",
+      "Workflow Orchestration with Apache Airflow",
+      "Data Quality & Testing Frameworks",
+      "Cloud Data Platforms (AWS/GCP)",
+      "Capstone: End-to-End Pipeline Project",
+    ],
   },
   {
     certificateNumber: "AE-CERT-2026-00002",
@@ -36,6 +47,15 @@ const DEMO_CERTS: CertificateData[] = [
     verificationHash: "b8e4c3f2a1d95e67b2f3e4a5c6d7b8e9f0a1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5",
     issuedAt: "2026-07-05",
     expiresAt: "2029-07-05",
+    skillsDescription: "Those who earn the Lean Six Sigma Green Belt certificate have completed six modules that include hands-on process improvement projects and statistical analysis assessments. They are competent in DMAIC methodology, process mapping, root cause analysis, statistical process control, and hypothesis testing. They know how to lead improvement projects that reduce waste, improve quality, and drive measurable operational performance gains.",
+    courseModules: [
+      "Define: Project Charter & Voice of the Customer",
+      "Measure: Process Mapping & Data Collection",
+      "Analyze: Root Cause Analysis & Statistical Tools",
+      "Improve: Solution Design & Pilot Testing",
+      "Control: Sustaining Gains & SPC",
+      "Green Belt Capstone: Live Improvement Project",
+    ],
   },
 ];
 
