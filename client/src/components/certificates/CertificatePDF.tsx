@@ -24,88 +24,96 @@ Font.register({
 });
 
 Font.register({
-  family: "Georgia",
+  family: "Tinos",
   src: "https://fonts.gstatic.com/s/tinos/v24/buE4poGnedXvwgX8dGVh8TI-.ttf",
 });
 
-// ─── Styles ───
-const s = StyleSheet.create({
-  page: { flexDirection: "row", backgroundColor: "#FFFFFF" },
+// A4 Landscape = 842 x 595 points
+// Sidebar = 22% = ~185pt, Main = 78% = ~657pt
 
-  // Left sidebar
+const s = StyleSheet.create({
+  page: {
+    flexDirection: "row",
+    backgroundColor: "#FFFFFF",
+    width: 842,
+    height: 595,
+  },
+
+  // ─── LEFT SIDEBAR ───
   sidebar: {
-    width: "22%",
+    width: 185,
     backgroundColor: "#0F172A",
-    paddingVertical: 25,
-    paddingHorizontal: 16,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
     flexDirection: "column",
   },
   badgeOuter: {
-    width: 60, height: 60, borderRadius: 30,
+    width: 72, height: 72, borderRadius: 36,
     borderWidth: 2, borderColor: "#C9A84C99",
     alignSelf: "center", justifyContent: "center", alignItems: "center",
-    marginBottom: 6,
+    marginBottom: 8,
   },
   badgeInner: {
-    width: 48, height: 48, borderRadius: 24,
+    width: 56, height: 56, borderRadius: 28,
     borderWidth: 1, borderColor: "#C9A84C50",
     backgroundColor: "#C9A84C15",
     justifyContent: "center", alignItems: "center",
   },
-  badgeTextTop: { fontSize: 5.5, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase" },
-  badgeTextMiddle: { fontSize: 10, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800 },
-  badgeTextBottom: { fontSize: 4.5, color: "#C9A84C99", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase" },
-  profCert: { fontSize: 6, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 2, textTransform: "uppercase", textAlign: "center", marginBottom: 2 },
+  badgeTextTop: { fontSize: 6.5, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1.5, textTransform: "uppercase", textAlign: "center" },
+  badgeTextMiddle: { fontSize: 13, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800, textAlign: "center" },
+  badgeTextBottom: { fontSize: 5, color: "#C9A84C99", fontFamily: "Inter", fontWeight: 700, letterSpacing: 1, textTransform: "uppercase", textAlign: "center" },
+  profCert: { fontSize: 7, color: "#C9A84C", fontFamily: "Inter", fontWeight: 700, letterSpacing: 2.5, textTransform: "uppercase", textAlign: "center", marginBottom: 2 },
   moduleBadge: {
-    backgroundColor: "#2563EB", borderRadius: 5,
-    paddingVertical: 5, paddingHorizontal: 8,
-    marginBottom: 8, marginTop: 10,
+    backgroundColor: "#2563EB", borderRadius: 6,
+    paddingVertical: 6, paddingHorizontal: 10,
+    marginBottom: 10, marginTop: 14,
   },
-  moduleBadgeText: { fontSize: 9, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800 },
-  moduleItem: { fontSize: 6.5, color: "#FFFFFFCC", fontFamily: "Inter", fontWeight: 600, marginBottom: 5, lineHeight: 1.4 },
+  moduleBadgeText: { fontSize: 10, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 800 },
+  moduleItem: { fontSize: 8, color: "#FFFFFFCC", fontFamily: "Inter", fontWeight: 600, marginBottom: 6, lineHeight: 1.4 },
   hoursBadge: {
-    backgroundColor: "#FFFFFF15", borderRadius: 5,
-    paddingVertical: 5, paddingHorizontal: 8,
+    backgroundColor: "#FFFFFF15", borderRadius: 6,
+    paddingVertical: 7, paddingHorizontal: 10,
     marginTop: "auto", alignItems: "center",
   },
-  hoursText: { fontSize: 8, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 700 },
-  hoursLabel: { fontSize: 5.5, color: "#FFFFFF80", fontFamily: "Inter" },
+  hoursText: { fontSize: 10, color: "#FFFFFF", fontFamily: "Inter", fontWeight: 700 },
+  hoursLabel: { fontSize: 7, color: "#FFFFFF80", fontFamily: "Inter" },
 
-  // Main content
+  // ─── MAIN CONTENT ───
   main: {
-    width: "78%",
+    width: 657,
     backgroundColor: "#F5F0E8",
-    paddingVertical: 25,
-    paddingHorizontal: 35,
+    paddingTop: 30,
+    paddingBottom: 24,
+    paddingHorizontal: 40,
     flexDirection: "column",
     justifyContent: "space-between",
   },
   topRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-start" },
-  logo: { width: 120, height: 35 },
+  logo: { width: 140, height: 42 },
   sigBlock: { alignItems: "flex-end" },
-  sigName: { fontSize: 9, color: "#0F172A", fontFamily: "Inter", fontWeight: 700, marginTop: 2 },
-  sigTitle: { fontSize: 7, color: "#64748B", fontFamily: "Inter" },
+  sigName: { fontSize: 11, color: "#0F172A", fontFamily: "Inter", fontWeight: 700, marginTop: 3 },
+  sigTitle: { fontSize: 8.5, color: "#64748B", fontFamily: "Inter" },
 
-  date: { fontSize: 11, color: "#64748B", fontFamily: "Inter", marginTop: 12 },
-  recipientName: { fontSize: 26, color: "#0F172A", fontFamily: "Inter", fontWeight: 800, marginTop: 4 },
-  completionText: { fontSize: 10, color: "#64748B", fontFamily: "Inter", marginTop: 5 },
-  courseTitle: { fontSize: 28, color: "#0F172A", fontFamily: "Georgia", marginTop: 8, lineHeight: 1.2 },
-  skillsDesc: { fontSize: 8.5, color: "#475569", fontFamily: "Inter", marginTop: 10, lineHeight: 1.7, maxWidth: 420 },
+  date: { fontSize: 14, color: "#64748B", fontFamily: "Inter", marginTop: 16 },
+  recipientName: { fontSize: 32, color: "#0F172A", fontFamily: "Inter", fontWeight: 800, marginTop: 5 },
+  completionText: { fontSize: 12, color: "#64748B", fontFamily: "Inter", marginTop: 6 },
+  courseTitle: { fontSize: 34, color: "#0F172A", fontFamily: "Tinos", marginTop: 10, lineHeight: 1.15 },
+  skillsDesc: { fontSize: 10, color: "#475569", fontFamily: "Inter", marginTop: 14, lineHeight: 1.7, maxWidth: 500 },
 
   bottomRow: { flexDirection: "row", justifyContent: "space-between", alignItems: "flex-end" },
-  disclaimer: { fontSize: 6, color: "#94A3B8", fontFamily: "Inter", lineHeight: 1.6, maxWidth: 280 },
+  disclaimer: { fontSize: 7, color: "#94A3B8", fontFamily: "Inter", lineHeight: 1.6, maxWidth: 320 },
   verifyBlock: { alignItems: "flex-end" },
-  verifyLabel: { fontSize: 6.5, color: "#64748B", fontFamily: "Inter", fontWeight: 600 },
-  verifyUrl: { fontSize: 6.5, color: "#2563EB", fontFamily: "Inter", fontWeight: 700 },
-  certId: { fontSize: 5.5, color: "#CBD5E1", fontFamily: "Inter", marginTop: 2 },
-  qrImage: { width: 42, height: 42, marginTop: 4 },
-  verifyRight: { flexDirection: "row", alignItems: "flex-end", gap: 6 },
+  verifyLabel: { fontSize: 8, color: "#64748B", fontFamily: "Inter", fontWeight: 600 },
+  verifyUrl: { fontSize: 8, color: "#2563EB", fontFamily: "Inter", fontWeight: 700 },
+  certId: { fontSize: 7, color: "#CBD5E1", fontFamily: "Inter", marginTop: 2 },
+  qrImage: { width: 50, height: 50, marginTop: 5 },
+  verifyRight: { flexDirection: "row", alignItems: "flex-end", gap: 8 },
 });
 
 // ─── Signature SVG ───
-function SignatureSVG({ width = 100 }: { width?: number }) {
+function SignatureSVG() {
   return (
-    <Svg width={width} height={22} viewBox="0 0 120 25">
+    <Svg width={120} height={26} viewBox="0 0 120 25">
       <Path
         d="M5 18 Q20 3, 38 14 T62 8 Q75 4, 88 19 L105 10"
         fill="none" stroke="#0F172A" strokeWidth={1.2}
@@ -115,14 +123,12 @@ function SignatureSVG({ width = 100 }: { width?: number }) {
   );
 }
 
-// ─── QR Code as Data URL ───
-function generateQRDataUrl(_url: string): string {
-  // Simple QR placeholder — in production, generate server-side or use a canvas-based approach
-  // For now we use a small inline SVG encoded as data URL
+// ─── QR Code placeholder ───
+function generateQRDataUrl(): string {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="200" height="200">
     <rect width="100" height="100" fill="white"/>
-    <text x="50" y="45" text-anchor="middle" font-size="8" fill="#0F172A" font-family="monospace">SCAN TO</text>
-    <text x="50" y="57" text-anchor="middle" font-size="8" fill="#0F172A" font-family="monospace">VERIFY</text>
+    <text x="50" y="45" text-anchor="middle" font-size="7" fill="#0F172A" font-family="monospace">SCAN TO</text>
+    <text x="50" y="56" text-anchor="middle" font-size="7" fill="#0F172A" font-family="monospace">VERIFY</text>
     <rect x="5" y="5" width="20" height="20" fill="#0F172A"/>
     <rect x="75" y="5" width="20" height="20" fill="#0F172A"/>
     <rect x="5" y="75" width="20" height="20" fill="#0F172A"/>
@@ -141,12 +147,12 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
   });
-
-  const qrDataUrl = generateQRDataUrl(data.verificationUrl);
+  const qrDataUrl = generateQRDataUrl();
 
   return (
     <Document title={`${data.recipientName} — ${data.courseTitle}`} author="Analytix Engineering SARL">
       <Page size="A4" orientation="landscape" style={s.page}>
+
         {/* LEFT SIDEBAR */}
         <View style={s.sidebar}>
           <View style={s.badgeOuter}>
@@ -178,17 +184,15 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
 
         {/* MAIN CONTENT */}
         <View style={s.main}>
-          {/* Top: Logo + Director signature */}
           <View style={s.topRow}>
             <Image src="/logo.png" style={s.logo} />
             <View style={s.sigBlock}>
-              <SignatureSVG width={110} />
+              <SignatureSVG />
               <Text style={s.sigName}>{data.boardDirectorName}</Text>
               <Text style={s.sigTitle}>{data.boardDirectorTitle}</Text>
             </View>
           </View>
 
-          {/* Date + Name + Course */}
           <View>
             <Text style={s.date}>{formattedDate}</Text>
             <Text style={s.recipientName}>{data.recipientName}</Text>
@@ -199,7 +203,6 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
             )}
           </View>
 
-          {/* Bottom: Disclaimer + Verify */}
           <View style={s.bottomRow}>
             <Text style={s.disclaimer}>
               This professional certificate was issued by Analytix Engineering SARL upon successful
@@ -218,6 +221,7 @@ function CertificatePDFDocument({ data }: { data: CertificateData }) {
             </View>
           </View>
         </View>
+
       </Page>
     </Document>
   );
