@@ -149,12 +149,12 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW1, ...CLIENT_LOGOS_ROW1].map((c, i) => (
                 <div
                   key={`r1-${i}`}
-                  className="mx-4 flex h-16 w-44 flex-shrink-0 items-center justify-center px-5"
+                  className="mx-5 flex h-32 w-80 flex-shrink-0 items-center justify-center px-8"
                 >
                   <img
                     src={`/logos/${c.file}`}
                     alt={c.name}
-                    className="h-8 max-w-[130px] object-contain"
+                    className="h-16 max-w-[260px] object-contain"
                     loading="lazy"
                     onError={(e) => {
                       const el = e.target as HTMLImageElement;
@@ -178,12 +178,12 @@ export function ServicesPage() {
               {[...CLIENT_LOGOS_ROW2, ...CLIENT_LOGOS_ROW2].map((c, i) => (
                 <div
                   key={`r2-${i}`}
-                  className="mx-4 flex h-16 w-44 flex-shrink-0 items-center justify-center px-5"
+                  className="mx-5 flex h-32 w-80 flex-shrink-0 items-center justify-center px-8"
                 >
                   <img
                     src={`/logos/${c.file}`}
                     alt={c.name}
-                    className="h-8 max-w-[130px] object-contain"
+                    className="h-16 max-w-[260px] object-contain"
                     loading="lazy"
                     onError={(e) => {
                       const el = e.target as HTMLImageElement;
