@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS certificates (
   -- Signatories
   ceo_name VARCHAR(100) DEFAULT 'Christian H. Nwinsto',
   ceo_title VARCHAR(100) DEFAULT 'Chief Executive Officer',
-  board_director_name VARCHAR(100) DEFAULT 'Dr. Marie-Claire Atangana',
+  board_director_name VARCHAR(100) DEFAULT 'Christopher JESS',
   board_director_title VARCHAR(100) DEFAULT 'Director, Certification Board',
 
   -- Security & Verification

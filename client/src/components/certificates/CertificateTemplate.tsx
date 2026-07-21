@@ -112,29 +112,15 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
           </div>
 
           {/* ═══ MAIN CONTENT ═══ */}
-          <div className="flex flex-1 flex-col justify-between px-[40px] py-[30px]">
+          <div className="flex flex-1 flex-col justify-between px-[40px] py-[30px]" style={{ backgroundColor: "#F5F0E8" }}>
 
-            {/* Top row: Logo + Signature */}
-            <div className="flex items-start justify-between">
-              {/* Logo */}
+            {/* Top: Logo */}
+            <div>
               <img
                 src="/logo.png"
                 alt="Analytix Engineering SARL"
                 className="h-[45px] w-auto"
               />
-
-              {/* CEO Signature */}
-              <div className="text-right">
-                <svg width="130" height="30" viewBox="0 0 130 30" className="ml-auto opacity-70">
-                  <path
-                    d="M8 22 Q18 4, 35 16 T60 10 Q72 4, 85 20 T110 12 L125 16"
-                    fill="none" stroke="#0F172A" strokeWidth="1.3"
-                    strokeLinecap="round" strokeLinejoin="round"
-                  />
-                </svg>
-                <p className="mt-[2px] text-[10px] font-bold text-[#0F172A]">{data.ceoName}</p>
-                <p className="text-[8px] text-[#64748B]">{data.ceoTitle}</p>
-              </div>
             </div>
 
             {/* Date */}
@@ -220,12 +206,22 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       <style>{`
         @media print {
           @page { size: A4 landscape; margin: 0; }
-          body * { visibility: hidden; }
-          #certificate-content, #certificate-content * { visibility: visible; }
+          * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+          body { margin: 0; padding: 0; }
+          body > *:not(#certificate-content) { display: none !important; }
+          .print\\:hidden { display: none !important; }
           #certificate-content {
             position: fixed; top: 0; left: 0;
-            width: 297mm; height: 210mm;
+            width: 297mm !important; height: 210mm !important;
             box-shadow: none !important;
+            overflow: hidden;
+          }
+          #certificate-content * {
+            visibility: visible;
+          }
+          #certificate-content div, #certificate-content p, #certificate-content h1, #certificate-content h2, #certificate-content span {
+            font-size: inherit !important;
+            line-height: inherit !important;
           }
         }
       `}</style>
