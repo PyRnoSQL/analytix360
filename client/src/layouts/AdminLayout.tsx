@@ -14,6 +14,7 @@ import { Navbar } from "@/components/navigation/Navbar";
 
 const sidebarItems = [
   { path: "/admin", icon: BarChart3, label: "Analytics", exact: true },
+  { path: "/admin/financial", icon: DollarSign, label: "Financial" },
   { path: "/admin/users", icon: Users, label: "Users" },
   { path: "/admin/projects", icon: Briefcase, label: "Projects" },
   { path: "/admin/payments", icon: DollarSign, label: "Payments" },

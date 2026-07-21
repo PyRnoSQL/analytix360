@@ -20,6 +20,7 @@ const PortalTraining = lazy(() => import("@/pages/portal/Training").then(m => ({
 const PortalDocuments = lazy(() => import("@/pages/portal/Documents").then(m => ({ default: m.PortalDocuments })));
 const PortalSettings = lazy(() => import("@/pages/portal/Settings").then(m => ({ default: m.PortalSettings })));
 const AdminDashboard = lazy(() => import("@/pages/admin/AdminDashboard").then(m => ({ default: m.AdminDashboard })));
+const FinancialDashboard = lazy(() => import("@/pages/admin/FinancialDashboard").then(m => ({ default: m.FinancialDashboard })));
 
 const queryClient = new QueryClient({
   defaultOptions: { queries: { staleTime: 5 * 60_000, retry: 1 } },
@@ -67,6 +68,7 @@ export default function App() {
               {/* Admin */}
               <Route element={<ProtectedRoute allowedRoles={["admin", "super_admin"]}><AdminLayout /></ProtectedRoute>}>
                 <Route path="/admin" element={<AdminDashboard />} />
+                <Route path="/admin/financial" element={<FinancialDashboard />} />
               </Route>
 
               {/* 404 */}

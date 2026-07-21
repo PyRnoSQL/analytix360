@@ -27,8 +27,8 @@ interface Props {
   onSuccess: (payment: PaymentStatus) => void;
 }
 
-type Step = "loading" | "method" | "scan" | "processing" | "success" | "error";
-type PayMethod = "mtn_momo" | "orange_money" | "airtel_money" | "wave" | "yoomoney" | "card";
+type Step = "loading" | "method" | "scan" | "processing" | "success" | "error" | "bank_info" | "invoice_info";
+type PayMethod = "mtn_momo" | "orange_money" | "airtel_money" | "wave" | "yoomoney" | "card" | "bank_transfer" | "paypal" | "purchase_order";
 
 const METHODS = [
   {
@@ -64,20 +64,36 @@ const METHODS = [
     desc: "Pay with Wave mobile wallet",
   },
   {
-    id: "yoomoney" as PayMethod,
-    name: "YooMoney",
-    color: "#8B3FFD",
-    textColor: "#FFF",
-    icon: Wallet,
-    desc: "Pay with YooMoney",
-  },
-  {
     id: "card" as PayMethod,
     name: "Visa / Mastercard",
     color: "#1A1F71",
     textColor: "#FFF",
     icon: CreditCard,
     desc: "Pay with debit or credit card",
+  },
+  {
+    id: "bank_transfer" as PayMethod,
+    name: "Bank Transfer",
+    color: "#2563EB",
+    textColor: "#FFF",
+    icon: CreditCard,
+    desc: "Transfer from your bank account",
+  },
+  {
+    id: "paypal" as PayMethod,
+    name: "PayPal",
+    color: "#003087",
+    textColor: "#FFF",
+    icon: Wallet,
+    desc: "Pay with PayPal account",
+  },
+  {
+    id: "purchase_order" as PayMethod,
+    name: "Invoice / PO",
+    color: "#475569",
+    textColor: "#FFF",
+    icon: CreditCard,
+    desc: "Government & enterprise purchase orders",
   },
 ];
 
@@ -101,7 +117,7 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
           description: invoice.description,
           customerEmail: "",
           customerName: "",
-          method: method === "card" ? "visa" : method ?? undefined,
+          method: method === "card" ? "visa" : method === "paypal" || method === "purchase_order" || method === "bank_transfer" ? undefined : method ?? undefined,
         });
         if (!cancelled) {
           setSession(s);
@@ -159,7 +175,13 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
 
   const handleMethodSelect = (m: PayMethod) => {
     setMethod(m);
-    setStep("loading");
+    if (m === "bank_transfer") {
+      setStep("bank_info");
+    } else if (m === "purchase_order") {
+      setStep("invoice_info");
+    } else {
+      setStep("loading");
+    }
   };
 
   const handleSimulatePayment = () => {
@@ -390,6 +412,95 @@ export function QRPaymentModal({ invoice, onClose, onSuccess }: Props) {
                   Done
                 </button>
               </div>
+            </div>
+          )}
+
+          {/* ─── Bank Transfer Info ─── */}
+          {step === "bank_info" && (
+            <div>
+              <h3 className="text-xl font-bold text-navy">Bank Transfer Details</h3>
+              <p className="mt-1 text-sm text-slate-500">
+                Transfer{" "}
+                <span className="font-semibold text-navy">{formatCurrency(invoice.amount)}</span>{" "}
+                to the account below
+              </p>
+
+              <div className="mt-5 space-y-3 rounded-xl bg-slate-100 p-5">
+                {[
+                  { label: "Bank", value: "Afriland First Bank" },
+                  { label: "Account Name", value: "Analytix Engineering SARL" },
+                  { label: "Account Number", value: "CM21 1005 5000 0012 3456 7890 185" },
+                  { label: "SWIFT/BIC", value: "CCEIFRPP" },
+                  { label: "Reference", value: invoice.reference },
+                ].map((row) => (
+                  <div key={row.label} className="flex items-start justify-between gap-4">
+                    <span className="text-xs font-semibold text-slate-500">{row.label}</span>
+                    <span className="text-right text-sm font-bold text-navy">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-4 text-center text-xs text-slate-400">
+                After transferring, your payment will be verified within 24–48 hours.
+                Include the invoice reference in your transfer description.
+              </p>
+
+              <button
+                onClick={() => { setStep("processing"); setTimeout(() => setStep("success"), 2000); }}
+                className="mt-4 w-full rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand/90"
+              >
+                I've Made the Transfer
+              </button>
+              <button
+                onClick={() => { setStep("method"); setMethod(null); }}
+                className="mt-2 w-full text-xs font-semibold text-slate-400 hover:text-brand"
+              >
+                ← Choose another method
+              </button>
+            </div>
+          )}
+
+          {/* ─── Invoice / Purchase Order ─── */}
+          {step === "invoice_info" && (
+            <div>
+              <h3 className="text-xl font-bold text-navy">Invoice / Purchase Order</h3>
+              <p className="mt-1 text-sm text-slate-500">
+                For government agencies, ministries, and enterprise clients
+              </p>
+
+              <div className="mt-5 space-y-4">
+                <div>
+                  <label className="mb-1 block text-xs font-semibold text-slate-600">PO / Reference Number</label>
+                  <input type="text" placeholder="e.g. PO-2026-MINSANTE-0042" className="w-full rounded-xl border-2 border-slate-200 bg-slate-100 px-4 py-3 text-sm text-navy focus:border-brand focus:outline-none" />
+                </div>
+                <div>
+                  <label className="mb-1 block text-xs font-semibold text-slate-600">Issuing Organization</label>
+                  <input type="text" placeholder="e.g. Ministry of Public Health" className="w-full rounded-xl border-2 border-slate-200 bg-slate-100 px-4 py-3 text-sm text-navy focus:border-brand focus:outline-none" />
+                </div>
+                <div>
+                  <label className="mb-1 block text-xs font-semibold text-slate-600">Authorized Signatory</label>
+                  <input type="text" placeholder="Full name of authorizing officer" className="w-full rounded-xl border-2 border-slate-200 bg-slate-100 px-4 py-3 text-sm text-navy focus:border-brand focus:outline-none" />
+                </div>
+                <div>
+                  <label className="mb-1 block text-xs font-semibold text-slate-600">Upload PO Document (optional)</label>
+                  <div className="flex items-center justify-center rounded-xl border-2 border-dashed border-slate-300 bg-slate-100 px-4 py-6 text-center">
+                    <span className="text-xs text-slate-400">Drag & drop PDF or click to upload</span>
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => { setStep("processing"); setTimeout(() => setStep("success"), 2000); }}
+                className="mt-5 w-full rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white hover:bg-brand/90"
+              >
+                Submit Purchase Order
+              </button>
+              <button
+                onClick={() => { setStep("method"); setMethod(null); }}
+                className="mt-2 w-full text-xs font-semibold text-slate-400 hover:text-brand"
+              >
+                ← Choose another method
+              </button>
             </div>
           )}
 
