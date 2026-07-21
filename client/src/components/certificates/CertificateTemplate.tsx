@@ -31,37 +31,38 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
     const certEl = document.getElementById("certificate-content");
     if (!certEl) return;
 
+    // Collect all stylesheets from the current page
+    const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
+      .map((el) => el.outerHTML)
+      .join("\n");
+
     const printWindow = window.open("", "_blank", "width=1120,height=794");
     if (!printWindow) {
       alert("Please allow pop-ups to download the certificate PDF.");
       return;
     }
 
-    printWindow.document.write(`
-      <!DOCTYPE html>
-      <html>
-      <head>
-        <title>${data.recipientName} — ${data.courseTitle}</title>
-        <style>
-          @page { size: A4 landscape; margin: 0; }
-          * { margin: 0; padding: 0; box-sizing: border-box;
-              -webkit-print-color-adjust: exact !important;
-              print-color-adjust: exact !important;
-              color-adjust: exact !important; }
-          html, body { width: 297mm; height: 210mm; overflow: hidden; }
-        </style>
-      </head>
-      <body>${certEl.outerHTML}</body>
-      </html>
-    `);
+    printWindow.document.write(`<!DOCTYPE html>
+<html>
+<head>
+  <title>${data.recipientName} — ${data.courseTitle}</title>
+  ${styles}
+  <style>
+    @page { size: A4 landscape; margin: 0; }
+    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
+    html, body { margin: 0; padding: 0; width: 297mm; height: 210mm; overflow: hidden; background: white; }
+    body { display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>${certEl.outerHTML}</body>
+</html>`);
     printWindow.document.close();
 
-    // Wait for images/fonts to load, then print
     printWindow.onload = () => {
       setTimeout(() => {
         printWindow.print();
         printWindow.close();
-      }, 500);
+      }, 800);
     };
   };
 
