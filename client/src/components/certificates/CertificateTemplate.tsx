@@ -28,42 +28,11 @@ interface Props {
 
 export function CertificateTemplate({ data, onDownload, showControls = true }: Props) {
   const handlePrint = () => {
-    const certEl = document.getElementById("certificate-content");
-    if (!certEl) return;
-
-    // Collect all stylesheets from the current page
-    const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'))
-      .map((el) => el.outerHTML)
-      .join("\n");
-
-    const printWindow = window.open("", "_blank", "width=1120,height=794");
-    if (!printWindow) {
-      alert("Please allow pop-ups to download the certificate PDF.");
-      return;
-    }
-
-    printWindow.document.write(`<!DOCTYPE html>
-<html>
-<head>
-  <title>${data.recipientName} — ${data.courseTitle}</title>
-  ${styles}
-  <style>
-    @page { size: A4 landscape; margin: 0; }
-    * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-    html, body { margin: 0; padding: 0; width: 297mm; height: 210mm; overflow: hidden; background: white; }
-    body { display: flex; align-items: center; justify-content: center; }
-  </style>
-</head>
-<body>${certEl.outerHTML}</body>
-</html>`);
-    printWindow.document.close();
-
-    printWindow.onload = () => {
-      setTimeout(() => {
-        printWindow.print();
-        printWindow.close();
-      }, 800);
-    };
+    // Add a class to body so print CSS can isolate the certificate
+    document.body.classList.add("printing-certificate");
+    window.print();
+    // Remove the class after print dialog closes
+    setTimeout(() => document.body.classList.remove("printing-certificate"), 1000);
   };
 
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
@@ -243,22 +212,32 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
       <style>{`
         @media print {
           @page { size: A4 landscape; margin: 0; }
-          * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
-          body { margin: 0; padding: 0; }
-          body > *:not(#certificate-content) { display: none !important; }
-          .print\\:hidden { display: none !important; }
-          #certificate-content {
-            position: fixed; top: 0; left: 0;
-            width: 297mm !important; height: 210mm !important;
+          * {
+            -webkit-print-color-adjust: exact !important;
+            print-color-adjust: exact !important;
+            color-adjust: exact !important;
+          }
+          body.printing-certificate > *:not(#root),
+          body.printing-certificate nav,
+          body.printing-certificate aside,
+          body.printing-certificate footer,
+          body.printing-certificate header,
+          body.printing-certificate .print\\:hidden {
+            display: none !important;
+          }
+          body.printing-certificate #root > * {
+            all: unset;
+          }
+          body.printing-certificate #certificate-content {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 297mm !important;
+            height: 210mm !important;
+            max-width: 297mm !important;
             box-shadow: none !important;
-            overflow: hidden;
-          }
-          #certificate-content * {
-            visibility: visible;
-          }
-          #certificate-content div, #certificate-content p, #certificate-content h1, #certificate-content h2, #certificate-content span {
-            font-size: inherit !important;
-            line-height: inherit !important;
+            margin: 0 !important;
+            z-index: 999999;
           }
         }
       `}</style>
