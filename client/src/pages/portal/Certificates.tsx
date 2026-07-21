@@ -16,7 +16,7 @@ const DEMO_CERTS: CertificateData[] = [
     ceoTitle: "Chief Executive Officer",
     boardDirectorName: "Christopher JESS",
     boardDirectorTitle: "Director, Certification Board",
-    verificationUrl: "https://analytix360-production.up.railway.app/verify/AE-CERT-2026-00001",
+    verificationUrl: "/verify/AE-CERT-2026-00001",
     verificationHash: "a7f3d2e1b9c84f56a1e2d3f4b5c6a7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4",
     issuedAt: "2026-06-20",
     expiresAt: null,
@@ -43,7 +43,7 @@ const DEMO_CERTS: CertificateData[] = [
     ceoTitle: "Chief Executive Officer",
     boardDirectorName: "Christopher JESS",
     boardDirectorTitle: "Director, Certification Board",
-    verificationUrl: "https://analytix360-production.up.railway.app/verify/AE-CERT-2026-00002",
+    verificationUrl: "/verify/AE-CERT-2026-00002",
     verificationHash: "b8e4c3f2a1d95e67b2f3e4a5c6d7b8e9f0a1c2d3e4f5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d1e2f3a4b5c6d7e8f9a0b1c2d3e4f5a6b7c8d9e0f1a2b3c4d5",
     issuedAt: "2026-07-05",
     expiresAt: "2029-07-05",
@@ -132,7 +132,7 @@ export function CertificatesPage() {
                   {selectedCert?.certificateNumber === cert.certificateNumber ? "Hide" : "View & Download"}
                 </button>
                 <a
-                  href={cert.verificationUrl}
+                  href={`${window.location.origin}${cert.verificationUrl}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 rounded-xl border border-slate-200 px-4 py-2.5 text-xs font-semibold text-navy hover:bg-slate-100"
@@ -141,7 +141,7 @@ export function CertificatesPage() {
                 </a>
                 <button
                   onClick={() => {
-                    navigator.clipboard.writeText(cert.verificationUrl);
+                    navigator.clipboard.writeText(`${window.location.origin}${cert.verificationUrl}`);
                     alert("Verification link copied to clipboard!");
                   }}
                   className="flex items-center justify-center rounded-xl border border-slate-200 px-3 py-2.5 text-xs font-semibold text-navy hover:bg-slate-100"

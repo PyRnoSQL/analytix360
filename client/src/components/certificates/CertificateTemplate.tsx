@@ -200,14 +200,21 @@ export function CertificateTemplate({ data, onDownload, showControls = true }: P
                 <div className="mt-[10px] flex items-center justify-end gap-[8px]">
                   <div>
                     <p className="text-[7px] font-semibold text-[#64748B]">Verify this certificate at:</p>
-                    <p className="text-[7px] font-bold text-[#2563EB]">analytix-eng.com/verify</p>
+                    <a
+                      href={`${window.location.origin}/verify/${data.certificateNumber}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[7px] font-bold text-[#2563EB] underline"
+                    >
+                      {window.location.host}/verify
+                    </a>
                     <p className="mt-[2px] font-mono text-[6px] text-[#CBD5E1]">
                       ID: {data.certificateNumber}
                     </p>
                   </div>
                   <div className="rounded-md border border-[#E2E8F0] bg-white p-[3px]">
                     <QRCodeSVG
-                      value={data.verificationUrl}
+                      value={data.verificationUrl.startsWith("http") ? data.verificationUrl : `${window.location.origin}${data.verificationUrl}`}
                       size={45}
                       level="M"
                       bgColor="#FFFFFF"

@@ -121,7 +121,7 @@ function SignatureSVG() {
   );
 }
 
-function CertificatePDFDocument({ data, logoUrl, qrUrl }: { data: CertificateData; logoUrl: string; qrUrl: string }) {
+function CertificatePDFDocument({ data, logoUrl, qrUrl, hostUrl }: { data: CertificateData; logoUrl: string; qrUrl: string; hostUrl: string }) {
   const formattedDate = new Date(data.completionDate).toLocaleDateString("en-US", {
     year: "numeric", month: "long", day: "numeric",
   });
@@ -193,7 +193,7 @@ function CertificatePDFDocument({ data, logoUrl, qrUrl }: { data: CertificateDat
             <View style={s.verifyArea}>
               <View style={s.verifyText}>
                 <Text style={s.verifyLabel}>Verify this certificate at:</Text>
-                <Text style={s.verifyUrl}>analytix-eng.com/verify</Text>
+                <Text style={s.verifyUrl}>{hostUrl}/verify</Text>
                 <Text style={s.certId}>ID: {data.certificateNumber}</Text>
               </View>
               {qrUrl ? <Image src={qrUrl} style={s.qrImage} /> : null}
@@ -227,7 +227,10 @@ export async function generateCertificatePDF(data: CertificateData): Promise<voi
   // Generate real QR code as data URL
   let qrUrl = "";
   try {
-    qrUrl = await QRCode.toDataURL(data.verificationUrl, {
+    const fullVerifyUrl = data.verificationUrl.startsWith("http")
+      ? data.verificationUrl
+      : `${window.location.origin}${data.verificationUrl}`;
+    qrUrl = await QRCode.toDataURL(fullVerifyUrl, {
       width: 200,
       margin: 1,
       color: { dark: "#0F172A", light: "#FFFFFF" },
@@ -237,8 +240,10 @@ export async function generateCertificatePDF(data: CertificateData): Promise<voi
     console.warn("QR generation failed:", e);
   }
 
+  const hostUrl = window.location.host;
+
   const blob = await pdf(
-    <CertificatePDFDocument data={data} logoUrl={logoUrl} qrUrl={qrUrl} />
+    <CertificatePDFDocument data={data} logoUrl={logoUrl} qrUrl={qrUrl} hostUrl={hostUrl} />
   ).toBlob();
 
   const url = URL.createObjectURL(blob);
