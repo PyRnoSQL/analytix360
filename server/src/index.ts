@@ -32,6 +32,8 @@ app.use(
           env.SUPABASE_URL,
           "https://*.supabase.co",
           "https://api.cinetpay.com",
+          "https://fonts.gstatic.com",
+          "https://fonts.googleapis.com",
         ],
       },
     },

@@ -185,7 +185,7 @@ function CertificatePDFDocument({ data, logoUrl }: { data: CertificateData; logo
         {/* MAIN CONTENT */}
         <View style={s.main}>
           <View style={s.topRow}>
-            <Image src={logoUrl} style={s.logo} />
+            {logoUrl ? <Image src={logoUrl} style={s.logo} /> : <Text style={{ fontSize: 14, fontFamily: "Inter", fontWeight: 700, color: "#0F172A" }}>Analytix Engineering SARL</Text>}
             <View style={s.sigBlock}>
               <SignatureSVG />
               <Text style={s.sigName}>{data.boardDirectorName}</Text>
@@ -233,6 +233,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<voi
   let logoUrl = "";
   try {
     const response = await fetch(`${window.location.origin}/logo.png`);
+    if (!response.ok) throw new Error(`Logo fetch failed: ${response.status}`);
     const blob = await response.blob();
     logoUrl = await new Promise<string>((resolve) => {
       const reader = new FileReader();
@@ -240,7 +241,7 @@ export async function generateCertificatePDF(data: CertificateData): Promise<voi
       reader.readAsDataURL(blob);
     });
   } catch (e) {
-    console.error("Failed to load logo:", e);
+    console.warn("Logo load failed, PDF will generate without logo:", e);
   }
 
   const blob = await pdf(<CertificatePDFDocument data={data} logoUrl={logoUrl} />).toBlob();
