@@ -205,6 +205,34 @@ export function ServicesPage() {
         </div>
       </section>
 
+      {/* Verify Certificate */}
+      <section className="bg-slate-100 px-6 py-16">
+        <div className="mx-auto max-w-3xl text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand/10">
+              <CheckCircle2 size={28} className="text-brand" />
+            </div>
+            <h2 className="text-[clamp(24px,3.5vw,32px)] font-extrabold text-navy">
+              Verify a Certificate
+            </h2>
+            <p className="mx-auto mt-3 max-w-lg text-[15px] leading-relaxed text-slate-500">
+              Employers and institutions can verify the authenticity of any Analytix Engineering
+              training certificate using our secure verification system.
+            </p>
+            <Link
+              to="/verify"
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-brand px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-brand/25 transition-all hover:-translate-y-0.5 hover:shadow-xl"
+            >
+              Verify Certificate <ArrowRight size={16} />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="bg-gradient-to-r from-brand to-royal px-6 py-20 text-center">
         <h2 className="text-[clamp(28px,4vw,40px)] font-extrabold text-white">
