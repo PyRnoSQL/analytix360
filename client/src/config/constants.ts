@@ -29,6 +29,7 @@ export type Role = (typeof ROLES)[keyof typeof ROLES];
 export const NAV_ITEMS = [
   { id: "home", label: "Home", path: "/" },
   { id: "services", label: "Services", path: "/services" },
+  { id: "institute", label: "Institute", path: "/institute" },
   { id: "about", label: "About", path: "/about" },
   { id: "contact", label: "Contact", path: "/contact" },
 ] as const;
