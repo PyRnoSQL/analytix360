@@ -8,6 +8,7 @@ export const PAYMENT_CONFIG = {
   channels: ["MOBILE_MONEY", "CREDIT_CARD", "WALLET"],
 } as const;
 
+export type Role = "visitor" | "customer" | "staff" | "admin" | "super_admin";
 export const ROLES = {
   VISITOR: "visitor",
   CUSTOMER: "customer",
