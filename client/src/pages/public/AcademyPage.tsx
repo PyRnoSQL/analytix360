@@ -13,6 +13,7 @@ interface TrainingModule {
   number: number;
   title: string;
   hours: number;
+  price: number;
   topics: string[];
 }
 
@@ -74,31 +75,31 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 60-question exam (70% pass) + Capstone workplace project",
         description: "The Yellow Belt program builds a solid foundation in Lean Six Sigma thinking. Graduates understand waste elimination, basic statistical thinking, and can actively support Green Belt and Black Belt improvement projects.",
         modules: [
-          { id: "lssyb-m1", number: 1, title: "Foundations of Lean & Six Sigma", hours: 6, topics: [
+          { id: "lssyb-m1", number: 1, title: "Foundations of Lean & Six Sigma", hours: 6, price: 0, topics: [
             "History and business case for Lean and Six Sigma; cost of poor quality (COPQ)",
             "The 8 Wastes (DOWNTIME) and value vs. non-value-added activity",
             "Introduction to the DMAIC roadmap and Six Sigma organizational roles",
             "Voice of the Customer (VOC) and translating customer needs into Critical-to-Quality (CTQ) requirements",
           ]},
-          { id: "lssyb-m2", number: 2, title: "Define Phase", hours: 6, topics: [
+          { id: "lssyb-m2", number: 2, title: "Define Phase", hours: 6, price: 0, topics: [
             "Building a project charter: problem statement, goal statement, scope, and business case",
             "SIPOC diagrams (Suppliers-Inputs-Process-Outputs-Customers)",
             "Stakeholder identification and RACI basics",
             "Selecting and prioritizing improvement opportunities",
           ]},
-          { id: "lssyb-m3", number: 3, title: "Measure Phase Essentials", hours: 8, topics: [
+          { id: "lssyb-m3", number: 3, title: "Measure Phase Essentials", hours: 8, price: 0, topics: [
             "Process mapping and flowcharting techniques",
             "Basic data types (continuous vs. discrete) and data collection plans",
             "Descriptive statistics: mean, median, mode, range, standard deviation",
             "Introduction to baseline performance metrics and defect definitions",
           ]},
-          { id: "lssyb-m4", number: 4, title: "Analyze Phase Basics", hours: 8, topics: [
+          { id: "lssyb-m4", number: 4, title: "Analyze Phase Basics", hours: 8, price: 0, topics: [
             "Fishbone / Ishikawa (Cause-and-Effect) diagrams",
             "5 Whys root-cause technique",
             "Pareto analysis and the 80/20 principle for prioritizing causes",
             "Simple graphical analysis: histograms, run charts, scatter plots",
           ]},
-          { id: "lssyb-m5", number: 5, title: "Improve & Control Basics", hours: 8, topics: [
+          { id: "lssyb-m5", number: 5, title: "Improve & Control Basics", hours: 8, price: 0, topics: [
             "Kaizen events and rapid improvement workshops",
             "5S workplace organization (Sort, Set in Order, Shine, Standardize, Sustain)",
             "Standard work and visual management",
@@ -128,39 +129,39 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 100-question exam (70% pass) + full DMAIC Capstone with statistical evidence",
         description: "The Green Belt program develops practitioners who can independently lead DMAIC improvement projects that deliver measurable financial and operational results. Graduates master statistical analysis, hypothesis testing, DOE, and SPC.",
         modules: [
-          { id: "lssgb-m1", number: 1, title: "Six Sigma Deployment & Project Selection", hours: 6, topics: [
+          { id: "lssgb-m1", number: 1, title: "Six Sigma Deployment & Project Selection", hours: 6, price: 0, topics: [
             "Organizational deployment models and linking projects to strategic KPIs",
             "Financial benefit analysis: hard vs. soft savings, cost-benefit justification",
             "Advanced project chartering and team formation",
           ]},
-          { id: "lssgb-m2", number: 2, title: "Define Phase — Deep Dive", hours: 8, topics: [
+          { id: "lssgb-m2", number: 2, title: "Define Phase — Deep Dive", hours: 8, price: 0, topics: [
             "Advanced VOC techniques: surveys, interviews, Kano model",
             "Quality Function Deployment (QFD) / House of Quality introduction",
             "Risk framing with a preliminary FMEA",
           ]},
-          { id: "lssgb-m3", number: 3, title: "Measure Phase — Measurement Systems & Capability", hours: 14, topics: [
+          { id: "lssgb-m3", number: 3, title: "Measure Phase — Measurement Systems & Capability", hours: 14, price: 0, topics: [
             "Detailed process mapping: swim-lane and value-stream perspectives",
             "Measurement System Analysis (MSA): Gage R&R for variable and attribute data",
             "Sampling strategies and data collection plan design",
             "Process capability and performance indices (Cp, Cpk, Pp, Ppk) and sigma-level calculation",
           ]},
-          { id: "lssgb-m4", number: 4, title: "Analyze Phase — Statistical Root Cause", hours: 16, topics: [
+          { id: "lssgb-m4", number: 4, title: "Analyze Phase — Statistical Root Cause", hours: 16, price: 0, topics: [
             "Probability distributions (normal, binomial, Poisson) for process data",
             "Hypothesis testing: t-tests, chi-square, ANOVA for comparing process conditions",
             "Correlation and simple/multiple linear regression",
             "Failure Mode and Effects Analysis (FMEA) — detailed application",
           ]},
-          { id: "lssgb-m5", number: 5, title: "Improve Phase — Solution Design", hours: 14, topics: [
+          { id: "lssgb-m5", number: 5, title: "Improve Phase — Solution Design", hours: 14, price: 0, topics: [
             "Introduction to Design of Experiments (DOE): full-factorial basics",
             "Solution generation, evaluation, and prioritization matrices",
             "Piloting solutions and validating improvement with data",
           ]},
-          { id: "lssgb-m6", number: 6, title: "Control Phase — Sustaining Gains", hours: 10, topics: [
+          { id: "lssgb-m6", number: 6, title: "Control Phase — Sustaining Gains", hours: 10, price: 0, topics: [
             "Statistical Process Control (SPC): control chart selection and construction (X-bar/R, p, c, u charts)",
             "Control plans and standard operating procedures",
             "Mistake-proofing (Poka-Yoke) and response plans",
           ]},
-          { id: "lssgb-m7", number: 7, title: "Lean Integration", hours: 10, topics: [
+          { id: "lssgb-m7", number: 7, title: "Lean Integration", hours: 10, price: 0, topics: [
             "Value Stream Mapping (current-state and future-state)",
             "Kanban and pull systems",
             "Single-Minute Exchange of Die (SMED) for setup reduction",
@@ -200,27 +201,27 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 90-question exam (70% pass) + Capstone inspection & CAPA case study",
         description: "The Quality Technician program provides essential skills for quality inspections, understanding quality standards, and supporting quality management systems.",
         modules: [
-          { id: "qt-m1", number: 1, title: "Quality Concepts & Team Dynamics", hours: 8, topics: [
+          { id: "qt-m1", number: 1, title: "Quality Concepts & Team Dynamics", hours: 8, price: 0, topics: [
             "Quality philosophies: Deming, Juran, Crosby, and the cost of quality",
             "Roles and responsibilities within a quality management system",
             "Team problem-solving methods and effective meeting facilitation",
           ]},
-          { id: "qt-m2", number: 2, title: "Inspection, Test & Metrology", hours: 12, topics: [
+          { id: "qt-m2", number: 2, title: "Inspection, Test & Metrology", hours: 12, price: 0, topics: [
             "Sampling plans (AQL-based acceptance sampling)",
             "Measurement equipment: calipers, micrometers, gauges, and calibration fundamentals",
             "Traceability, measurement uncertainty basics, and equipment maintenance records",
           ]},
-          { id: "qt-m3", number: 3, title: "Basic Quality Tools & Statistics", hours: 12, topics: [
+          { id: "qt-m3", number: 3, title: "Basic Quality Tools & Statistics", hours: 12, price: 0, topics: [
             "The Seven Basic Quality Tools (checksheets, Pareto, fishbone, histograms, scatter diagrams, control charts, flowcharts)",
             "Elementary statistics for quality data interpretation",
             "Introduction to control charts for shop-floor monitoring",
           ]},
-          { id: "qt-m4", number: 4, title: "Corrective & Preventive Action", hours: 10, topics: [
+          { id: "qt-m4", number: 4, title: "Corrective & Preventive Action", hours: 10, price: 0, topics: [
             "Root cause analysis techniques (5 Whys, fishbone, fault tree basics)",
             "8D problem-solving methodology",
             "CAPA systems and effectiveness verification",
           ]},
-          { id: "qt-m5", number: 5, title: "Quality Systems & Standards", hours: 10, topics: [
+          { id: "qt-m5", number: 5, title: "Quality Systems & Standards", hours: 10, price: 0, topics: [
             "ISO 9001 fundamentals: structure, key clauses, and documentation requirements",
             "Document and record control practices",
             "Introduction to internal audit concepts and non-conformance reporting",
@@ -249,37 +250,37 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 110-question exam (70% pass) + Capstone QMS/statistical project",
         description: "The QEA program develops professionals who can design, implement, and manage quality systems, conduct audits, perform advanced statistical analysis, lead FMEA sessions, and manage supplier quality.",
         modules: [
-          { id: "qea-m1", number: 1, title: "Quality Management Systems", hours: 10, topics: [
+          { id: "qea-m1", number: 1, title: "Quality Management Systems", hours: 10, price: 0, topics: [
             "ISO 9001 in depth: process approach, risk-based thinking, management review",
             "Quality planning and the Cost of Quality (prevention, appraisal, failure costs)",
             "Supplier quality management fundamentals",
           ]},
-          { id: "qea-m2", number: 2, title: "Product & Process Design for Quality", hours: 12, topics: [
+          { id: "qea-m2", number: 2, title: "Product & Process Design for Quality", hours: 12, price: 0, topics: [
             "Design for Manufacturability (DFM) and Design for Six Sigma (DFSS) overview",
             "Tolerance design and stack-up analysis",
             "Reliability engineering basics: bathtub curve, MTBF, MTTR",
           ]},
-          { id: "qea-m3", number: 3, title: "Statistical Methods for Quality", hours: 14, topics: [
+          { id: "qea-m3", number: 3, title: "Statistical Methods for Quality", hours: 14, price: 0, topics: [
             "Probability distributions and sampling theory",
             "Hypothesis testing and confidence intervals for quality decisions",
             "Regression analysis and Design of Experiments (DOE) fundamentals",
           ]},
-          { id: "qea-m4", number: 4, title: "Statistical Process Control (Advanced)", hours: 12, topics: [
+          { id: "qea-m4", number: 4, title: "Statistical Process Control (Advanced)", hours: 12, price: 0, topics: [
             "Control chart theory: variable and attribute charts, rational subgrouping",
             "Process capability and performance analysis in regulated environments",
             "Multivariate and short-run SPC considerations",
           ]},
-          { id: "qea-m5", number: 5, title: "Measurement Systems Analysis", hours: 10, topics: [
+          { id: "qea-m5", number: 5, title: "Measurement Systems Analysis", hours: 10, price: 0, topics: [
             "Gage R&R studies (crossed and nested designs)",
             "Calibration systems management and metrology traceability",
             "Attribute agreement analysis",
           ]},
-          { id: "qea-m6", number: 6, title: "Risk & Reliability Engineering", hours: 12, topics: [
+          { id: "qea-m6", number: 6, title: "Risk & Reliability Engineering", hours: 12, price: 0, topics: [
             "Design and Process FMEA (DFMEA/PFMEA)",
             "Fault Tree Analysis (FTA) fundamentals",
             "Reliability testing and life-data analysis basics",
           ]},
-          { id: "qea-m7", number: 7, title: "Auditing & Corrective Action Systems", hours: 10, topics: [
+          { id: "qea-m7", number: 7, title: "Auditing & Corrective Action Systems", hours: 10, price: 0, topics: [
             "Internal and supplier audit planning and execution",
             "Advanced root-cause methodologies and systemic CAPA management",
             "Regulatory and customer audit readiness",
@@ -308,37 +309,37 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 90-question exam (70% pass) + Capstone accreditation readiness package",
         description: "The LQMS program develops specialists who can implement and manage laboratory quality systems aligned with ISO/IEC 17025, design internal QC programs, manage EQA, and prepare laboratories for accreditation.",
         modules: [
-          { id: "lqms-m1", number: 1, title: "Introduction to ISO/IEC 17025 & Lab Quality Systems", hours: 8, topics: [
+          { id: "lqms-m1", number: 1, title: "Introduction to ISO/IEC 17025 & Lab Quality Systems", hours: 8, price: 0, topics: [
             "Structure of ISO/IEC 17025: general, structural, resource, process, and management system requirements",
             "Impartiality, confidentiality, and laboratory risk-based thinking",
             "Overview of national and regional accreditation bodies (SANAS, ANOR, COFRAC) and their role in Africa",
           ]},
-          { id: "lqms-m2", number: 2, title: "Management System Requirements", hours: 10, topics: [
+          { id: "lqms-m2", number: 2, title: "Management System Requirements", hours: 10, price: 0, topics: [
             "Document and record control for laboratory quality manuals",
             "Management review, internal audit planning, and continual improvement",
             "Control of nonconforming work and corrective action processes",
           ]},
-          { id: "lqms-m3", number: 3, title: "Technical Competence Requirements", hours: 10, topics: [
+          { id: "lqms-m3", number: 3, title: "Technical Competence Requirements", hours: 10, price: 0, topics: [
             "Personnel competence, training, and authorization records",
             "Equipment qualification, maintenance, and calibration programs",
             "Facilities and environmental condition control for valid results",
           ]},
-          { id: "lqms-m4", number: 4, title: "Method Validation & Measurement Uncertainty", hours: 12, topics: [
+          { id: "lqms-m4", number: 4, title: "Method Validation & Measurement Uncertainty", hours: 12, price: 0, topics: [
             "Method selection, verification, and validation protocols",
             "Building a measurement uncertainty budget",
             "Metrological traceability to international/national standards",
           ]},
-          { id: "lqms-m5", number: 5, title: "Quality Control & Proficiency Testing", hours: 10, topics: [
+          { id: "lqms-m5", number: 5, title: "Quality Control & Proficiency Testing", hours: 10, price: 0, topics: [
             "Internal quality control: control charts for laboratory data",
             "Participation in and interpretation of proficiency testing / interlaboratory comparisons",
             "Handling of QC failures and out-of-specification results",
           ]},
-          { id: "lqms-m6", number: 6, title: "Sampling & Handling of Test/Calibration Items", hours: 8, topics: [
+          { id: "lqms-m6", number: 6, title: "Sampling & Handling of Test/Calibration Items", hours: 8, price: 0, topics: [
             "Sampling plans and chain-of-custody documentation",
             "Storage, handling, and disposal of test items",
             "Reporting of results: content requirements and statements of conformity",
           ]},
-          { id: "lqms-m7", number: 7, title: "Accreditation Readiness & Assessor Perspective", hours: 10, topics: [
+          { id: "lqms-m7", number: 7, title: "Accreditation Readiness & Assessor Perspective", hours: 10, price: 0, topics: [
             "Gap analysis methodology against ISO/IEC 17025 clauses",
             "Preparing for and hosting an accreditation assessment",
             "Mock internal audits and witnessed-testing simulations",
@@ -377,36 +378,36 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 80-question exam (70% pass) + Capstone marketing analytics project",
         description: "The MAQ program transforms marketers into data-driven strategists. Graduates can design A/B tests, build customer segmentation models, calculate marketing ROI, and create executive marketing dashboards.",
         modules: [
-          { id: "maq-m1", number: 1, title: "Foundations of Marketing Analytics", hours: 8, topics: [
+          { id: "maq-m1", number: 1, title: "Foundations of Marketing Analytics", hours: 8, price: 0, topics: [
             "The marketing funnel and key performance indicators (CAC, CTR, conversion rate, ROAS)",
             "Data sources: CRM systems, web/app analytics, social platforms, POS/transaction data",
             "Data quality and privacy considerations in customer analytics",
           ]},
-          { id: "maq-m2", number: 2, title: "Customer Segmentation & Targeting", hours: 10, topics: [
+          { id: "maq-m2", number: 2, title: "Customer Segmentation & Targeting", hours: 10, price: 0, topics: [
             "RFM (Recency, Frequency, Monetary) analysis",
             "Cluster analysis for behavioral and demographic segmentation",
             "Building and validating customer personas from data",
           ]},
-          { id: "maq-m3", number: 3, title: "Marketing Mix Modeling & Attribution", hours: 12, topics: [
+          { id: "maq-m3", number: 3, title: "Marketing Mix Modeling & Attribution", hours: 12, price: 0, topics: [
             "Multi-touch attribution models (first-touch, last-touch, linear, data-driven)",
             "Introduction to media mix modeling for channel budget allocation",
             "Measuring incrementality and avoiding common attribution pitfalls",
           ]},
-          { id: "maq-m4", number: 4, title: "A/B Testing & Experimentation", hours: 12, topics: [
+          { id: "maq-m4", number: 4, title: "A/B Testing & Experimentation", hours: 12, price: 0, topics: [
             "Designing controlled experiments for campaigns, pricing, and creative testing",
             "Statistical significance, sample size, and confidence intervals in a marketing context",
             "Uplift modeling to identify persuadable customer segments",
           ]},
-          { id: "maq-m5", number: 5, title: "Customer Lifetime Value & Retention", hours: 10, topics: [
+          { id: "maq-m5", number: 5, title: "Customer Lifetime Value & Retention", hours: 10, price: 0, topics: [
             "Building Customer Lifetime Value (CLV) models",
             "Predictive churn modeling and early-warning indicators",
             "Retention and loyalty program analytics",
           ]},
-          { id: "maq-m6", number: 6, title: "Pricing & Promotion Analytics", hours: 8, topics: [
+          { id: "maq-m6", number: 6, title: "Pricing & Promotion Analytics", hours: 8, price: 0, topics: [
             "Price elasticity estimation",
             "Promotion effectiveness measurement and cannibalization analysis",
           ]},
-          { id: "maq-m7", number: 7, title: "Tools, Dashboarding & Storytelling", hours: 12, topics: [
+          { id: "maq-m7", number: 7, title: "Tools, Dashboarding & Storytelling", hours: 12, price: 0, topics: [
             "SQL for marketing data extraction; Python/pandas fundamentals for analysis",
             "Dashboard design in Power BI/Tableau for marketing stakeholders",
             "Communicating quantitative findings to non-technical decision-makers",
@@ -435,42 +436,42 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 100-question exam (70% pass) + Capstone end-to-end pipeline build",
         description: "The DEA program builds practitioners who can design, build, and maintain the data infrastructure that powers analytics and AI across organizations.",
         modules: [
-          { id: "dea-m1", number: 1, title: "Foundations of Data Engineering", hours: 8, topics: [
+          { id: "dea-m1", number: 1, title: "Foundations of Data Engineering", hours: 8, price: 0, topics: [
             "Modern data architecture: sources, ingestion, storage, transformation, serving",
             "ETL vs. ELT patterns; batch vs. streaming processing",
             "The data engineering lifecycle and collaboration with analytics/BI teams",
           ]},
-          { id: "dea-m2", number: 2, title: "SQL & Relational Database Fundamentals", hours: 14, topics: [
+          { id: "dea-m2", number: 2, title: "SQL & Relational Database Fundamentals", hours: 14, price: 0, topics: [
             "Relational modeling, normalization, and keys/constraints",
             "Advanced SQL: window functions, CTEs, joins, and query optimization",
             "Indexing strategies and query performance tuning",
           ]},
-          { id: "dea-m3", number: 3, title: "Python for Data Engineering", hours: 12, topics: [
+          { id: "dea-m3", number: 3, title: "Python for Data Engineering", hours: 12, price: 0, topics: [
             "Data manipulation with pandas; working with JSON, CSV, Parquet",
             "Scripting reusable, parameterized data transformation jobs",
             "Error handling, logging, and testing for data code",
           ]},
-          { id: "dea-m4", number: 4, title: "Data Pipeline Development & Orchestration", hours: 16, topics: [
+          { id: "dea-m4", number: 4, title: "Data Pipeline Development & Orchestration", hours: 16, price: 0, topics: [
             "ETL pipeline design principles: idempotency, incremental loads, backfills",
             "Workflow orchestration concepts (DAGs) using tools such as Apache Airflow",
             "Data quality checks and validation frameworks within pipelines",
           ]},
-          { id: "dea-m5", number: 5, title: "Cloud Data Platforms", hours: 14, topics: [
+          { id: "dea-m5", number: 5, title: "Cloud Data Platforms", hours: 14, price: 0, topics: [
             "Core data services across major cloud providers (storage, compute, managed databases)",
             "Data lakes vs. data warehouses; when to use each",
             "Columnar storage formats (Parquet, ORC) and cost/performance trade-offs",
           ]},
-          { id: "dea-m6", number: 6, title: "Big Data Processing Fundamentals", hours: 12, topics: [
+          { id: "dea-m6", number: 6, title: "Big Data Processing Fundamentals", hours: 12, price: 0, topics: [
             "Distributed processing concepts and the Apache Spark execution model",
             "Writing and optimizing basic Spark transformations",
             "Partitioning strategies for large datasets",
           ]},
-          { id: "dea-m7", number: 7, title: "Data Modeling & Warehousing", hours: 10, topics: [
+          { id: "dea-m7", number: 7, title: "Data Modeling & Warehousing", hours: 10, price: 0, topics: [
             "Dimensional modeling: star and snowflake schemas, fact and dimension tables",
             "Slowly Changing Dimensions (SCD) handling",
             "Data warehouse design for analytics and reporting consumption",
           ]},
-          { id: "dea-m8", number: 8, title: "DataOps, Governance & Security", hours: 10, topics: [
+          { id: "dea-m8", number: 8, title: "DataOps, Governance & Security", hours: 10, price: 0, topics: [
             "CI/CD principles applied to data pipelines",
             "Pipeline monitoring, alerting, and observability practices",
             "Data governance fundamentals: access control, lineage, and cataloging",
@@ -500,32 +501,32 @@ const CATEGORIES: Category[] = [
         assessment: "Proctored 90-question exam (70% pass) + Capstone BI/analytics solution",
         description: "The DAS program develops advanced analytical practitioners who can tackle complex business problems with statistical rigor, predictive models, and compelling dashboards across any industry.",
         modules: [
-          { id: "das-m1", number: 1, title: "Foundations of Data Analytics", hours: 8, topics: [
+          { id: "das-m1", number: 1, title: "Foundations of Data Analytics", hours: 8, price: 0, topics: [
             "The analytics lifecycle: descriptive, diagnostic, predictive, and prescriptive analytics",
             "Framing business questions as analytical problems",
             "Overview of the analytics toolchain: spreadsheets, SQL, BI tools, and scripting languages",
           ]},
-          { id: "das-m2", number: 2, title: "Data Wrangling & Cleaning", hours: 12, topics: [
+          { id: "das-m2", number: 2, title: "Data Wrangling & Cleaning", hours: 12, price: 0, topics: [
             "Data cleaning techniques in Excel and SQL: handling missing values, duplicates, and outliers",
             "Data transformation and reshaping for analysis",
             "Introduction to Python/pandas for repeatable data preparation",
           ]},
-          { id: "das-m3", number: 3, title: "Statistical Analysis for Business", hours: 12, topics: [
+          { id: "das-m3", number: 3, title: "Statistical Analysis for Business", hours: 12, price: 0, topics: [
             "Descriptive statistics and distributions in a business context",
             "Hypothesis testing and confidence intervals for business decisions",
             "Correlation and regression analysis for driver identification",
           ]},
-          { id: "das-m4", number: 4, title: "Data Visualization & Storytelling", hours: 12, topics: [
+          { id: "das-m4", number: 4, title: "Data Visualization & Storytelling", hours: 12, price: 0, topics: [
             "Principles of effective data visualization and chart selection",
             "Dashboard design and development in Power BI/Tableau",
             "Structuring a data story for executive and non-technical audiences",
           ]},
-          { id: "das-m5", number: 5, title: "Exploratory & Predictive Analytics", hours: 12, topics: [
+          { id: "das-m5", number: 5, title: "Exploratory & Predictive Analytics", hours: 12, price: 0, topics: [
             "Exploratory data analysis (EDA) techniques",
             "Introductory predictive models: linear/logistic regression and simple forecasting",
             "Model evaluation basics and communicating uncertainty in predictions",
           ]},
-          { id: "das-m6", number: 6, title: "Business Intelligence Systems", hours: 10, topics: [
+          { id: "das-m6", number: 6, title: "Business Intelligence Systems", hours: 10, price: 0, topics: [
             "BI architecture: from source systems to self-service dashboards",
             "Designing KPI frameworks aligned to organizational strategy",
             "Governance of self-service BI: consistency, single source of truth",
@@ -537,6 +538,130 @@ const CATEGORIES: Category[] = [
           "Apply at least one statistical or predictive technique to generate insight",
           "Build an interactive BI dashboard summarizing findings and KPIs",
           "Deliver a recommendations report with measurable business impact",
+        ]},
+      },
+    ],
+  },
+  // ─────────────────────────────────────────────
+  //  MEAL & IMPACT EVALUATION
+  // ─────────────────────────────────────────────
+  {
+    id: "meal",
+    name: "MEAL \& Impact Evaluation",
+    icon: Layers,
+    color: "#0891B2",
+    description: "Master Monitoring, Evaluation, Accountability, and Learning (MEAL) — the essential framework for ensuring programs deliver measurable, sustainable impact. Designed for development practitioners, government M\&E officers, NGO program managers, and anyone responsible for proving that projects make a real difference.",
+    programs: [
+      {
+        id: "meal-cert",
+        title: "MEAL Professional Certificate",
+        acronym: "MEALPC",
+        subtitle: "Scenario-based certification in Monitoring, Evaluation, Accountability, and Learning",
+        level: "Professional" as const,
+        badge: "Platinum" as const,
+        duration: "14 weeks",
+        contactHours: 140,
+        delivery: "Online + Hybrid",
+        targetAudience: "M\&E officers, program managers, project coordinators, government planning officers, NGO/INGO staff, humanitarian workers, public health practitioners",
+        prerequisites: "Professional experience in program/project management, development, or public administration recommended; no prior M\&E training required",
+        alignment: "OECD-DAC Evaluation Criteria / USAID Evaluation Policy / DFID Logframe Guidance / Sphere Standards",
+        assessment: "Proctored 100-question exam (70% pass) + scenario-based MEAL Plan Capstone",
+        description: "How do you know if your project had the desired impact? By regularly monitoring progress, evaluating outcomes, being accountable to stakeholders, and learning from successes and failures, project teams can ensure that their projects are well-managed and have a positive impact on the communities they serve. This scenario-based program builds essential skills across all four MEAL pillars through real-world case studies from health, education, governance, and humanitarian contexts across Africa.",
+        modules: [
+          { id: "meal-m1", number: 1, title: "Foundations of MEAL", hours: 16, price: 0, topics: [
+            "What is MEAL? Definitions, history, and the evolution from M\&E to MEAL",
+            "The four pillars: Monitoring, Evaluation, Accountability, and Learning — how they interconnect",
+            "Why MEAL matters: evidence-based decision making, donor requirements, and organizational learning",
+            "MEAL in context: development, humanitarian, government, health, and education sectors",
+            "Key MEAL stakeholders: beneficiaries, donors, governments, implementing partners, communities",
+            "Ethical principles: do no harm, informed consent, data privacy, cultural sensitivity",
+            "Introduction to results-based management (RBM) and adaptive management",
+            "Scenario: Identify MEAL gaps in a failing education project case study",
+          ]},
+          { id: "meal-m2", number: 2, title: "Theory of Change \& Logical Frameworks", hours: 20, price: 0, topics: [
+            "Theory of Change (ToC): building a causal pathway from activities to long-term impact",
+            "Assumptions, risks, and preconditions in your Theory of Change",
+            "The Logical Framework (Logframe): structure, purpose, and practical construction",
+            "Results chain: inputs → activities → outputs → outcomes → impact",
+            "SMART indicators: Specific, Measurable, Achievable, Relevant, Time-bound",
+            "Output indicators vs outcome indicators vs impact indicators",
+            "Indicator reference sheets: definition, data source, frequency, disaggregation, baseline, target",
+            "Common frameworks: SDG indicators, WHO health indicators, education sector indicators",
+            "Developing a Results Framework aligned to donor requirements (USAID, EU, World Bank, AfDB)",
+            "Scenario: Build a complete Theory of Change and Logframe for a maternal health project",
+          ]},
+          { id: "meal-m3", number: 3, title: "Planning for MEAL", hours: 20, price: 0, topics: [
+            "The MEAL Plan: purpose, components, and when to develop it in the project cycle",
+            "Budgeting for MEAL: allocating adequate resources (the 5-10% rule and beyond)",
+            "Baseline studies: design, purpose, timing, and methodology selection",
+            "Defining data needs: what data do you need, when, from whom, and how often?",
+            "Sampling strategies: probability vs non-probability, sample size considerations",
+            "MEAL staffing and capacity: roles, responsibilities, and skill requirements",
+            "Integrating MEAL into project design from day one",
+            "MEAL calendars and workplans: scheduling data collection, reporting, and review cycles",
+            "Coordination with partners: harmonizing MEAL across multi-partner programs",
+            "Scenario: Develop a complete MEAL Plan for a youth employment program",
+          ]},
+          { id: "meal-m4", number: 4, title: "Data Collection Methods \& Tools", hours: 24, price: 0, topics: [
+            "Quantitative methods: structured surveys, census data, administrative records, service statistics",
+            "Qualitative methods: key informant interviews (KII), focus group discussions (FGD), case studies",
+            "Mixed methods: triangulation and complementarity — when and how to combine approaches",
+            "Questionnaire design: question types, sequencing, skip logic, pre-testing, and piloting",
+            "Digital data collection: KoboToolbox, ODK, SurveyCTO, and CommCare",
+            "Mobile data collection: form design, validation rules, GPS capture, photo capture",
+            "Participatory methods: community scorecards, most significant change (MSC), PRA",
+            "Routine monitoring data: activity trackers, attendance registers, distribution logs",
+            "Data collection training and supervision: ensuring enumerator quality and consistency",
+            "Research ethics: consent protocols, vulnerable populations, data protection",
+            "Scenario: Design a mixed-methods data collection plan with digital tools for a WASH program",
+          ]},
+          { id: "meal-m5", number: 5, title: "Data Management \& Quality Assurance", hours: 16, price: 0, topics: [
+            "Data management planning: storage, naming conventions, version control, backup",
+            "Data cleaning: identifying and handling missing data, duplicates, outliers, and entry errors",
+            "Data quality assessments (DQA): validity, reliability, timeliness, precision, integrity",
+            "Data quality audit tools and checklists for routine monitoring data",
+            "Database design for MEAL: spreadsheet best practices, relational database concepts",
+            "Data security and protection: encryption, access controls, GDPR compliance",
+            "Indicator tracking tables (ITTs): maintaining a living record of progress against targets",
+            "Scenario: Conduct a DQA on a provided messy dataset and produce a clean analysis-ready file",
+          ]},
+          { id: "meal-m6", number: 6, title: "Data Analysis \& Interpretation", hours: 24, price: 0, topics: [
+            "Descriptive statistics for MEAL: frequencies, percentages, means, cross-tabulations",
+            "Data disaggregation: analyzing by gender, age, location, disability, and equity dimensions",
+            "Trend analysis: tracking indicator progress over time against targets and baselines",
+            "Qualitative data analysis: coding, thematic analysis, and content analysis",
+            "Data visualization: charts, graphs, maps, dashboards — choosing the right visual",
+            "Building MEAL dashboards: Excel, Power BI, and Tableau for program monitoring",
+            "Evaluation designs: pre-post comparison, quasi-experimental, contribution analysis",
+            "OECD-DAC criteria: relevance, coherence, effectiveness, efficiency, impact, sustainability",
+            "Interpreting findings: moving from data to conclusions to recommendations",
+            "Common pitfalls: correlation vs causation, selection bias, survivorship bias",
+            "Scenario: Analyze a multi-year program dataset and produce an evaluation findings brief",
+          ]},
+          { id: "meal-m7", number: 7, title: "Accountability, Learning \& Adaptive Management", hours: 20, price: 0, topics: [
+            "Accountability to affected populations (AAP): feedback mechanisms, complaints, and response",
+            "Community feedback mechanisms: hotlines, suggestion boxes, committees, digital platforms",
+            "Closing the feedback loop: acting on and communicating back about stakeholder input",
+            "Accountability to donors: reporting requirements, compliance, and evidence of results",
+            "Learning agendas: identifying strategic learning questions for your program",
+            "After Action Reviews (AARs) and pause-and-reflect sessions",
+            "Knowledge management: capturing, organizing, and sharing MEAL knowledge across teams",
+            "Adaptive management: using MEAL data to make real-time program adjustments",
+            "MEAL reporting: progress reports, donor reports, dashboards, and briefs",
+            "Building a MEAL culture: embedding evidence-based thinking across your organization",
+            "Scenario: Design a complete accountability system with feedback mechanisms for a refugee response",
+          ]},
+        ],
+        capstone: { title: "Comprehensive MEAL System Design", tasks: [
+          "Select a real or simulated multi-year development/humanitarian project",
+          "Build a complete Theory of Change with assumptions and risk analysis",
+          "Develop a Logical Framework with SMART indicators at output, outcome, and impact levels",
+          "Design a MEAL Plan including data collection methods, tools, timeline, budget, and staffing",
+          "Create a digital data collection form using KoboToolbox or equivalent",
+          "Conduct analysis on a provided program dataset and produce a findings brief with visualizations",
+          "Design an accountability and feedback mechanism appropriate to the project context",
+          "Develop a learning agenda with strategic questions and knowledge management plan",
+          "Present the complete MEAL system to an Analytix Engineering review panel",
         ]},
       },
     ],
