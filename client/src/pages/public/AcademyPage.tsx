@@ -780,6 +780,9 @@ function ModuleAccordion({ mod, accentColor }: { mod: TrainingModule; accentColo
 function ProgramCard({ program, accentColor }: { program: Program; accentColor: string }) {
   const [expanded, setExpanded] = useState(false);
   const [showPayment, setShowPayment] = useState<"standard" | "bootcamp" | null>(null);
+  const [paymentAmount, setPaymentAmount] = useState(0);
+  const [paymentDesc, setPaymentDesc] = useState("");
+  const [showPlanPicker, setShowPlanPicker] = useState<"standard" | "bootcamp" | null>(null);
   return (
     <motion.div layout className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 transition-shadow hover:shadow-md">
       <div className="p-6">
@@ -882,19 +885,88 @@ function ProgramCard({ program, accentColor }: { program: Program; accentColor: 
 
               {/* CTA */}
               <div className="flex flex-wrap gap-3">
-                <button onClick={() => setShowPayment("standard")} className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:shadow-lg transition-all" style={{ backgroundColor: accentColor }}>Enroll — {formatXAF(program.standardPrice)} <ArrowRight size={14} /></button>
-                {program.hasBootcamp && <button onClick={() => setShowPayment("bootcamp")} className="inline-flex items-center gap-2 rounded-xl border-2 border-brand bg-brand/5 px-6 py-3 text-sm font-semibold text-brand hover:-translate-y-0.5 hover:shadow-lg transition-all">Bootcamp — {formatXAF(program.bootcampPrice)} <ArrowRight size={14} /></button>}
+                <button onClick={() => setShowPlanPicker("standard")} className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:shadow-lg transition-all" style={{ backgroundColor: accentColor }}>Enroll — {formatXAF(program.standardPrice)} <ArrowRight size={14} /></button>
+                {program.hasBootcamp && <button onClick={() => setShowPlanPicker("bootcamp")} className="inline-flex items-center gap-2 rounded-xl border-2 border-brand bg-brand/5 px-6 py-3 text-sm font-semibold text-brand hover:-translate-y-0.5 hover:shadow-lg transition-all">Bootcamp — {formatXAF(program.bootcampPrice)} <ArrowRight size={14} /></button>}
                 <Link to="/contact" className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-semibold text-navy hover:bg-slate-100">Request Info</Link>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-    {showPayment && (
+    {/* Payment Plan Picker */}
+      {showPlanPicker && !showPayment && (() => {
+        const isBootcamp = showPlanPicker === "bootcamp";
+        const total = isBootcamp ? program.bootcampPrice : program.standardPrice;
+        const plans = isBootcamp ? [
+          { label: "Pay in Full", amount: total, desc: "One-time payment", tag: "" },
+          { label: "1st Installment (60%)", amount: Math.round(total * 0.6), desc: "Due 3 days before start", tag: "1 of 2" },
+          { label: "2nd Installment (40%)", amount: Math.round(total * 0.4), desc: "Due 30 days after start", tag: "2 of 2" },
+        ] : [
+          { label: "Pay in Full", amount: total, desc: "One-time payment", tag: "" },
+          { label: "1st Installment (50%)", amount: Math.round(total * 0.5), desc: "Due 5 days before start", tag: "1 of 3" },
+          { label: "2nd Installment (25%)", amount: Math.round(total * 0.25), desc: "Due within 60 days of start", tag: "2 of 3" },
+          { label: "3rd Installment (25%)", amount: Math.round(total * 0.25), desc: "Due within 90 days of start", tag: "3 of 3" },
+        ];
+        return (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4" onClick={() => setShowPlanPicker(null)}>
+            <div className="relative w-full max-w-md rounded-3xl bg-white shadow-2xl p-7" onClick={(e: React.MouseEvent) => e.stopPropagation()}>
+              <button onClick={() => setShowPlanPicker(null)} className="absolute right-4 top-4 rounded-full p-2 text-slate-400 hover:bg-slate-100 hover:text-slate-600">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+              </button>
+              <h3 className="text-xl font-extrabold text-navy">{isBootcamp ? "Bootcamp" : "Standard"} Payment Plan</h3>
+              <p className="mt-1 text-sm text-slate-500">{program.title}</p>
+              <div className="mt-2 rounded-lg bg-slate-100 px-3 py-2 text-center">
+                <p className="text-xs text-slate-500">Total Program Fee</p>
+                <p className="text-2xl font-extrabold text-navy">{formatXAF(total)}</p>
+              </div>
+
+              {/* Installment Schedule */}
+              <div className="mt-4 mb-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+                  {isBootcamp ? "2-Installment Plan" : "3-Installment Plan"}
+                </p>
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-3 space-y-2 mb-4">
+                  {plans.slice(1).map((p, i) => (
+                    <div key={i} className="flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <span className="flex h-5 w-5 items-center justify-center rounded-full bg-brand/10 text-[9px] font-bold text-brand">{i+1}</span>
+                        <div>
+                          <p className="text-xs font-semibold text-navy">{p.label}</p>
+                          <p className="text-[10px] text-slate-400">{p.desc}</p>
+                        </div>
+                      </div>
+                      <span className="text-xs font-extrabold text-navy">{formatXAF(p.amount)}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-3">Choose Payment</p>
+              <div className="space-y-2">
+                {plans.map((p, i) => (
+                  <button key={i} onClick={() => { setPaymentAmount(p.amount); setPaymentDesc(program.title + (isBootcamp ? " (Bootcamp)" : " (Standard)") + (p.tag ? " — Installment " + p.tag : " — Full Payment")); setShowPayment(showPlanPicker); setShowPlanPicker(null); }}
+                    className={`flex w-full items-center justify-between rounded-xl border-2 p-4 text-left transition-all hover:shadow-md ${i === 0 ? "border-emerald-300 bg-emerald-50 hover:border-emerald-400" : "border-slate-200 bg-slate-50 hover:border-brand/30"}`}>
+                    <div>
+                      <p className={`text-sm font-bold ${i === 0 ? "text-emerald-700" : "text-navy"}`}>{p.label}</p>
+                      <p className="text-[11px] text-slate-400">{p.desc}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className={`text-lg font-extrabold ${i === 0 ? "text-emerald-700" : "text-navy"}`}>{formatXAF(p.amount)}</p>
+                      {i === 0 && <p className="text-[9px] font-semibold text-emerald-500">Best Value</p>}
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        );
+      })()}
+
+      {showPayment && (
         <MobilePaymentModal
           payment={{
-            description: program.title + (showPayment === "bootcamp" ? " (Bootcamp)" : " (Standard)"),
-            amount: showPayment === "bootcamp" ? program.bootcampPrice : program.standardPrice,
+            description: paymentDesc,
+            amount: paymentAmount,
             reference: "AE-" + program.acronym + "-" + Date.now().toString(36).toUpperCase(),
           }}
           onClose={() => setShowPayment(null)}
