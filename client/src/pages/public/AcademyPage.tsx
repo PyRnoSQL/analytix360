@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { MobilePaymentModal } from "@/components/payment/MobilePaymentModal";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -778,6 +779,7 @@ function ModuleAccordion({ mod, accentColor }: { mod: TrainingModule; accentColo
 // ─── Program Card ───
 function ProgramCard({ program, accentColor }: { program: Program; accentColor: string }) {
   const [expanded, setExpanded] = useState(false);
+  const [showPayment, setShowPayment] = useState<"standard" | "bootcamp" | null>(null);
   return (
     <motion.div layout className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 transition-shadow hover:shadow-md">
       <div className="p-6">
@@ -880,13 +882,25 @@ function ProgramCard({ program, accentColor }: { program: Program; accentColor: 
 
               {/* CTA */}
               <div className="flex flex-wrap gap-3">
-                <Link to="/contact" className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:shadow-lg transition-all" style={{ backgroundColor: accentColor }}>Enroll Now <ArrowRight size={14} /></Link>
+                <button onClick={() => setShowPayment("standard")} className="inline-flex items-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold text-white hover:-translate-y-0.5 hover:shadow-lg transition-all" style={{ backgroundColor: accentColor }}>Enroll — {formatXAF(program.standardPrice)} <ArrowRight size={14} /></button>
+                {program.hasBootcamp && <button onClick={() => setShowPayment("bootcamp")} className="inline-flex items-center gap-2 rounded-xl border-2 border-brand bg-brand/5 px-6 py-3 text-sm font-semibold text-brand hover:-translate-y-0.5 hover:shadow-lg transition-all">Bootcamp — {formatXAF(program.bootcampPrice)} <ArrowRight size={14} /></button>}
                 <Link to="/contact" className="inline-flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3 text-sm font-semibold text-navy hover:bg-slate-100">Request Info</Link>
               </div>
             </div>
           </motion.div>
         )}
       </AnimatePresence>
+    {showPayment && (
+        <MobilePaymentModal
+          payment={{
+            description: program.title + (showPayment === "bootcamp" ? " (Bootcamp)" : " (Standard)"),
+            amount: showPayment === "bootcamp" ? program.bootcampPrice : program.standardPrice,
+            reference: "AE-" + program.acronym + "-" + Date.now().toString(36).toUpperCase(),
+          }}
+          onClose={() => setShowPayment(null)}
+          onSubmit={(data) => { console.log("Payment submitted:", data); setShowPayment(null); }}
+        />
+      )}
     </motion.div>
   );
 }
