@@ -32,6 +32,11 @@ interface Program {
   alignment: string;
   assessment: string;
   description: string;
+  standardPrice: number;
+  standardSchedule: string;
+  bootcampPrice: number;
+  bootcampDuration: string;
+  hasBootcamp: boolean;
   modules: TrainingModule[];
   capstone: { title: string; tasks: string[] };
 }
@@ -73,6 +78,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "None — basic numeracy and workplace experience recommended",
         alignment: "IASSC Yellow Belt Body of Knowledge / ASQ Foundations of Six Sigma",
         assessment: "Proctored 60-question exam (70% pass) + Capstone workplace project",
+        standardPrice: 500000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 300000,
+        bootcampDuration: "5-Week Bootcamp",
+        hasBootcamp: true,
         description: "The Yellow Belt program builds a solid foundation in Lean Six Sigma thinking. Graduates understand waste elimination, basic statistical thinking, and can actively support Green Belt and Black Belt improvement projects.",
         modules: [
           { id: "lssyb-m1", number: 1, title: "Foundations of Lean & Six Sigma", hours: 6, price: 0, topics: [
@@ -127,6 +137,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Lean Six Sigma Yellow Belt (or demonstrated equivalent) + basic spreadsheet literacy",
         alignment: "IASSC Green Belt Body of Knowledge / ASQ CSSGB reference topics",
         assessment: "Proctored 100-question exam (70% pass) + full DMAIC Capstone with statistical evidence",
+        standardPrice: 1000000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 500000,
+        bootcampDuration: "8-Week Bootcamp",
+        hasBootcamp: true,
         description: "The Green Belt program develops practitioners who can independently lead DMAIC improvement projects that deliver measurable financial and operational results. Graduates master statistical analysis, hypothesis testing, DOE, and SPC.",
         modules: [
           { id: "lssgb-m1", number: 1, title: "Six Sigma Deployment & Project Selection", hours: 6, price: 0, topics: [
@@ -199,6 +214,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Secondary technical education or equivalent workplace experience",
         alignment: "ASQ Certified Quality Technician (CQT) Body of Knowledge",
         assessment: "Proctored 90-question exam (70% pass) + Capstone inspection & CAPA case study",
+        standardPrice: 500000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 300000,
+        bootcampDuration: "6-Week Bootcamp",
+        hasBootcamp: true,
         description: "The Quality Technician program provides essential skills for quality inspections, understanding quality standards, and supporting quality management systems.",
         modules: [
           { id: "qt-m1", number: 1, title: "Quality Concepts & Team Dynamics", hours: 8, price: 0, topics: [
@@ -248,6 +268,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Quality Technician certificate or engineering/technical degree + basic statistics",
         alignment: "ASQ Certified Quality Engineer (CQE) Body of Knowledge (associate level)",
         assessment: "Proctored 110-question exam (70% pass) + Capstone QMS/statistical project",
+        standardPrice: 1000000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 550000,
+        bootcampDuration: "10-Week Bootcamp",
+        hasBootcamp: true,
         description: "The QEA program develops professionals who can design, implement, and manage quality systems, conduct audits, perform advanced statistical analysis, lead FMEA sessions, and manage supplier quality.",
         modules: [
           { id: "qea-m1", number: 1, title: "Quality Management Systems", hours: 10, price: 0, topics: [
@@ -307,6 +332,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Science, engineering, or laboratory technical background; basic statistics recommended",
         alignment: "ISO/IEC 17025:2017 General requirements for the competence of testing and calibration laboratories",
         assessment: "Proctored 90-question exam (70% pass) + Capstone accreditation readiness package",
+        standardPrice: 700000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 0,
+        bootcampDuration: "",
+        hasBootcamp: false,
         description: "The LQMS program develops specialists who can implement and manage laboratory quality systems aligned with ISO/IEC 17025, design internal QC programs, manage EQA, and prepare laboratories for accreditation.",
         modules: [
           { id: "lqms-m1", number: 1, title: "Introduction to ISO/IEC 17025 & Lab Quality Systems", hours: 8, price: 0, topics: [
@@ -376,6 +406,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Intermediate Excel; basic statistics (mean, variance, distributions); Python exposure helpful but not required",
         alignment: "Wayne L. Winston (Marketing Analytics), Peter Fader (Customer Centricity), Ron Kohavi (Trustworthy Online Controlled Experiments), Philip Kotler (Marketing Management)",
         assessment: "Proctored 90-question exam (70% pass) + Capstone analytics project",
+        standardPrice: 700000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 400000,
+        bootcampDuration: "8-Week Bootcamp",
+        hasBootcamp: true,
         description: "A hands-on, quantitative program that teaches you to make better marketing decisions using data, statistics, and models -- all built in Excel and Python. Every module is built around real business scenarios: you will calculate, model, and decide -- not just read theory.",
         modules: [
           { id: "maq-m1", number: 1, title: "Excel & Python Toolkit for Marketing Analysts", hours: 12, price: 0, topics: ["Excel power tools: pivot tables, VLOOKUP/XLOOKUP, dynamic arrays, data tables, Solver", "Building scenario models with Excel Data Tables (one-way and two-way sensitivity analysis)", "Python crash course: Pandas DataFrames, filtering, grouping, merging", "Visualization with Matplotlib, Seaborn, and Plotly for marketing data", "Reproducible analysis: Jupyter notebooks, markdown documentation"] },
@@ -410,6 +445,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Basic programming exposure (any language) and fundamental SQL recommended",
         alignment: "Industry-standard data engineering competencies (SQL, Python, orchestration, cloud data platforms)",
         assessment: "Proctored 100-question exam (70% pass) + Capstone end-to-end pipeline build",
+        standardPrice: 1000000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 400000,
+        bootcampDuration: "8-Week Bootcamp",
+        hasBootcamp: true,
         description: "The DEA program builds practitioners who can design, build, and maintain the data infrastructure that powers analytics and AI across organizations.",
         modules: [
           { id: "dea-m1", number: 1, title: "Foundations of Data Engineering", hours: 8, price: 0, topics: [
@@ -475,6 +515,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Basic algebra and spreadsheet literacy; no prior statistics or programming required",
         alignment: "Michael Sullivan - Statistics: Informed Decisions Using Data; Moore & Notz - The Basic Practice of Statistics; Agresti & Franklin - Statistics: The Art and Science of Learning from Data",
         assessment: "Proctored 100-question exam (70% pass) + Capstone statistical analysis project",
+        standardPrice: 400000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 200000,
+        bootcampDuration: "8-Week Bootcamp",
+        hasBootcamp: true,
         description: "A comprehensive, application-driven statistics program following the structure of Michael Sullivan's acclaimed textbook. Every concept is taught through real-world scenarios and practiced hands-on in Excel, SPSS, and Python or R. Designed for professionals who need to collect, summarize, analyze, and draw valid conclusions from data -- without unnecessary mathematical abstraction.",
         modules: [
           { id: "sids-m1", number: 1, title: "Data Collection, Organization & Exploratory Analysis", hours: 12, price: 0, topics: ["The statistical process: population vs sample, parameter vs statistic, variables and data types", "Data collection methods: observational studies, experiments, surveys, sampling designs (SRS, stratified, cluster, systematic)", "Sources of bias: sampling bias, nonresponse bias, response bias, voluntary response", "Organizing data: frequency distributions, relative frequency, cumulative frequency tables", "Graphical summaries: bar charts, pie charts, histograms, stem-and-leaf plots, dot plots, time series plots", "Distribution shape: symmetric, skewed left, skewed right, uniform, bell-shaped", "Hands-on: building frequency tables and charts in Excel, SPSS, and Python (pandas + matplotlib)"] },
@@ -510,6 +555,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Basic spreadsheet literacy; no prior programming required (SQL/Python introduced in-program)",
         alignment: "Industry-standard business/data analytics competencies (analytics lifecycle, statistics, visualization, BI)",
         assessment: "Proctored 90-question exam (70% pass) + Capstone BI/analytics solution",
+        standardPrice: 400000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 200000,
+        bootcampDuration: "6-Week Bootcamp",
+        hasBootcamp: true,
         description: "The DAS program develops advanced analytical practitioners who can tackle complex business problems with statistical rigor, predictive models, and compelling dashboards across any industry.",
         modules: [
           { id: "das-m1", number: 1, title: "Foundations of Data Analytics", hours: 8, price: 0, topics: [
@@ -577,6 +627,11 @@ const CATEGORIES: Category[] = [
         prerequisites: "Professional experience in program/project management, development, or public administration recommended; no prior M\&E training required",
         alignment: "OECD-DAC Evaluation Criteria / USAID Evaluation Policy / DFID Logframe Guidance / Sphere Standards",
         assessment: "Proctored 100-question exam (70% pass) + scenario-based MEAL Plan Capstone",
+        standardPrice: 400000,
+        standardSchedule: "Weekends Only — 4 months",
+        bootcampPrice: 250000,
+        bootcampDuration: "7-Week Bootcamp",
+        hasBootcamp: true,
         description: "How do you know if your project had the desired impact? By regularly monitoring progress, evaluating outcomes, being accountable to stakeholders, and learning from successes and failures, project teams can ensure that their projects are well-managed and have a positive impact on the communities they serve. This scenario-based program builds essential skills across all four MEAL pillars through real-world case studies from health, education, governance, and humanitarian contexts across Africa.",
         modules: [
           { id: "meal-m1", number: 1, title: "Foundations of MEAL", hours: 16, price: 0, topics: [
@@ -684,6 +739,10 @@ const badgeColors: Record<string, string> = { Silver: "bg-slate-300 text-slate-7
 const levelColors: Record<string, string> = { Foundation: "bg-emerald-100 text-emerald-700", Associate: "bg-blue-100 text-blue-700", Professional: "bg-purple-100 text-purple-700", Specialist: "bg-rose-100 text-rose-700" };
 
 // ─── Module Accordion ───
+function formatXAF(amount: number) {
+  return new Intl.NumberFormat("fr-CM", { style: "currency", currency: "XAF", maximumFractionDigits: 0 }).format(amount);
+}
+
 function ModuleAccordion({ mod, accentColor }: { mod: TrainingModule; accentColor: string }) {
   const [open, setOpen] = useState(false);
   return (
@@ -731,6 +790,34 @@ function ProgramCard({ program, accentColor }: { program: Program; accentColor: 
             <h3 className="text-lg font-extrabold text-navy">{program.title}</h3>
             <p className="text-xs italic text-slate-400">{program.subtitle}</p>
           </div>
+        </div>
+
+        {/* Pricing Options */}
+        <div className="mt-4 grid gap-3 sm:grid-cols-2">
+          <div className="rounded-xl border-2 border-slate-200 bg-slate-100 p-4">
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">Option A: Standard</span>
+            </div>
+            <p className="text-xl font-extrabold text-navy">{formatXAF(program.standardPrice)}</p>
+            <p className="text-[11px] text-slate-400">{program.standardSchedule}</p>
+            <p className="text-[10px] text-slate-400 mt-1">Schedule TBD</p>
+          </div>
+          {program.hasBootcamp && (
+            <div className="rounded-xl border-2 border-brand/30 bg-brand/5 p-4">
+              <div className="flex items-center justify-between mb-1">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-brand">Option B: Bootcamp</span>
+                <span className="rounded-full bg-brand/10 px-2 py-0.5 text-[9px] font-bold text-brand">Fast-Paced</span>
+              </div>
+              <p className="text-xl font-extrabold text-navy">{formatXAF(program.bootcampPrice)}</p>
+              <p className="text-[11px] text-brand/70">{program.bootcampDuration} — twice a week</p>
+              <p className="text-[10px] text-slate-400 mt-1">Schedule TBD</p>
+            </div>
+          )}
+          {!program.hasBootcamp && (
+            <div className="rounded-xl border-2 border-slate-100 bg-slate-50 p-4 flex items-center justify-center">
+              <p className="text-xs text-slate-400 italic">Standard schedule only</p>
+            </div>
+          )}
         </div>
 
         <p className="mt-3 text-sm leading-relaxed text-slate-500">{program.description}</p>
