@@ -1,4 +1,5 @@
 import express from "express";
+import chariowRoutes from "./routes/chariow.js";
 import helmet from "helmet";
 import cors from "cors";
 import compression from "compression";
