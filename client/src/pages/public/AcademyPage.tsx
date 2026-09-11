@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { MobilePaymentModal } from "@/components/payment/MobilePaymentModal";
+import { CardPaymentModal } from "@/components/payment/CardPaymentModal";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -38,6 +39,7 @@ interface Program {
   bootcampPrice: number;
   bootcampDuration: string;
   hasBootcamp: boolean;
+  chariowProductId?: string;
   modules: TrainingModule[];
   capstone: { title: string; tasks: string[] };
 }
@@ -646,6 +648,7 @@ const CATEGORIES: Category[] = [
       },
       {
         id: "das",
+        chariowProductId: "prd_6wl939s8",
         title: "Data Analytics Specialist",
         acronym: "DAS",
         subtitle: "Turning organizational data into decisions through analysis, visualization, and BI",
@@ -882,6 +885,7 @@ function ModuleAccordion({ mod, accentColor }: { mod: TrainingModule; accentColo
 function ProgramCard({ program, accentColor }: { program: Program; accentColor: string }) {
   const [expanded, setExpanded] = useState(false);
   const [showPayment, setShowPayment] = useState<"standard" | "bootcamp" | null>(null);
+  const [showCardPayment, setShowCardPayment] = useState(false);
   const [paymentAmount, setPaymentAmount] = useState(0);
   const [paymentDesc, setPaymentDesc] = useState("");
   const [showPlanPicker, setShowPlanPicker] = useState<"standard" | "bootcamp" | null>(null);
@@ -1058,11 +1062,38 @@ function ProgramCard({ program, accentColor }: { program: Program; accentColor: 
                     </div>
                   </button>
                 ))}
+                {program.chariowProductId && (
+                  <div className="mt-3 border-t border-slate-200 pt-3">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-2">Or pay with card</p>
+                    <button onClick={() => { setShowCardPayment(true); setShowPlanPicker(null); }}
+                      className="flex w-full items-center justify-between rounded-xl border-2 border-indigo-200 bg-indigo-50 p-4 text-left transition-all hover:shadow-md hover:border-indigo-400">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-indigo-600">
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-indigo-700">Visa / Mastercard / International</p>
+                          <p className="text-[10px] text-slate-400">Secure card payment via Chariow</p>
+                        </div>
+                      </div>
+                      <p className="text-lg font-extrabold text-indigo-700">{formatXAF(total)}</p>
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         );
       })()}
+
+      {showCardPayment && program.chariowProductId && (
+        <CardPaymentModal
+          productName={program.title}
+          amount={program.standardPrice}
+          chariowProductId={program.chariowProductId}
+          onClose={() => setShowCardPayment(false)}
+        />
+      )}
 
       {showPayment && (
         <MobilePaymentModal
