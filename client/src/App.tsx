@@ -14,6 +14,7 @@ const AboutPage = lazy(() => import("@/pages/public/AboutPage").then(m => ({ def
 const ContactPage = lazy(() => import("@/pages/public/ContactPage").then(m => ({ default: m.ContactPage })));
 const IndustryPage = lazy(() => import("@/pages/public/IndustryPage").then(m => ({ default: m.IndustryPage })));
 const AcademyPage = lazy(() => import("@/pages/public/AcademyPage").then(m => ({ default: m.AcademyPage })));
+const CourseViewer = lazy(() => import("@/pages/learn/CourseViewer").then(m => ({ default: m.CourseViewer })));
 const VerifyCertificatePage = lazy(() => import("@/pages/public/VerifyCertificatePage").then(m => ({ default: m.VerifyCertificatePage })));
 const LoginPage = lazy(() => import("@/pages/public/LoginPage").then(m => ({ default: m.LoginPage })));
 const PortalDashboard = lazy(() => import("@/pages/portal/Dashboard").then(m => ({ default: m.PortalDashboard })));
@@ -54,6 +55,7 @@ export default function App() {
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/industries/:slug" element={<IndustryPage />} />
+                <Route path="/learn/:courseId" element={<CourseViewer />} />
                 <Route path="/institute" element={<AcademyPage />} />
                 <Route path="/verify" element={<VerifyCertificatePage />} />
                 <Route path="/verify/:certId" element={<VerifyCertificatePage />} />
