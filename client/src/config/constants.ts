@@ -21,6 +21,7 @@ export const ROLES = {
 export const NAV_ITEMS = [
   { id: "home", label: "Home", path: "/" },
   { id: "services", label: "Services", path: "/services" },
+  { id: "training", label: "Training", path: "/training" },
   { id: "about", label: "About", path: "/about" },
   { id: "contact", label: "Contact", path: "/contact" },
 ] as const;
