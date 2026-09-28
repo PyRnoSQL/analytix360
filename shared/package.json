@@ -6,7 +6,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "npx --package=typescript -- tsc",
+    "build": "npx --package=typescript@5 -- tsc",
     "typecheck": "npx tsc --noEmit",
     "dev": "tsc --watch"
   },

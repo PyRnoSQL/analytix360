@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "npx --package=typescript -- tsc",
+    "build": "npx --package=typescript@5 -- tsc",
     "start": "node dist/index.js",
     "typecheck": "npx tsc --noEmit"
   },
