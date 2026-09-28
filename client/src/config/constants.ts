@@ -84,3 +84,4 @@ export const INDUSTRIES = [
   "Manufacturing & Industry",
   "Energy & Utilities",
 ] as const;
+
