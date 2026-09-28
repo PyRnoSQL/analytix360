@@ -231,11 +231,10 @@ export function CoursePlayer({ course, backLink }: { course: LmsCourse; backLink
           <div className="mt-9 flex flex-col gap-6 rounded-3xl border border-[color:var(--line)] bg-[color:var(--panel)] p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
             <div className="flex items-center gap-5">
               <Ring pct={stats.pct} size={84} stroke={8} label={<span className="lms-display text-lg font-semibold tabular-nums text-white">{stats.pct}%</span>} />
-              <dl className="grid grid-cols-3 gap-x-8 gap-y-1 text-sm">
-                <dt className="text-[color:var(--muted)]">Level</dt><dt className="text-[color:var(--muted)]">Experience</dt><dt className="text-[color:var(--muted)]">Completed</dt>
-                <dd className="font-bold text-white">{stats.level.name}</dd>
-                <dd className="lms-mono font-bold tabular-nums text-[color:var(--acc)]">{stats.xp} XP</dd>
-                <dd className="tabular-nums text-white">{stats.doneItems}/{stats.totalItems}</dd>
+              <dl className="flex flex-wrap gap-x-10 gap-y-3 text-sm">
+                <div><dt className="text-[color:var(--muted)]">Level</dt><dd className="whitespace-nowrap font-bold text-white">{stats.level.name}</dd></div>
+                <div><dt className="text-[color:var(--muted)]">Experience</dt><dd className="lms-mono whitespace-nowrap font-bold tabular-nums text-[color:var(--acc)]">{stats.xp} XP</dd></div>
+                <div><dt className="text-[color:var(--muted)]">Completed</dt><dd className="whitespace-nowrap tabular-nums text-white">{stats.doneItems}/{stats.totalItems}</dd></div>
               </dl>
             </div>
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[color:#C5CDDD]">

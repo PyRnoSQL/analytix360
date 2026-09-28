@@ -1,6 +1,7 @@
 import type { CourseModule, Lesson, LmsCourse, ModuleQuiz } from "./types";
 import { MOSP_COURSE } from "../data/courses/mosp";
 import { DAS_COURSE } from "../data/courses/das";
+import { DAS_EXTRAS, type LessonExtras } from "../data/courses/das-extras";
 
 // Courses written in the earlier format (HTML lessons + quiz items), e.g. das.ts.
 interface LegacyQuestion { id: string; question: string; options: string[]; correctIndex: number; explanation?: string }
@@ -13,7 +14,14 @@ const readingMinutes = (html: string) => {
   return Math.max(5, Math.round(words / 180 / 5) * 5 || 5);
 };
 
-export function fromLegacy(src: LegacyCourse, extra: Pick<LmsCourse, "subtitle" | "accent"> & Partial<LmsCourse>): LmsCourse {
+const headingOf = (html: string) =>
+  (html.match(/<h2[^>]*>([\s\S]*?)<\/h2>/)?.[1] ?? "").replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim();
+
+export function fromLegacy(
+  src: LegacyCourse,
+  extra: Pick<LmsCourse, "subtitle" | "accent"> & Partial<LmsCourse>,
+  extras: Record<string, LessonExtras> = {},
+): LmsCourse {
   const modules: CourseModule[] = src.modules.map((m) => {
     const lessons: Lesson[] = [];
     let quiz: ModuleQuiz | undefined;
@@ -26,7 +34,14 @@ export function fromLegacy(src: LegacyCourse, extra: Pick<LmsCourse, "subtitle" 
           questions: item.quiz.map((q) => ({ id: q.id, question: q.question, options: q.options, answer: q.correctIndex, explain: q.explanation ?? "" })),
         };
       } else if (item.content) {
-        lessons.push({ id: item.id, title: item.title, minutes: readingMinutes(item.content), objectives: [], blocks: [{ type: "html", html: item.content }] });
+        const add = extras[headingOf(item.content)] ?? extras[item.title];
+        lessons.push({
+          id: item.id,
+          title: item.title,
+          minutes: readingMinutes(item.content) + (add ? 5 : 0),
+          objectives: add?.objectives ?? [],
+          blocks: [{ type: "html", html: item.content }, ...(add?.blocks ?? [])],
+        });
       }
     }
     return { id: m.id, number: m.number, title: m.title, summary: "", hours: 0, lessons, quiz };
@@ -39,5 +54,10 @@ export const COURSES: Record<string, LmsCourse> = {
   das: fromLegacy(DAS_COURSE as unknown as LegacyCourse, {
     subtitle: "Statistics, predictive models and dashboards for business decisions",
     accent: "#6EA8FE",
-  }),
+    certification: "Analytix Engineering professional certificate with QR verification",
+    introVideo: {
+      en: { src: "/media/das-intro-en.mp4", poster: "/media/das-intro-en.jpg" },
+      fr: { src: "/media/das-intro-fr.mp4", poster: "/media/das-intro-fr.jpg" },
+    },
+  }, DAS_EXTRAS),
 };
