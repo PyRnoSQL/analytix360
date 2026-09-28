@@ -24,12 +24,12 @@ app.use(
     contentSecurityPolicy: {
       directives: {
         defaultSrc: ["'self'"],
-        scriptSrc: ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "blob:"],
+        scriptSrc: ["https://cdn.jsdelivr.net", "'self'", "'unsafe-inline'", "'wasm-unsafe-eval'", "blob:"],
         workerSrc: ["'self'", "blob:"],
         styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
         fontSrc: ["'self'", "https://fonts.gstatic.com"],
         imgSrc: ["'self'", "data:", "https:"],
-        connectSrc: [
+        connectSrc: ["https://cdn.jsdelivr.net", 
           "'self'",
           env.SUPABASE_URL,
           "https://*.supabase.co",

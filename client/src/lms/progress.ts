@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import type { LmsCourse } from "./types";
+import { LAB_TYPES, type LmsCourse } from "./types";
 
 // Learner progress, kept in this browser (localStorage). The shape is plain JSON so it
 // can later be synced to Supabase without changing the components.
@@ -12,10 +12,11 @@ export interface Progress {
   tasks: Record<string, number[]>;
   quizzes: Record<string, QuizResult>;
   notes: Record<string, string>;
+  labs: Record<string, boolean>;
   last?: string;
 }
 
-const EMPTY: Progress = { lessons: [], checks: {}, tasks: {}, quizzes: {}, notes: {} };
+const EMPTY: Progress = { lessons: [], checks: {}, tasks: {}, quizzes: {}, notes: {}, labs: {} };
 
 function load(key: string): Progress {
   try {
@@ -35,7 +36,7 @@ export const LEVELS = [
   { min: 1400, name: "Office Specialist" },
 ] as const;
 
-export const XP = { lesson: 20, check: 5, task: 10, quizPass: 50, quizPerfect: 25 } as const;
+export const XP = { lesson: 20, check: 5, task: 10, lab: 15, quizPass: 50, quizPerfect: 25 } as const;
 
 export function useProgress(course: LmsCourse) {
   const key = `ae-lms-${course.id}`;
@@ -65,6 +66,7 @@ export function useProgress(course: LmsCourse) {
         return { ...s, quizzes: { ...s.quizzes, [id]: { best, passed: best >= passPct, attempts: (prev?.attempts ?? 0) + 1 } } };
       }),
     setNote: (id: string, text: string) => update((s) => ({ ...s, notes: { ...s.notes, [id]: text } })),
+    completeLab: (id: string) => update((s) => (s.labs[id] ? s : { ...s, labs: { ...s.labs, [id]: true } })),
     setLast: (id: string) => update((s) => (s.last === id ? s : { ...s, last: id })),
     reset: () => update(() => EMPTY),
   }), [update]);
@@ -81,6 +83,7 @@ export function useProgress(course: LmsCourse) {
         for (const b of l.blocks) {
           if (b.type === "check" && p.checks[b.id] === b.answer) xp += XP.check;
           if (b.type === "task" && (p.tasks[b.id]?.length ?? 0) >= b.items.length) xp += XP.task;
+          if ((LAB_TYPES as readonly string[]).includes(b.type) && "id" in b && p.labs[b.id]) xp += XP.lab;
         }
       }
       if (m.quiz) {

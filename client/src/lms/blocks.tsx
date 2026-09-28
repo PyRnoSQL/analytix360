@@ -5,6 +5,14 @@ import {
 } from "lucide-react";
 import type { Block, CalloutTone } from "./types";
 import type { ProgressApi } from "./progress";
+import { SqlLab } from "./labs/SqlLab";
+import { SheetLab } from "./labs/SheetLab";
+import { PythonLab } from "./labs/PythonLab";
+import { DocLab } from "./labs/DocLab";
+import { SlideLab } from "./labs/SlideLab";
+import { ChartBlock, ExplorerBlock } from "./labs/Charts";
+import { FigureBlock } from "./labs/Figure";
+import { KeysTrainer } from "./labs/KeysTrainer";
 
 // **bold** and `code` inside lesson text
 export function rich(text: string): ReactNode {
@@ -199,6 +207,15 @@ export function BlockView({ block, api }: { block: Block; api: ProgressApi }) {
           </table>
         </div>
       );
+    case "sql": return <SqlLab block={block} api={api} />;
+    case "sheet": return <SheetLab block={block} api={api} />;
+    case "python": return <PythonLab block={block} api={api} />;
+    case "doc": return <DocLab block={block} api={api} />;
+    case "slide": return <SlideLab block={block} api={api} />;
+    case "chart": return <ChartBlock block={block} api={api} />;
+    case "explorer": return <ExplorerBlock block={block} api={api} />;
+    case "figure": return <FigureBlock block={block} api={api} />;
+    case "keys": return <KeysTrainer block={block} api={api} />;
     case "html":
       return <div className="lms-html" dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "code":

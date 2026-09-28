@@ -2,6 +2,15 @@
 // Text fields accept **bold** and `code` inline markers.
 
 export type CalloutTone = "tip" | "warning" | "key" | "workplace";
+export type ChartKind = "bar" | "line" | "pie";
+export type DocCheck =
+  | { kind: "heading"; level: 1 | 2; text: string }
+  | { kind: "align"; text: string; value: "center" | "right" | "justify" }
+  | { kind: "bold"; text: string }
+  | { kind: "list"; ordered: boolean; min: number };
+
+/** Block types that are hands-on labs; completing one earns XP. */
+export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys"] as const;
 
 export type Block =
   | { type: "p"; text: string }
@@ -16,6 +25,16 @@ export type Block =
   | { type: "table"; head: string[]; rows: string[][] }
   | { type: "code"; text: string }
   | { type: "html"; html: string }
+  // ── Hands-on labs (each one earns XP when completed) ──
+  | { type: "sql"; id: string; title: string; task: string; setup: string; starter: string; solution: string; hint?: string }
+  | { type: "sheet"; id: string; title: string; task: string; data: (string | number | null)[][]; editable: string[]; checks: { cell: string; equals: number | string; tol?: number }[]; hint?: string; solution?: Record<string, string> }
+  | { type: "python"; id: string; title: string; task: string; cells: string[]; packages?: string[]; files?: { name: string; content: string }[]; expect?: string; hint?: string; solution?: string }
+  | { type: "doc"; id: string; title: string; task: string; html: string; checks: DocCheck[]; hint?: string }
+  | { type: "slide"; id: string; title: string; task: string; slide: { title: string; bullets: string[] }; rules: { maxBullets: number; maxWords: number; titleMaxWords: number }; hint?: string }
+  | { type: "chart"; id: string; title: string; data: { label: string; value: number }[]; unit?: string; kinds: ChartKind[]; best?: ChartKind; question?: string; explain?: string }
+  | { type: "explorer"; id: string; kind: "correlation" | "distribution" }
+  | { type: "figure"; id: string; title: string; art: "computer" | "word"; hotspots: { x: number; y: number; label: string; text: string }[] }
+  | { type: "keys"; id: string; title: string; items: { keys: string[]; action: string }[] }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {

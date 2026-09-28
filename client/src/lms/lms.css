@@ -99,3 +99,18 @@
 .lms-html th { background: var(--raised); color: var(--muted); text-align: left; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .75rem 1rem; }
 .lms-html td { border-top: 1px solid var(--line); padding: .75rem 1rem; vertical-align: top; }
 .lms-html td:first-child { color: #fff; font-weight: 600; }
+
+/* Word lab: a white page with Word-like default styles */
+.lms-doc { font-family: Calibri, "Carlito", "Segoe UI", Arial, sans-serif; font-size: 11pt; line-height: 1.5; }
+.lms-doc h1 { font-size: 20pt; font-weight: 600; color: #1F3864; margin: 0 0 10pt; line-height: 1.2; }
+.lms-doc h2 { font-size: 14pt; font-weight: 600; color: #2F5496; margin: 12pt 0 6pt; }
+.lms-doc p, .lms-doc div { margin: 0 0 8pt; }
+.lms-doc ul { list-style: disc; padding-left: 1.6em; margin: 0 0 8pt; }
+.lms-doc ol { list-style: decimal; padding-left: 1.6em; margin: 0 0 8pt; }
+.lms-doc b, .lms-doc strong { font-weight: 700; }
+
+/* Python lab: pandas DataFrame output */
+.lms-pyhtml table { border-collapse: collapse; font: 500 0.8rem "JetBrains Mono", ui-monospace, Consolas, monospace; color: #DCE3F2; width: max-content; min-width: 100%; }
+.lms-pyhtml th { background: var(--raised); color: var(--muted); text-align: right; padding: 0.4rem 0.75rem; }
+.lms-pyhtml td { border-top: 1px solid var(--line); text-align: right; padding: 0.35rem 0.75rem; }
+.lms-pyhtml tbody th { text-align: left; color: #fff; }
