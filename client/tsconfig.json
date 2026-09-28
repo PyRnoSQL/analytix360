@@ -16,11 +16,9 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     },
-    "ignoreDeprecations": "6.0"
   },
   "include": ["src", "vite-env.d.ts"]
 }
