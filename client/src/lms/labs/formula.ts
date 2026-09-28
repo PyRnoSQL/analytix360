@@ -113,6 +113,8 @@ const FR: Record<string, string> = {
   MAJUSCULE: "UPPER", MINUSCULE: "LOWER", NBCAR: "LEN", SUPPRESPACE: "TRIM", CONCATENER: "CONCATENATE", "SOMME.SI": "SUMIF",
   "NB.SI": "COUNTIF", "MOYENNE.SI": "AVERAGEIF", RECHERCHEV: "VLOOKUP", MEDIANE: "MEDIAN", SIERREUR: "IFERROR", "ECARTYPE.STANDARD": "STDEV.S", ECARTYPE: "STDEV",
   GAUCHE: "LEFT", DROITE: "RIGHT", STXT: "MID", CNUM: "VALUE", SUBSTITUE: "SUBSTITUTE",
+  "SI.CONDITIONS": "IFS", "SOMME.SI.ENS": "SUMIFS", "NB.SI.ENS": "COUNTIFS", "MOYENNE.SI.ENS": "AVERAGEIFS", RECHERCHEX: "XLOOKUP", EQUIV: "MATCH",
+  VPM: "PMT", "ARRONDI.SUP": "ROUNDUP", "ARRONDI.INF": "ROUNDDOWN", NOMPROPRE: "PROPER", "NB.VIDE": "COUNTBLANK", ENT: "INT", PRODUIT: "PRODUCT",
 };
 
 const toNum = (v: Value): number | FormulaError => {
@@ -259,6 +261,80 @@ export function evaluateSheet(raw: Raw): Record<string, Value> {
             const from = toStr(a);
             return from === "" ? toStr(s) : toStr(s).split(from).join(toStr(b));
           }
+          case "IFS": {
+            for (let i = 0; i + 1 < n.args.length; i += 2) { const c = toBool(arg(i)); if (isErr(c)) return c; if (c) return arg(i + 1); }
+            return err(ERR.na);
+          }
+          case "SUMIFS": case "COUNTIFS": case "AVERAGEIFS": {
+            const first = name === "COUNTIFS" ? 0 : 1;
+            if ((n.args.length - first) < 2 || (n.args.length - first) % 2) return err(ERR.value);
+            const ranges: Value[][] = [];
+            for (let i = first; i < n.args.length; i += 2) { const r = n.args[i]; if (r?.k !== "range") return err(ERR.value); ranges.push(rangeCells(r.a, r.b).flat()); }
+            const size = ranges[0]?.length ?? 0;
+            if (ranges.some((r) => r.length !== size)) return err(ERR.value);
+            const crits: Value[] = []; for (let i = first + 1; i < n.args.length; i += 2) crits.push(arg(i));
+            const keep = [...Array(size).keys()].filter((k) => ranges.every((r, j) => matchCriteria(r[k] as Value, crits[j] as Value)));
+            if (name === "COUNTIFS") return keep.length;
+            const s = n.args[0]; if (s?.k !== "range") return err(ERR.value);
+            const vals = rangeCells(s.a, s.b).flat(); if (vals.length !== size) return err(ERR.value);
+            const x = nums(keep.map((k) => vals[k] as Value));
+            if (name === "SUMIFS") return x.reduce((a, b) => a + b, 0);
+            return x.length ? x.reduce((a, b) => a + b, 0) / x.length : err(ERR.div0);
+          }
+          case "XLOOKUP": {
+            const la = n.args[1], ra = n.args[2];
+            if (la?.k !== "range" || ra?.k !== "range") return err(ERR.value);
+            const keys = rangeCells(la.a, la.b).flat(), vals = rangeCells(ra.a, ra.b).flat();
+            if (keys.length !== vals.length) return err(ERR.value);
+            const key = arg(0); if (isErr(key)) return key;
+            const k = keys.findIndex((v) => typeof key === "number" ? v === key : toStr(v).toLowerCase() === toStr(key).toLowerCase());
+            if (k >= 0) return vals[k] ?? "";
+            return n.args.length > 3 ? arg(3) : err(ERR.na);
+          }
+          case "MATCH": {
+            const la = n.args[1]; if (la?.k !== "range") return err(ERR.value);
+            const keys = rangeCells(la.a, la.b).flat();
+            const key = arg(0); if (isErr(key)) return key;
+            const type = n.args.length > 2 ? toNum(arg(2)) : 1; if (isErr(type)) return type;
+            if (type === 0) {
+              const k = keys.findIndex((v) => typeof key === "number" ? v === key : toStr(v).toLowerCase() === toStr(key).toLowerCase());
+              return k >= 0 ? k + 1 : err(ERR.na);
+            }
+            if (typeof key !== "number") return err(ERR.na);
+            let best = -1;
+            keys.forEach((v, i) => { if (typeof v === "number" && (type > 0 ? v <= key : v >= key)) best = i; });
+            return best >= 0 ? best + 1 : err(ERR.na);
+          }
+          case "INDEX": {
+            const t = n.args[0]; if (t?.k !== "range") return err(ERR.value);
+            const rows = rangeCells(t.a, t.b);
+            let r = toNum(arg(1)); if (isErr(r)) return r;
+            let c = n.args.length > 2 ? toNum(arg(2)) : 1; if (isErr(c)) return c;
+            if (rows.length === 1 && n.args.length === 2) { c = r; r = 1; }
+            const v = rows[Math.trunc(r) - 1]?.[Math.trunc(c) - 1];
+            return v === undefined ? err(ERR.ref) : v;
+          }
+          case "PMT": {
+            const r = toNum(arg(0)), np = toNum(arg(1)), pv = toNum(arg(2));
+            const fv = n.args.length > 3 ? toNum(arg(3)) : 0, ty = n.args.length > 4 ? toNum(arg(4)) : 0;
+            const e = [r, np, pv, fv, ty].find(isErr); if (e) return e;
+            const R = r as number, N = np as number, P = pv as number, F = fv as number, T = ty as number;
+            if (N === 0) return err(ERR.div0);
+            if (R === 0) return -(P + F) / N;
+            const g = (1 + R) ** N;
+            return -(R * (F + P * g)) / ((1 + R * T) * (g - 1));
+          }
+          case "ROUNDUP": case "ROUNDDOWN": {
+            const x = toNum(arg(0)), d = n.args.length > 1 ? toNum(arg(1)) : 0;
+            if (isErr(x)) return x; if (isErr(d)) return d;
+            const f = 10 ** Math.trunc(d), y = Math.abs(x) * f;
+            const m = name === "ROUNDUP" ? Math.ceil(y - 1e-9) : Math.floor(y + 1e-9);
+            return Math.sign(x) * m / f;
+          }
+          case "INT": { const x = toNum(arg(0)); return isErr(x) ? x : Math.floor(x); }
+          case "PRODUCT": { const v = flat(n.args); return firstErr(v) ?? nums(v).reduce((s, x) => s * x, 1); }
+          case "COUNTBLANK": return flat(n.args).filter((v) => v === "").length;
+          case "PROPER": { const s = arg(0); return isErr(s) ? s : toStr(s).toLowerCase().replace(/(^|[^a-zà-ÿ])([a-zà-ÿ])/g, (_m, a: string, b: string) => a + b.toUpperCase()); }
           case "VLOOKUP": {
             const table = n.args[1];
             if (table?.k !== "range") return err(ERR.value);

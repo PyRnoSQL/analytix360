@@ -1,4 +1,10 @@
-import type { CourseModule, LmsCourse, Lesson } from "../../lms/types";
+import type { CourseModule, LmsCourse } from "../../lms/types";
+import { m3 } from "./mosp/m3";
+import { m4 } from "./mosp/m4";
+import { m5 } from "./mosp/m5";
+import { m6 } from "./mosp/m6";
+import { m7 } from "./mosp/m7";
+import { m8 } from "./mosp/m8";
 
 // Microsoft Office Suite Professional (MOSP)
 // Original Analytix Engineering material, aligned to the Microsoft Office Specialist
@@ -7,9 +13,6 @@ import type { CourseModule, LmsCourse, Lesson } from "../../lms/types";
 
 const MS = "Microsoft Support";
 const LEARN = "Microsoft Learn";
-
-const outline = (id: string, titles: string[]): Lesson[] =>
-  titles.map((title, i) => ({ id: `${id}-l${i + 1}`, title, minutes: 20, objectives: [], blocks: [] }));
 
 // ─────────────────────────────── MODULE 1 ───────────────────────────────
 
@@ -433,12 +436,6 @@ const m2: CourseModule = {
   },
 };
 
-// ─────────────────────────── MODULES 3–8 (outline) ───────────────────────────
-
-const coming = (n: number, title: string, summary: string, hours: number, lessons: string[]): CourseModule => ({
-  id: `mosp-m${n}`, number: n, title, summary, hours, lessons: outline(`mosp-m${n}`, lessons), comingSoon: true,
-});
-
 export const MOSP_COURSE: LmsCourse = {
   id: "mosp",
   code: "MOSP",
@@ -454,17 +451,11 @@ export const MOSP_COURSE: LmsCourse = {
   modules: [
     m1,
     m2,
-    coming(3, "Microsoft Word — Advanced Document Production", "Tables, mail merge, Track Changes, tables of contents and templates.", 10, [
-      "Tables that organise data", "Mail merge for letters and labels", "Reviewing with comments and Track Changes", "Tables of contents, captions and templates"]),
-    coming(4, "Microsoft Excel — Spreadsheet Fundamentals", "Workbooks, formulas, cell references, sorting, filtering and charts.", 12, [
-      "Your first workbook", "Formulas and cell references", "Sort, filter and format data", "Charts and printing"]),
-    coming(5, "Microsoft Excel — Advanced Data Analysis", "Logical and lookup functions, PivotTables, dashboards and What-If analysis.", 12, [
-      "IF, AND, OR and IFS", "XLOOKUP, VLOOKUP and INDEX-MATCH", "PivotTables and PivotCharts", "What-If analysis and protection"]),
-    coming(6, "Microsoft PowerPoint — Professional Presentations", "Design, Slide Master, visuals, animation and delivery.", 10, [
-      "Designing clear slides", "Slide Master and branding", "Charts, SmartArt and media", "Rehearsing and delivering"]),
-    coming(7, "Microsoft Outlook — Professional Communication & Organization", "E-mail, calendar, contacts, tasks and inbox management.", 8, [
-      "Professional e-mail", "Inbox rules and folders", "Calendar and meetings", "Tasks and contacts"]),
-    coming(8, "Integrated Office Skills & Capstone Project", "Combine Word, Excel, PowerPoint and Outlook in one professional deliverable.", 10, [
-      "Linking Excel data into Word and PowerPoint", "Collaboration in OneDrive and SharePoint", "Capstone: the business deliverable package"]),
+    m3,
+    m4,
+    m5,
+    m6,
+    m7,
+    m8,
   ],
 };
