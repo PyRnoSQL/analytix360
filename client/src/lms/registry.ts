@@ -3,6 +3,13 @@ import { MOSP_COURSE } from "../data/courses/mosp";
 import { DAS_COURSE } from "../data/courses/das";
 import { DAS_EXTRAS, type LessonExtras } from "../data/courses/das-extras";
 import { DAS_PRACTICE, type PracticeSet } from "../data/courses/das-practice";
+import { MOSP_PRACTICE } from "../data/courses/mosp-practice";
+
+// Adds a practice lesson at the end of each open module that has one.
+const withPractice = (c: LmsCourse, extra: Record<string, Lesson>): LmsCourse => ({
+  ...c,
+  modules: c.modules.map((m) => { const p = extra[m.id]; return p && !m.comingSoon ? { ...m, lessons: [...m.lessons, p] } : m; }),
+});
 
 // Courses written in the earlier format (HTML lessons + quiz items), e.g. das.ts.
 interface LegacyQuestion { id: string; question: string; options: string[]; correctIndex: number; explanation?: string }
@@ -62,7 +69,7 @@ export function fromLegacy(
 }
 
 export const COURSES: Record<string, LmsCourse> = {
-  mosp: MOSP_COURSE,
+  mosp: withPractice(MOSP_COURSE, MOSP_PRACTICE),
   das: fromLegacy(DAS_COURSE as unknown as LegacyCourse, {
     subtitle: "Statistics, predictive models and dashboards for business decisions",
     accent: "#6EA8FE",

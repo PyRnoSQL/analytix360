@@ -9,11 +9,16 @@ export type DocCheck =
   | { kind: "bold"; text: string }
   | { kind: "list"; ordered: boolean; min: number };
 
+/** One question of a graded practice exercise: a dropdown, or a typed answer checked against accepted answers or a pattern. */
+export type FormField =
+  | { kind: "select"; label: string; options: string[]; answer: number; explain?: string }
+  | { kind: "text"; label: string; accept?: string[]; pattern?: string; example?: string; placeholder?: string; mono?: boolean; explain?: string };
+
 /** Block types that are hands-on labs; completing one earns XP. */
-export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys"] as const;
+export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys", "form"] as const;
 
 /** Difficulty shown as a badge on practice exercises. */
-export type LabLevel = "beginner" | "intermediate" | "advanced";
+export type LabLevel = "beginner" | "intermediate" | "advanced" | "expert";
 
 export type Block =
   | { type: "p"; text: string }
@@ -32,12 +37,13 @@ export type Block =
   | { type: "sql"; id: string; level?: LabLevel; title: string; task: string; setup: string; starter: string; solution: string; hint?: string }
   | { type: "sheet"; id: string; level?: LabLevel; title: string; task: string; data: (string | number | null)[][]; editable: string[]; checks: { cell: string; equals: number | string; tol?: number }[]; hint?: string; solution?: Record<string, string> }
   | { type: "python"; id: string; level?: LabLevel; title: string; task: string; cells: string[]; packages?: string[]; files?: { name: string; content: string }[]; expect?: string; hint?: string; solution?: string }
-  | { type: "doc"; id: string; title: string; task: string; html: string; checks: DocCheck[]; hint?: string }
+  | { type: "doc"; id: string; level?: LabLevel; title: string; task: string; html: string; checks: DocCheck[]; hint?: string }
   | { type: "slide"; id: string; title: string; task: string; slide: { title: string; bullets: string[] }; rules: { maxBullets: number; maxWords: number; titleMaxWords: number }; hint?: string }
   | { type: "chart"; id: string; title: string; data: { label: string; value: number }[]; unit?: string; kinds: ChartKind[]; best?: ChartKind; question?: string; explain?: string }
   | { type: "explorer"; id: string; kind: "correlation" | "distribution" }
   | { type: "figure"; id: string; title: string; art: "computer" | "word"; hotspots: { x: number; y: number; label: string; text: string }[] }
   | { type: "keys"; id: string; title: string; items: { keys: string[]; action: string }[] }
+  | { type: "form"; id: string; level?: LabLevel; title: string; task: string; fields: FormField[]; hint?: string }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {

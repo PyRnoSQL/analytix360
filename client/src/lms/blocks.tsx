@@ -13,6 +13,7 @@ import { SlideLab } from "./labs/SlideLab";
 import { ChartBlock, ExplorerBlock } from "./labs/Charts";
 import { FigureBlock } from "./labs/Figure";
 import { KeysTrainer } from "./labs/KeysTrainer";
+import { FormLab } from "./labs/FormLab";
 
 // **bold** and `code` inside lesson text
 export function rich(text: string): ReactNode {
@@ -216,6 +217,7 @@ export function BlockView({ block, api }: { block: Block; api: ProgressApi }) {
     case "explorer": return <ExplorerBlock block={block} api={api} />;
     case "figure": return <FigureBlock block={block} api={api} />;
     case "keys": return <KeysTrainer block={block} api={api} />;
+    case "form": return <FormLab block={block} api={api} />;
     case "html":
       return <div className="lms-html" dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "code":

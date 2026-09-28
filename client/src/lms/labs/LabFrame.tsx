@@ -7,6 +7,7 @@ const LEVELS: Record<LabLevel, { label: string; bars: number; cls: string }> = {
   beginner: { label: "Beginner", bars: 1, cls: "bg-emerald-400/10 text-emerald-300" },
   intermediate: { label: "Intermediate", bars: 2, cls: "bg-amber-400/10 text-amber-300" },
   advanced: { label: "Advanced", bars: 3, cls: "bg-rose-400/10 text-rose-300" },
+  expert: { label: "Expert", bars: 4, cls: "bg-violet-400/10 text-violet-300" },
 };
 
 function LevelBadge({ level }: { level: LabLevel }) {
@@ -14,7 +15,7 @@ function LevelBadge({ level }: { level: LabLevel }) {
   return (
     <span title="Difficulty" className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${l.cls}`}>
       <span aria-hidden className="flex items-end gap-[2px]">
-        {[1, 2, 3].map((i) => <span key={i} className={`w-[3px] rounded-full bg-current ${i <= l.bars ? "" : "opacity-25"}`} style={{ height: 3 + i * 3 }} />)}
+        {[1, 2, 3, 4].map((i) => <span key={i} className={`w-[3px] rounded-full bg-current ${i <= l.bars ? "" : "opacity-25"}`} style={{ height: 3 + i * 3 }} />)}
       </span>
       {l.label}
     </span>

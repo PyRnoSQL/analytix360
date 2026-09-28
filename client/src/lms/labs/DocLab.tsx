@@ -66,7 +66,7 @@ export function DocLab({ block, api }: { block: DocBlock; api: ProgressApi }) {
   };
 
   return (
-    <LabFrame icon={FileText} kind="Word lab" title={block.title} task={block.task} done={done} hint={block.hint}
+    <LabFrame icon={FileText} kind="Word lab" level={block.level} title={block.title} task={block.task} done={done} hint={block.hint}
       onReset={() => setVersion((v) => v + 1)}>
       {/* Ribbon */}
       <div role="toolbar" aria-label="Formatting" className="mb-3 flex flex-wrap items-center gap-1 rounded-xl border border-[color:var(--line)] bg-[color:var(--raised)] p-1.5">
