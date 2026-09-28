@@ -838,6 +838,54 @@ const CATEGORIES: Category[] = [
       },
     ],
   },
+
+  {
+    id: "office",
+    name: "Professional Office Suite",
+    icon: Layers,
+    color: "#D97706",
+    description: "Master the essential Microsoft Office applications used in every professional environment. From document creation and data analysis to presentations and email management — build the digital skills employers demand across all industries.",
+    programs: [
+      {
+        id: "mosp",
+        title: "Microsoft Office Suite Professional",
+        acronym: "MOSP",
+        subtitle: "Complete mastery of Microsoft Office for professional productivity",
+        level: "Associate" as const,
+        badge: "Silver" as const,
+        duration: "10 weeks",
+        contactHours: 80,
+        delivery: "Online + Hybrid",
+        targetAudience: "Professionals, students, administrative staff, entrepreneurs, job seekers, and anyone needing to master Microsoft Office for workplace productivity",
+        prerequisites: "Basic computer literacy (file management, web browsing, typing)",
+        alignment: "Microsoft Office Specialist (MOS) certification competencies and industry-standard productivity benchmarks",
+        assessment: "Practical skills assessment per module (70% pass) + Capstone integrated project",
+        description: "The MOSP program builds confident, efficient professionals who can leverage the full Microsoft Office suite to create polished documents, analyze data, deliver compelling presentations, and manage professional communications — skills required in virtually every modern workplace.",
+        standardPrice: 350000,
+        standardSchedule: "10 weeks",
+        bootcampPrice: 200000,
+        bootcampDuration: "5 weeks",
+        hasBootcamp: true,
+        modules: [
+          { id: "mosp-m1", number: 1, title: "Computer Fundamentals & Digital Workspace", hours: 8, price: 0, topics: ["Computer hardware and software concepts", "Operating system navigation (Windows file management, shortcuts, settings)", "Cloud storage and file organization (OneDrive, Google Drive)", "Internet safety, password management, and digital hygiene", "Keyboard proficiency and typing efficiency", "Installing and updating software", "Troubleshooting common computer issues"] },
+          { id: "mosp-m2", number: 2, title: "Microsoft Word - Document Creation & Formatting", hours: 10, price: 0, topics: ["Document creation, saving, and file formats (DOCX, PDF)", "Text formatting: fonts, paragraphs, spacing, alignment", "Styles and themes for consistent document design", "Headers, footers, page numbers, and sections", "Bullet lists, numbered lists, and multilevel lists", "Inserting images, shapes, and text boxes", "Spelling, grammar, and proofing tools", "Printing and page layout configuration"] },
+          { id: "mosp-m3", number: 3, title: "Microsoft Word - Advanced Document Production", hours: 10, price: 0, topics: ["Table creation, formatting, and data organization", "Mail merge for letters, labels, and envelopes", "Track Changes and collaborative reviewing", "Table of Contents and document references", "Templates and form creation", "Long document management: sections, columns, breaks", "Macros introduction for repetitive tasks", "Professional report and proposal formatting"] },
+          { id: "mosp-m4", number: 4, title: "Microsoft Excel - Spreadsheet Fundamentals", hours: 12, price: 0, topics: ["Workbook and worksheet navigation and management", "Data entry, cell formatting, and number formats", "Essential formulas: SUM, AVERAGE, COUNT, MIN, MAX", "Cell references: relative, absolute ($), and mixed", "Sorting and filtering data", "Basic charts: column, bar, line, and pie", "Conditional formatting for data visualization", "Page setup and print areas for reporting"] },
+          { id: "mosp-m5", number: 5, title: "Microsoft Excel - Advanced Data Analysis", hours: 12, price: 0, topics: ["Logical functions: IF, AND, OR, nested IF, IFS", "Lookup functions: VLOOKUP, HLOOKUP, INDEX-MATCH", "Text functions: CONCATENATE, LEFT, RIGHT, MID, TRIM", "Date and time functions for business calculations", "PivotTables for dynamic data summarization", "PivotCharts and slicers for interactive dashboards", "Data validation and drop-down lists", "What-If Analysis: Goal Seek, Scenario Manager, Data Tables", "Protecting worksheets and workbooks"] },
+          { id: "mosp-m6", number: 6, title: "Microsoft PowerPoint - Professional Presentations", hours: 10, price: 0, topics: ["Slide creation, layouts, and design themes", "Text formatting, bullet hierarchy, and content structure", "Inserting and formatting images, icons, and SmartArt", "Animations and slide transitions for engagement", "Speaker notes and presenter view", "Embedding charts, tables, and Excel data", "Slide Master for consistent branding", "Exporting to PDF and video formats", "Delivering effective presentations: storytelling with slides"] },
+          { id: "mosp-m7", number: 7, title: "Microsoft Outlook - Professional Communication & Organization", hours: 8, price: 0, topics: ["Email composition, formatting, and signatures", "Managing inbox: folders, categories, and rules", "Calendar management: appointments, meetings, and invitations", "Contacts and address book organization", "Tasks and to-do list management", "Email etiquette and professional communication best practices", "Attachments, OneDrive sharing, and large file handling", "Out-of-office replies and delegation"] },
+          { id: "mosp-m8", number: 8, title: "Integrated Office Skills & Capstone Project", hours: 10, price: 0, topics: ["Cross-application workflows: Excel data to Word reports to PowerPoint presentations", "Mail merge with Excel data sources", "Embedding and linking Office documents", "Collaboration tools: co-authoring, comments, sharing", "OneDrive and SharePoint basics for team productivity", "Capstone: Build a complete business deliverable package (report + analysis + presentation + professional email)", "Portfolio preparation and skills demonstration"] }
+        ],
+        capstone: { title: "Professional Business Deliverable Package", tasks: [
+          "Create a formatted business report in Word with table of contents and references",
+          "Build an Excel workbook with data analysis, PivotTables, and dashboard charts",
+          "Design a professional PowerPoint presentation summarizing key findings",
+          "Draft professional Outlook emails with the deliverables for stakeholder distribution",
+          "Demonstrate cross-application integration (Excel charts in Word and PowerPoint)"
+        ]}
+      }
+    ]
+  }
 ];
 
 // ─── Helpers ───

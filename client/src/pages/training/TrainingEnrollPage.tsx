@@ -19,6 +19,20 @@ const COURSES = [
   { id: "dea", title: "Data Engineering Associate", acronym: "DEA", category: "Data Analytics & BI", catColor: "#2563EB", duration: "12 weeks", hours: 96, modules: 8, standardPrice: 1000000, bootcampPrice: 400000, hasBootcamp: true },
   { id: "das", title: "Data Analytics Specialist", acronym: "DAS", category: "Data Analytics & BI", catColor: "#2563EB", duration: "9 weeks", hours: 80, modules: 6, standardPrice: 400000, bootcampPrice: 200000, hasBootcamp: true },
   { id: "meal-cert", title: "MEAL Professional Certificate", acronym: "MEALPC", category: "MEAL & Impact Evaluation", catColor: "#0891B2", duration: "14 weeks", hours: 140, modules: 7, standardPrice: 400000, bootcampPrice: 250000, hasBootcamp: true },
+  {
+    id: "mosp",
+    title: "Microsoft Office Suite Professional",
+    acronym: "MOSP",
+    category: "Professional Office Suite",
+    catColor: "#D97706",
+    level: "Associate",
+    duration: "10 weeks",
+    modules: 8,
+    contactHours: 80,
+    standardPrice: 350000,
+    bootcampPrice: 200000,
+    description: "Complete mastery of Microsoft Office for professional productivity - Word, Excel, PowerPoint, and Outlook."
+  }
 ];
 
 type Step = "select" | "info" | "language" | "schedule" | "payment" | "credentials";
