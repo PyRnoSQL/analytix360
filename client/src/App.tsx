@@ -16,6 +16,7 @@ const IndustryPage = lazy(() => import("@/pages/public/IndustryPage").then(m => 
 const AcademyPage = lazy(() => import("@/pages/public/AcademyPage").then(m => ({ default: m.AcademyPage })));
 const CourseViewer = lazy(() => import("@/pages/learn/CourseViewer").then(m => ({ default: m.CourseViewer })));
 const TrainingEnrollPage = lazy(() => import("@/pages/training/TrainingEnrollPage").then(m => ({ default: m.TrainingEnrollPage })));
+const MospCoursePage = lazy(() => import("@/pages/learn/MospCoursePage").then(m => ({ default: m.MospCoursePage })));
 const VerifyCertificatePage = lazy(() => import("@/pages/public/VerifyCertificatePage").then(m => ({ default: m.VerifyCertificatePage })));
 const LoginPage = lazy(() => import("@/pages/public/LoginPage").then(m => ({ default: m.LoginPage })));
 const PortalDashboard = lazy(() => import("@/pages/portal/Dashboard").then(m => ({ default: m.PortalDashboard })));
@@ -65,6 +66,7 @@ export default function App() {
               </Route>
 
               {/* Auth */}
+              <Route path="/learn/mosp" element={<MospCoursePage />} />
               <Route path="/login" element={<LoginPage />} />
 
               {/* Customer Portal */}

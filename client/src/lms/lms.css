@@ -1,0 +1,78 @@
+/* Course player theme: always dark, independent of the rest of the site. */
+.lms {
+  --ink: #0E1422;
+  --panel: #131A2B;
+  --raised: #1A2338;
+  --line: rgba(231, 235, 243, 0.08);
+  --text: #E7EBF3;
+  --muted: #97A3BD;
+  --ok: #3CCB9A;
+  --bad: #F2706B;
+  --acc: #F4A340;
+  --acc-8: color-mix(in srgb, var(--acc) 8%, transparent);
+  --acc-15: color-mix(in srgb, var(--acc) 15%, transparent);
+  --acc-30: color-mix(in srgb, var(--acc) 30%, transparent);
+  --acc-50: color-mix(in srgb, var(--acc) 50%, transparent);
+  --acc-60: color-mix(in srgb, var(--acc) 60%, transparent);
+  color-scheme: dark;
+  background: var(--ink);
+  color: var(--text);
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.lms-display {
+  font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif;
+  letter-spacing: -0.015em;
+  text-wrap: balance;
+}
+.lms-mono { font-family: "JetBrains Mono", ui-monospace, "Cascadia Mono", Consolas, monospace; }
+
+/* Ambient light behind the course header */
+.lms-glow {
+  background:
+    radial-gradient(60rem 22rem at 10% -8rem, color-mix(in srgb, var(--acc) 16%, transparent), transparent 70%),
+    radial-gradient(40rem 18rem at 95% -6rem, rgba(110, 168, 254, 0.10), transparent 70%);
+}
+
+/* Physical keycap for keyboard shortcuts */
+.lms-kbd {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1.9rem;
+  padding: 0.18rem 0.5rem;
+  border-radius: 0.4rem;
+  border: 1px solid #34415F;
+  border-bottom-width: 3px;
+  border-bottom-color: #0A0E18;
+  background: linear-gradient(180deg, #26304A, #1B2339);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  color: var(--text);
+  font: 500 0.75rem/1.2 "JetBrains Mono", ui-monospace, Consolas, monospace;
+  white-space: nowrap;
+}
+
+/* Inline code in lesson text */
+.lms-code {
+  font: 500 0.85em "JetBrains Mono", ui-monospace, Consolas, monospace;
+  background: rgba(231, 235, 243, 0.07);
+  border: 1px solid var(--line);
+  border-radius: 0.3rem;
+  padding: 0.05rem 0.35rem;
+  white-space: nowrap;
+}
+
+.lms-prose { font-size: 1.0625rem; line-height: 1.72; max-width: 68ch; }
+
+.lms-scroll { scrollbar-width: thin; scrollbar-color: #2A3553 transparent; }
+.lms-scroll::-webkit-scrollbar { width: 8px; height: 8px; }
+.lms-scroll::-webkit-scrollbar-thumb { background: #2A3553; border-radius: 8px; }
+
+.lms :focus-visible { outline: 2px solid var(--acc); outline-offset: 2px; border-radius: 0.4rem; }
+
+@keyframes lms-rise { from { opacity: 0.5; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.lms-rise { animation: lms-rise 0.35s ease-out both; }
+
+@media (prefers-reduced-motion: reduce) {
+  .lms *, .lms *::before, .lms *::after { animation: none !important; transition: none !important; }
+}
