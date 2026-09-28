@@ -169,7 +169,7 @@ export function TrainingEnrollPage() {
               </div>
 
               <div className="mt-6 text-center">
-                <Link to="/institute" className="text-xs font-semibold text-brand hover:underline">View detailed curriculum for all programs →</Link>
+                <Link to="/training" className="text-xs font-semibold text-brand hover:underline">View detailed curriculum for all programs →</Link>
               </div>
             </motion.div>
           )}
@@ -481,7 +481,7 @@ export function TrainingEnrollPage() {
                 <Link to="/login" className="flex items-center gap-2 rounded-xl bg-brand px-8 py-3.5 text-sm font-semibold text-white hover:bg-brand/90">
                   <Lock size={14} /> Go to Student Portal
                 </Link>
-                <Link to="/institute" className="flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3.5 text-sm font-semibold text-navy hover:bg-slate-50">
+                <Link to="/training" className="flex items-center gap-2 rounded-xl border-2 border-slate-200 px-6 py-3.5 text-sm font-semibold text-navy hover:bg-slate-50">
                   Browse More Courses
                 </Link>
               </div>

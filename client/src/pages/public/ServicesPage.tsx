@@ -111,7 +111,7 @@ export function ServicesPage() {
               <h3 className="text-3xl font-extrabold text-navy">{s.title}</h3>
               <p className="mt-4 text-base leading-relaxed text-slate-500">{s.description}</p>
               {isTrainingTab ? (
-                <Link to="/institute"
+                <Link to="/training"
                   className="mt-7 inline-flex items-center gap-2 rounded-xl bg-amber px-6 py-3 text-sm font-semibold text-white">
                   View Full Catalog <ArrowRight size={16} />
                 </Link>
@@ -132,7 +132,7 @@ export function ServicesPage() {
                       <h4 className="mb-3 text-xs font-bold uppercase tracking-wider" style={{ color: track.color }}>{track.track}</h4>
                       <div className="space-y-2">
                         {track.programs.map((p) => (
-                          <Link key={p.id} to={`/institute`}
+                          <Link key={p.id} to="/training"
                             className="flex items-center justify-between rounded-xl bg-slate-100 px-5 py-4 transition-all hover:bg-slate-200 hover:-translate-y-0.5 hover:shadow-sm group">
                             <div className="flex items-center gap-3">
                               <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg text-[10px] font-bold text-white" style={{ backgroundColor: track.color }}>

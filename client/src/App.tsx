@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { PublicLayout } from "@/layouts/PublicLayout";
@@ -57,8 +57,9 @@ export default function App() {
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/industries/:slug" element={<IndustryPage />} />
                 <Route path="/learn/:courseId" element={<CourseViewer />} />
-                <Route path="/training" element={<TrainingEnrollPage />} />
-                <Route path="/institute" element={<AcademyPage />} />
+                <Route path="/training" element={<AcademyPage />} />
+                <Route path="/training/enroll" element={<TrainingEnrollPage />} />
+                <Route path="/institute" element={<Navigate to="/training" replace />} />
                 <Route path="/verify" element={<VerifyCertificatePage />} />
                 <Route path="/verify/:certId" element={<VerifyCertificatePage />} />
               </Route>

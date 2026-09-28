@@ -76,7 +76,7 @@ export function CourseViewer() {
           <BookOpen size={48} className="mx-auto text-slate-300" />
           <h2 className="mt-4 text-xl font-bold text-navy">Course Not Found</h2>
           <p className="mt-2 text-sm text-slate-500">This course doesn't exist or you don't have access.</p>
-          <Link to="/institute" className="mt-4 inline-block rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white">Browse Courses</Link>
+          <Link to="/training" className="mt-4 inline-block rounded-xl bg-brand px-6 py-3 text-sm font-semibold text-white">Browse Courses</Link>
         </div>
       </div>
     );
@@ -135,7 +135,7 @@ export function CourseViewer() {
           {/* Header */}
           <div className="border-b border-slate-200 p-4">
             <div className="flex items-center justify-between">
-              <Link to="/institute" className="text-xs font-semibold text-brand hover:underline flex items-center gap-1">
+              <Link to="/training" className="text-xs font-semibold text-brand hover:underline flex items-center gap-1">
                 <ChevronLeft size={12} /> Back to Institute
               </Link>
               <button onClick={() => setSidebarOpen(false)} className="lg:hidden rounded-full p-1 hover:bg-slate-100">
