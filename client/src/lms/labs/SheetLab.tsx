@@ -43,7 +43,7 @@ export function SheetLab({ block, api }: { block: SheetBlock; api: ProgressApi }
   };
 
   return (
-    <LabFrame icon={Sheet} kind="Excel lab" title={block.title} task={block.task} done={done} hint={block.hint}
+    <LabFrame icon={Sheet} kind="Excel lab" level={block.level} title={block.title} task={block.task} done={done} hint={block.hint}
       onReset={() => { setRaw(initialRaw(block)); setEditing(null); }}
       onSolution={block.solution ? () => setRaw((r) => ({ ...r, ...block.solution })) : undefined}>
       {/* Formula bar */}

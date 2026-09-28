@@ -1,12 +1,31 @@
 import { useState, type ReactNode } from "react";
 import { CheckCircle2, Eye, Lightbulb, RotateCcw, type LucideIcon } from "lucide-react";
 import { rich } from "../blocks";
+import type { LabLevel } from "../types";
+
+const LEVELS: Record<LabLevel, { label: string; bars: number; cls: string }> = {
+  beginner: { label: "Beginner", bars: 1, cls: "bg-emerald-400/10 text-emerald-300" },
+  intermediate: { label: "Intermediate", bars: 2, cls: "bg-amber-400/10 text-amber-300" },
+  advanced: { label: "Advanced", bars: 3, cls: "bg-rose-400/10 text-rose-300" },
+};
+
+function LevelBadge({ level }: { level: LabLevel }) {
+  const l = LEVELS[level];
+  return (
+    <span title="Difficulty" className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-bold ${l.cls}`}>
+      <span aria-hidden className="flex items-end gap-[2px]">
+        {[1, 2, 3].map((i) => <span key={i} className={`w-[3px] rounded-full bg-current ${i <= l.bars ? "" : "opacity-25"}`} style={{ height: 3 + i * 3 }} />)}
+      </span>
+      {l.label}
+    </span>
+  );
+}
 
 // Shared frame for every hands-on lab: header, task, status, hint/solution/reset.
 export function LabFrame({
-  icon: Icon, kind, title, task, done, hint, onReset, onSolution, children, footer,
+  icon: Icon, kind, title, task, done, hint, onReset, onSolution, children, footer, level,
 }: {
-  icon: LucideIcon; kind: string; title: string; task?: string; done: boolean; hint?: string;
+  icon: LucideIcon; kind: string; title: string; task?: string; done: boolean; hint?: string; level?: LabLevel;
   onReset?: () => void; onSolution?: () => void; children: ReactNode; footer?: ReactNode;
 }) {
   const [showHint, setShowHint] = useState(false);
@@ -18,6 +37,7 @@ export function LabFrame({
           <p className="text-[0.68rem] font-bold uppercase tracking-[0.14em] text-[color:var(--acc)]">{kind}</p>
           <p className="font-bold leading-snug text-white">{title}</p>
         </div>
+        {level && <LevelBadge level={level} />}
         {done
           ? <span className="flex items-center gap-1.5 rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-bold text-emerald-300"><CheckCircle2 size={14} /> Completed · +15 XP</span>
           : <span className="rounded-full bg-white/[0.06] px-3 py-1 text-xs font-bold text-[color:var(--muted)]">Hands-on</span>}

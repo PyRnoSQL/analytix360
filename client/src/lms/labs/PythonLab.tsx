@@ -103,7 +103,7 @@ export function PythonLab({ block, api }: { block: Extract<Block, { type: "pytho
   const runAll = async () => { for (let i = 0; i < cells.length; i++) if (!(await runCell(i))) break; };
 
   return (
-    <LabFrame icon={FileCode2} kind="Python notebook" title={block.title} task={block.task} done={done} hint={block.hint}
+    <LabFrame icon={FileCode2} kind="Python notebook" level={block.level} title={block.title} task={block.task} done={done} hint={block.hint}
       onReset={() => { setCells(block.cells); setOuts(block.cells.map(() => null)); }}
       onSolution={block.solution ? () => setCells((c) => c.map((x, i) => (i === c.length - 1 ? block.solution ?? x : x))) : undefined}
       footer={

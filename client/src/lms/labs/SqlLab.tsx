@@ -68,7 +68,7 @@ export function SqlLab({ block, api }: { block: Extract<Block, { type: "sql" }>;
   };
 
   return (
-    <LabFrame icon={Database} kind="SQL lab" title={block.title} task={block.task} done={done} hint={block.hint}
+    <LabFrame icon={Database} kind="SQL lab" level={block.level} title={block.title} task={block.task} done={done} hint={block.hint}
       onReset={() => { setCode(block.starter); setResult(null); setVerdict(null); setState("idle"); }}
       onSolution={() => setCode(block.solution)}
       footer={

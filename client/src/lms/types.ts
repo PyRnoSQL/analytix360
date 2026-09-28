@@ -12,6 +12,9 @@ export type DocCheck =
 /** Block types that are hands-on labs; completing one earns XP. */
 export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys"] as const;
 
+/** Difficulty shown as a badge on practice exercises. */
+export type LabLevel = "beginner" | "intermediate" | "advanced";
+
 export type Block =
   | { type: "p"; text: string }
   | { type: "h"; text: string }
@@ -26,9 +29,9 @@ export type Block =
   | { type: "code"; text: string }
   | { type: "html"; html: string }
   // ── Hands-on labs (each one earns XP when completed) ──
-  | { type: "sql"; id: string; title: string; task: string; setup: string; starter: string; solution: string; hint?: string }
-  | { type: "sheet"; id: string; title: string; task: string; data: (string | number | null)[][]; editable: string[]; checks: { cell: string; equals: number | string; tol?: number }[]; hint?: string; solution?: Record<string, string> }
-  | { type: "python"; id: string; title: string; task: string; cells: string[]; packages?: string[]; files?: { name: string; content: string }[]; expect?: string; hint?: string; solution?: string }
+  | { type: "sql"; id: string; level?: LabLevel; title: string; task: string; setup: string; starter: string; solution: string; hint?: string }
+  | { type: "sheet"; id: string; level?: LabLevel; title: string; task: string; data: (string | number | null)[][]; editable: string[]; checks: { cell: string; equals: number | string; tol?: number }[]; hint?: string; solution?: Record<string, string> }
+  | { type: "python"; id: string; level?: LabLevel; title: string; task: string; cells: string[]; packages?: string[]; files?: { name: string; content: string }[]; expect?: string; hint?: string; solution?: string }
   | { type: "doc"; id: string; title: string; task: string; html: string; checks: DocCheck[]; hint?: string }
   | { type: "slide"; id: string; title: string; task: string; slide: { title: string; bullets: string[] }; rules: { maxBullets: number; maxWords: number; titleMaxWords: number }; hint?: string }
   | { type: "chart"; id: string; title: string; data: { label: string; value: number }[]; unit?: string; kinds: ChartKind[]; best?: ChartKind; question?: string; explain?: string }

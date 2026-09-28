@@ -112,6 +112,7 @@ const FR: Record<string, string> = {
   SOMME: "SUM", MOYENNE: "AVERAGE", NB: "COUNT", NBVAL: "COUNTA", SI: "IF", ARRONDI: "ROUND", ET: "AND", OU: "OR", NON: "NOT",
   MAJUSCULE: "UPPER", MINUSCULE: "LOWER", NBCAR: "LEN", SUPPRESPACE: "TRIM", CONCATENER: "CONCATENATE", "SOMME.SI": "SUMIF",
   "NB.SI": "COUNTIF", "MOYENNE.SI": "AVERAGEIF", RECHERCHEV: "VLOOKUP", MEDIANE: "MEDIAN", SIERREUR: "IFERROR", "ECARTYPE.STANDARD": "STDEV.S", ECARTYPE: "STDEV",
+  GAUCHE: "LEFT", DROITE: "RIGHT", STXT: "MID", CNUM: "VALUE", SUBSTITUE: "SUBSTITUTE",
 };
 
 const toNum = (v: Value): number | FormulaError => {
@@ -231,6 +232,32 @@ export function evaluateSheet(raw: Raw): Record<string, Value> {
             const x = nums(hit);
             if (name === "SUMIF") return x.reduce((a, b) => a + b, 0);
             return x.length ? x.reduce((a, b) => a + b, 0) / x.length : err(ERR.div0);
+          }
+          case "LEFT": case "RIGHT": {
+            const s = arg(0); if (isErr(s)) return s;
+            const k = n.args.length > 1 ? toNum(arg(1)) : 1; if (isErr(k)) return k;
+            if (k < 0) return err(ERR.value);
+            const t = toStr(s), c = Math.trunc(k);
+            return name === "LEFT" ? t.slice(0, c) : c === 0 ? "" : t.slice(-c);
+          }
+          case "MID": {
+            const s = arg(0); if (isErr(s)) return s;
+            const st = toNum(arg(1)), len = toNum(arg(2));
+            if (isErr(st)) return st; if (isErr(len)) return len;
+            if (st < 1 || len < 0) return err(ERR.value);
+            return toStr(s).substr(Math.trunc(st) - 1, Math.trunc(len));
+          }
+          case "VALUE": {
+            const v = arg(0);
+            if (typeof v === "number" || isErr(v)) return v;
+            if (toStr(v).trim() === "") return err(ERR.value);
+            return toNum(v);
+          }
+          case "SUBSTITUTE": {
+            const s = arg(0), a = arg(1), b = arg(2);
+            const e = [s, a, b].find(isErr); if (e) return e;
+            const from = toStr(a);
+            return from === "" ? toStr(s) : toStr(s).split(from).join(toStr(b));
           }
           case "VLOOKUP": {
             const table = n.args[1];
