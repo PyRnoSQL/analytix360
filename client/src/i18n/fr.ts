@@ -2595,4 +2595,7 @@ export const FR: Record<string, string> = {
   "Esc": "Échap",
   "Win + Shift + S": "Win + Maj + S",
   "Windows Security": "Sécurité Windows",
+  "Course not found": "Formation introuvable",
+  "Check the link, or choose a program from the training catalog.": "Vérifiez le lien ou choisissez un programme dans le catalogue des formations.",
+  "Browse programs": "Parcourir les programmes",
 };

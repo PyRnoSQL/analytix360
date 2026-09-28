@@ -15,6 +15,7 @@ export type Block =
   | { type: "task"; id: string; title: string; items: string[] }
   | { type: "table"; head: string[]; rows: string[][] }
   | { type: "code"; text: string }
+  | { type: "html"; html: string }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {

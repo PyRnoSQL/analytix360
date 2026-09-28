@@ -240,7 +240,7 @@ export function CoursePlayer({ course, backLink }: { course: LmsCourse; backLink
             </div>
             <ul className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[color:#C5CDDD]">
               <li className="flex items-center gap-2"><Layers size={16} className="text-[color:var(--acc)]" />{course.modules.length} modules</li>
-              <li className="flex items-center gap-2"><Clock size={16} className="text-[color:var(--acc)]" />{course.hours} contact hours</li>
+              {course.hours > 0 && <li className="flex items-center gap-2"><Clock size={16} className="text-[color:var(--acc)]" />{course.hours} contact hours</li>}
               <li className="flex items-center gap-2"><BookOpen size={16} className="text-[color:var(--acc)]" />{lessonCount} lessons available now</li>
               <li className="flex items-center gap-2"><Sparkles size={16} className="text-[color:var(--acc)]" />Quizzes and practice tasks</li>
             </ul>
@@ -258,10 +258,10 @@ export function CoursePlayer({ course, backLink }: { course: LmsCourse; backLink
                     <span className="lms-mono text-xs font-bold tracking-widest text-[color:var(--muted)]">MODULE {pad2(m.number)}</span>
                     {m.comingSoon
                       ? <span className="rounded-full bg-white/[0.06] px-2.5 py-0.5 text-xs text-[color:var(--muted)]">In production</span>
-                      : <span className="lms-mono text-xs tabular-nums text-[color:var(--muted)]">{m.hours} h · {m.lessons.length} lessons</span>}
+                      : <span className="lms-mono text-xs tabular-nums text-[color:var(--muted)]">{m.hours > 0 && <>{m.hours} h · </>}{m.lessons.length} lessons</span>}
                   </div>
                   <h3 className={`lms-display mt-2 text-xl font-semibold leading-snug ${m.comingSoon ? "text-[color:#AEB8CC]" : "text-white group-hover:text-[color:var(--acc)]"}`}>{m.title}</h3>
-                  <p className="mt-2 flex-1 text-[0.95rem] text-[color:var(--muted)]">{m.summary}</p>
+                  <p className="mt-2 flex-1 text-[0.95rem] text-[color:var(--muted)]">{m.summary || m.lessons.map((l) => l.title).join(" · ")}</p>
                   {!m.comingSoon && (
                     <div className="mt-4 flex items-center gap-3">
                       <span className="h-1.5 flex-1 overflow-hidden rounded-full bg-white/[0.07]"><span className="block h-full rounded-full bg-[color:var(--acc)] transition-all" style={{ width: `${mp.pct}%` }} /></span>

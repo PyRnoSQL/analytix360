@@ -76,3 +76,26 @@
 @media (prefers-reduced-motion: reduce) {
   .lms *, .lms *::before, .lms *::after { animation: none !important; transition: none !important; }
 }
+
+/* Lessons stored as HTML (courses written before the block format) */
+.lms-html { display: grid; gap: 1.1rem; color: #CDD4E3; }
+.lms-html > h2:first-child { display: none; } /* the player already shows the lesson title */
+.lms-html h2, .lms-html h3 { font-family: "Bricolage Grotesque Variable", "Bricolage Grotesque", system-ui, sans-serif; color: #fff; letter-spacing: -0.015em; line-height: 1.2; font-weight: 600; }
+.lms-html h2 { font-size: 1.9rem; }
+.lms-html h3 { font-size: 1.5rem; padding-top: 0.75rem; }
+.lms-html strong { color: #fff; font-weight: 700; }
+.lms-html em { color: #E7EBF3; }
+.lms-html a { color: var(--acc); text-decoration: underline; text-underline-offset: 3px; }
+.lms-html ul, .lms-html ol { display: grid; gap: 0.5rem; padding-left: 1.4rem; }
+.lms-html ul { list-style: disc; }
+.lms-html ol { list-style: decimal; }
+.lms-html li::marker { color: var(--acc); }
+.lms-html code { font: 500 0.85em "JetBrains Mono", ui-monospace, Consolas, monospace; background: rgba(231,235,243,.07); border: 1px solid var(--line); border-radius: .3rem; padding: .05rem .35rem; }
+.lms-html pre { overflow-x: auto; background: #0A0F1C; border: 1px solid var(--line); border-radius: 1rem; padding: 1.1rem 1.25rem; font-size: .875rem; line-height: 1.65; }
+.lms-html pre code { background: none; border: 0; padding: 0; white-space: pre; }
+.lms-html table { width: 100%; border-collapse: separate; border-spacing: 0; font-size: .95rem; border: 1px solid var(--line); border-radius: 1rem; overflow: hidden; }
+.lms-html th:first-child { border-top-left-radius: 1rem; }
+.lms-html th:last-child { border-top-right-radius: 1rem; }
+.lms-html th { background: var(--raised); color: var(--muted); text-align: left; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; padding: .75rem 1rem; }
+.lms-html td { border-top: 1px solid var(--line); padding: .75rem 1rem; vertical-align: top; }
+.lms-html td:first-child { color: #fff; font-weight: 600; }

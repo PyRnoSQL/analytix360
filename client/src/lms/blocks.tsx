@@ -199,6 +199,8 @@ export function BlockView({ block, api }: { block: Block; api: ProgressApi }) {
           </table>
         </div>
       );
+    case "html":
+      return <div className="lms-html" dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "code":
       return <pre className="lms-scroll lms-mono overflow-x-auto rounded-2xl border border-[color:var(--line)] bg-[#0A0F1C] p-5 text-sm leading-relaxed text-[#C9D3EA]">{block.text}</pre>;
     case "links":
