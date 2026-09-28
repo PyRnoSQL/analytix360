@@ -3165,4 +3165,6 @@ export const FR: Record<string, string> = {
   "Intermediate": "Intermédiaire",
   "Advanced": "Avancé",
   "Difficulty": "Difficulté",
+  "Practice lab: statistics for business decisions": "Atelier pratique : statistiques pour les décisions",
+  "Practice lab: exploring data and preparing predictions": "Atelier pratique : explorer les données et préparer des prédictions",
 };
