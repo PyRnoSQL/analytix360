@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navbar } from "@/components/navigation/Navbar";
+import { LanguageToggle } from "../i18n/LanguageToggle";
 
 const sidebarItems = [
   { path: "/admin", icon: BarChart3, label: "Analytics", exact: true },
@@ -60,6 +61,7 @@ export function AdminLayout() {
                 </Link>
               );
             })}
+            <LanguageToggle className="mt-3" />
           </nav>
 
           <div className="p-2">

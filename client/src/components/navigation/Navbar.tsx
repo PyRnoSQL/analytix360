@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { NAV_ITEMS } from "@/config/constants";
 import { useAuth } from "@/contexts/AuthContext";
+import { LanguageToggle } from "../../i18n/LanguageToggle";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -117,6 +118,7 @@ export function Navbar() {
               <Lock size={14} /> Client Portal
             </Link>
           )}
+          <LanguageToggle className="ml-2" />
         </nav>
 
         {/* Mobile Menu Button */}
@@ -156,6 +158,7 @@ export function Navbar() {
               >
                 <Lock size={14} /> {user ? "Portal" : "Client Portal"}
               </Link>
+              <LanguageToggle className="mt-2 self-start" />
             </nav>
           </motion.div>
         )}

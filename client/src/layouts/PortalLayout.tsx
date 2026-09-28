@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Navbar } from "@/components/navigation/Navbar";
+import { LanguageToggle } from "../i18n/LanguageToggle";
 
 const sidebarItems = [
   { path: "/portal", icon: LayoutDashboard, label: "Overview", exact: true },
@@ -60,6 +61,7 @@ export function PortalLayout() {
                 </Link>
               );
             })}
+            <LanguageToggle className="mt-3" />
           </nav>
 
           <div className="p-3">
