@@ -14,8 +14,17 @@ export type FormField =
   | { kind: "select"; label: string; options: string[]; answer: number; explain?: string }
   | { kind: "text"; label: string; accept?: string[]; pattern?: string; example?: string; placeholder?: string; mono?: boolean; explain?: string };
 
+/** XLSForm lab (KoboToolbox / ODK / SurveyCTO form builder). */
+export type XlsColumn = "type" | "name" | "label" | "required" | "relevant" | "constraint" | "constraint_message" | "calculation" | "hint";
+export type XlsRow = Partial<Record<XlsColumn, string>>;
+export interface XlsChoice { list_name: string; name: string; label: string }
+export type XlsCheck = { label: string } & (
+  | { kind: "field"; name: string; type?: string; required?: boolean; relevant?: string; constraint?: string; calculation?: string; labelHas?: string }
+  | { kind: "choices"; list: string; names: string[] }
+);
+
 /** Block types that are hands-on labs; completing one earns XP. */
-export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys", "form"] as const;
+export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys", "form", "xlsform"] as const;
 
 /** Difficulty shown as a badge on practice exercises. */
 export type LabLevel = "beginner" | "intermediate" | "advanced" | "expert";
@@ -44,6 +53,7 @@ export type Block =
   | { type: "figure"; id: string; title: string; art: "computer" | "word"; hotspots: { x: number; y: number; label: string; text: string }[] }
   | { type: "keys"; id: string; title: string; items: { keys: string[]; action: string }[] }
   | { type: "form"; id: string; level?: LabLevel; title: string; task: string; fields: FormField[]; hint?: string }
+  | { type: "xlsform"; id: string; level?: LabLevel; title: string; task: string; hint?: string; columns?: XlsColumn[]; survey: XlsRow[]; choices?: XlsChoice[]; checks: XlsCheck[]; solution: { survey: XlsRow[]; choices?: XlsChoice[] } }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {

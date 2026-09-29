@@ -764,10 +764,10 @@ const CATEGORIES: Category[] = [
             "SurveyCTO and CommCare: when to choose them",
             "GPS, photos, validation and exporting data",
           ]},
-          { id: "meal-m5", number: 5, title: "Data Analysis with Excel and SPSS", hours: 24, price: 0, topics: [
+          { id: "meal-m5", number: 5, title: "Data Analysis with Excel, SPSS and Stata", hours: 24, price: 0, topics: [
             "Cleaning data: missing values, duplicates and outliers",
             "Calculating indicators and disaggregating by sex, age and location",
-            "Descriptive statistics and cross-tabulations in Excel and SPSS",
+            "Descriptive statistics and cross-tabulations in Excel, SPSS and Stata",
             "Basic qualitative analysis: coding and themes",
           ]},
           { id: "meal-m6", number: 6, title: "Reporting, Accountability and Learning", hours: 20, price: 0, topics: [
