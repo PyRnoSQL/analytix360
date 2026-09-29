@@ -23,8 +23,19 @@ export type XlsCheck = { label: string } & (
   | { kind: "choices"; list: string; names: string[] }
 );
 
+/** Quality labs (SPC, sorting diagrams, 5 Whys, measuring instruments, Pareto, capability). */
+export type SpcChart = "xbar-r" | "imr" | "p" | "c";
+export type Unit = "mm" | "cm" | "m";
+export interface Dim { id: string; label: string; nominal: number; tolPlus?: number; tolMinus?: number }
+export type Drawing =
+  | { kind: "shaft"; title: string; segments: { d: string; l: string }[] }
+  | { kind: "disc"; title: string; outer: string; inner: string; thickness: string; pcd?: string; holes?: number; hole?: string }
+  | { kind: "block"; title: string; width: string; height: string; thickness?: string; holes?: { x: number; y: number; d: string }[] };
+export interface Reading { dim?: string; label?: string; value: number; answerUnit?: Unit; conformity?: boolean }
+export interface ChoiceQ { question: string; options: string[]; answer: number; explain?: string }
+
 /** Block types that are hands-on labs; completing one earns XP. */
-export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys", "form", "xlsform"] as const;
+export const LAB_TYPES = ["sql", "sheet", "python", "doc", "slide", "chart", "explorer", "figure", "keys", "form", "xlsform", "spc", "sorter", "whys", "caliper", "pareto", "capability"] as const;
 
 /** Difficulty shown as a badge on practice exercises. */
 export type LabLevel = "beginner" | "intermediate" | "advanced" | "expert";
@@ -54,6 +65,12 @@ export type Block =
   | { type: "keys"; id: string; title: string; items: { keys: string[]; action: string }[] }
   | { type: "form"; id: string; level?: LabLevel; title: string; task: string; fields: FormField[]; hint?: string }
   | { type: "xlsform"; id: string; level?: LabLevel; title: string; task: string; hint?: string; columns?: XlsColumn[]; survey: XlsRow[]; choices?: XlsChoice[]; checks: XlsCheck[]; solution: { survey: XlsRow[]; choices?: XlsChoice[] } }
+  | { type: "spc"; id: string; level?: LabLevel; title: string; task: string; hint?: string; chart: SpcChart; unit?: string; decimals?: number; samples?: number[][]; values?: number[]; defectives?: number[]; sampleSize?: number; askLimits?: boolean; askBeyond?: boolean; question?: ChoiceQ }
+  | { type: "sorter"; id: string; level?: LabLevel; title: string; task: string; hint?: string; layout: "fishbone" | "columns" | "steps"; effect?: string; buckets: { label: string; desc?: string }[]; items: { text: string; bucket: number; explain?: string }[] }
+  | { type: "whys"; id: string; level?: LabLevel; title: string; task: string; hint?: string; problem: string; steps: ChoiceQ[]; countermeasure?: ChoiceQ }
+  | { type: "caliper"; id: string; level?: LabLevel; title: string; task: string; hint?: string; instrument: "vernier" | "micrometer" | "digital"; drawing?: Drawing; drawingUnit?: Unit; dims?: Dim[]; readings: Reading[] }
+  | { type: "pareto"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; threshold?: number; categories: { label: string; count: number }[] }
+  | { type: "capability"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; lsl: number; usl: number; mean: number; sigma: number; adjust: ("mean" | "sigma")[]; goal: number; meanRange?: [number, number]; sigmaRange?: [number, number] }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {

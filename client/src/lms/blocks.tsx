@@ -15,6 +15,12 @@ import { FigureBlock } from "./labs/Figure";
 import { KeysTrainer } from "./labs/KeysTrainer";
 import { FormLab } from "./labs/FormLab";
 import { XlsFormLab } from "./labs/XlsFormLab";
+import { SpcLab } from "./labs/SpcLab";
+import { SorterLab } from "./labs/SorterLab";
+import { WhysLab } from "./labs/WhysLab";
+import { CaliperLab } from "./labs/CaliperLab";
+import { ParetoLab } from "./labs/ParetoLab";
+import { CapabilityLab } from "./labs/CapabilityLab";
 
 // **bold** and `code` inside lesson text
 export function rich(text: string): ReactNode {
@@ -220,6 +226,12 @@ export function BlockView({ block, api }: { block: Block; api: ProgressApi }) {
     case "keys": return <KeysTrainer block={block} api={api} />;
     case "form": return <FormLab block={block} api={api} />;
     case "xlsform": return <XlsFormLab block={block} api={api} />;
+    case "spc": return <SpcLab block={block} api={api} />;
+    case "sorter": return <SorterLab block={block} api={api} />;
+    case "whys": return <WhysLab block={block} api={api} />;
+    case "caliper": return <CaliperLab block={block} api={api} />;
+    case "pareto": return <ParetoLab block={block} api={api} />;
+    case "capability": return <CapabilityLab block={block} api={api} />;
     case "html":
       return <div className="lms-html" dangerouslySetInnerHTML={{ __html: block.html }} />;
     case "code":
