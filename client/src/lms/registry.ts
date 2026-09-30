@@ -6,6 +6,7 @@ import { DAS_PRACTICE, type PracticeSet } from "../data/courses/das-practice";
 import { MOSP_PRACTICE } from "../data/courses/mosp-practice";
 import { MEAL_COURSE } from "../data/courses/meal";
 import { QT_COURSE } from "../data/courses/qt";
+import { LSSGB_COURSE } from "../data/courses/lssgb";
 
 // Adds a practice lesson at the end of each open module that has one.
 const withPractice = (c: LmsCourse, extra: Record<string, Lesson>): LmsCourse => ({
@@ -57,7 +58,6 @@ export function fromLegacy(
     }
     return { id: m.id, number: m.number, title: m.title, summary: "", hours: 0, lessons, quiz };
   });
-  // Each practice set goes to the module that holds most of its anchor lessons.
   for (const set of practice) {
     let best = -1, hits = 0;
     src.modules.forEach((m, i) => {
@@ -75,6 +75,7 @@ export const COURSES: Record<string, LmsCourse> = {
   meal: MEAL_COURSE,
   "meal-cert": MEAL_COURSE,
   qt: QT_COURSE,
+  lssgb: LSSGB_COURSE,
   das: fromLegacy(DAS_COURSE as unknown as LegacyCourse, {
     subtitle: "Statistics, predictive models and dashboards for business decisions",
     accent: "#6EA8FE",
