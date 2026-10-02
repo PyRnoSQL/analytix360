@@ -12,6 +12,7 @@ import { DocLab } from "./labs/DocLab";
 import { SlideLab } from "./labs/SlideLab";
 import { ChartBlock, ExplorerBlock } from "./labs/Charts";
 import { FigureBlock } from "./labs/Figure";
+import { EquipBlock } from "./labs/EquipBlock";
 import { KeysTrainer } from "./labs/KeysTrainer";
 import { FormLab } from "./labs/FormLab";
 import { XlsFormLab } from "./labs/XlsFormLab";
@@ -223,6 +224,7 @@ export function BlockView({ block, api }: { block: Block; api: ProgressApi }) {
     case "chart": return <ChartBlock block={block} api={api} />;
     case "explorer": return <ExplorerBlock block={block} api={api} />;
     case "figure": return <FigureBlock block={block} api={api} />;
+    case "equip": return <EquipBlock block={block} />;
     case "keys": return <KeysTrainer block={block} api={api} />;
     case "form": return <FormLab block={block} api={api} />;
     case "xlsform": return <XlsFormLab block={block} api={api} />;

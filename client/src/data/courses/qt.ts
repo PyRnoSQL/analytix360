@@ -13,7 +13,7 @@ export const QT_COURSE: LmsCourse = {
   title: "Quality Technician",
   subtitle: "Quality control in the plant and the lab: drawings, measurement, inspection, SPC and problem solving",
   accent: "#A78BFA",
-  hours: 60,
+  hours: 75,
   certification: "Analytix Engineering professional certificate with QR verification",
   introVideo: {
     en: { src: "/media/qt-intro-en.mp4", poster: "/media/qt-intro-en.jpg" },

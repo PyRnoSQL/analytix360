@@ -24,6 +24,8 @@ export type XlsCheck = { label: string } & (
 );
 
 /** Quality labs (SPC, sorting diagrams, 5 Whys, measuring instruments, Pareto, capability). */
+/** One illustrated piece of equipment; `art` is a key of the equipment catalogue (lms/labs/equip/catalog.ts). */
+export interface EquipItem { art: string; name?: string; caption?: string; specs?: { label: string; value: string }[] }
 export type SpcChart = "xbar-r" | "imr" | "p" | "c";
 export type Unit = "mm" | "cm" | "m";
 export interface Dim { id: string; label: string; nominal: number; tolPlus?: number; tolMinus?: number }
@@ -71,6 +73,7 @@ export type Block =
   | { type: "caliper"; id: string; level?: LabLevel; title: string; task: string; hint?: string; instrument: "vernier" | "micrometer" | "digital"; drawing?: Drawing; drawingUnit?: Unit; dims?: Dim[]; readings: Reading[] }
   | { type: "pareto"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; threshold?: number; categories: { label: string; count: number }[] }
   | { type: "capability"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; lsl: number; usl: number; mean: number; sigma: number; adjust: ("mean" | "sigma")[]; goal: number; meanRange?: [number, number]; sigmaRange?: [number, number] }
+  | { type: "equip"; title?: string; items: EquipItem[] }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {
