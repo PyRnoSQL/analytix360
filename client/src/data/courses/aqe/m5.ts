@@ -125,6 +125,7 @@ export const m5: CourseModule = {
           title: "DOE Software and Tools",
           items: [
             {
+              art: "🧪",
               name: "DOE Analysis Toolkit",
               caption: "Software for designing experiments, generating run orders, calculating effects and producing interaction plots. Essential for factorial and fractional factorial analysis.",
             },
@@ -357,6 +358,7 @@ export const m5: CourseModule = {
           title: "Analysis Tools for Factorial Designs",
           items: [
             {
+              art: "📊",
               name: "DOE Analysis Toolkit",
               caption: "Used here for generating contrast matrices, computing effects, and producing normal probability plots and interaction plots.",
             },
@@ -771,6 +773,7 @@ export const m5: CourseModule = {
           title: "Regression and RSM Tools",
           items: [
             {
+              art: "📈",
               name: "Regression Analysis Module",
               caption: "Fits linear and polynomial regression models, computes R², residual analysis, and generates contour and surface plots for RSM.",
             },
@@ -1011,10 +1014,12 @@ export const m5: CourseModule = {
           title: "Statistical Tools for DOE Analysis",
           items: [
             {
+              art: "🧪",
               name: "DOE Analysis Toolkit",
               caption: "Computes ANOVA tables, generates effect estimates, and performs confirmation-run analysis for factorial experiments.",
             },
             {
+              art: "🔔",
               name: "Normality Testing Module",
               caption: "Performs Anderson-Darling, Shapiro-Wilk and normal probability plot analysis on residuals from DOE models to verify assumptions.",
             },

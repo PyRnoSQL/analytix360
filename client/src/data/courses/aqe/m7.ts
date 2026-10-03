@@ -191,7 +191,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label:
                 "A repairable compressor at a Kribi fish processing plant averages 2 400 operating hours between breakdowns",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
@@ -199,7 +198,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label:
                 "A single-use pressure relief valve lasts an average of 8 760 hours before it must be replaced",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
@@ -207,7 +205,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label:
                 "The maintenance crew takes an average of 4.5 hours to restore a failed motor",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
@@ -215,7 +212,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f4",
               label:
                 "A batch of circuit boards experiences 0.0005 failures per hour",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
@@ -402,7 +398,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label:
                 "The Weibull plot slope (β) is 3.4. What failure mode does this represent?",
               options: [
@@ -415,7 +410,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label:
                 "The characteristic life η = 12 000 hours. What percentage of bearings are expected to fail by 12 000 hours?",
               options: ["36.8 %", "50.0 %", "63.2 %", "90.0 %"],
@@ -423,7 +417,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label:
                 "Given β = 3.4 (wear-out), which maintenance strategy is most appropriate?",
               options: [
@@ -436,7 +429,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f4",
               label:
                 "If the mill requires 95 % reliability (B5 life), approximately how does B5 compare to η?",
               options: [
@@ -594,7 +586,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label:
                 "This is a new part from a new supplier. Which submission level should be used as the default?",
               options: ["Level 1", "Level 2", "Level 3", "Level 5"],
@@ -602,7 +593,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label:
                 "The part is visible to the vehicle occupant. Which additional PPAP element is specifically required?",
               options: [
@@ -615,7 +605,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label:
                 "The supplier's dimensional inspection uses a custom fixture. Which PPAP element documents this?",
               options: [
@@ -628,7 +617,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f4",
               label:
                 "The customer approved the PPAP but required the supplier to improve Cpk from 1.2 to 1.33 within 90 days. What disposition is this?",
               options: [
@@ -879,7 +867,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label:
                 "Supplier A has delivered 12 consecutive lots with zero defects under normal inspection. What incoming inspection change is appropriate?",
               options: [
@@ -892,7 +879,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label:
                 "Supplier B scored 4.2 / 10 on the quality dimension for three consecutive quarters. What is the priority action?",
               options: [
@@ -905,7 +891,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label:
                 "During a surveillance audit, you discover the supplier changed their heat treatment oven without notifying you. What is required?",
               options: [
@@ -1260,7 +1245,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label: "MTBF",
               options: [
                 "Average time to first failure for non-repairable items",
@@ -1272,7 +1256,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label: "Bathtub curve — useful life region",
               options: [
                 "Decreasing failure rate due to manufacturing defects",
@@ -1284,7 +1267,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label: "Characteristic life (η) in Weibull analysis",
               options: [
                 "The time at which 10 % of units have failed",
@@ -1296,7 +1278,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f4",
               label: "Part Submission Warrant (PSW)",
               options: [
                 "A statistical process capability report",
@@ -1308,7 +1289,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f5",
               label: "Containment action",
               options: [
                 "An action that eliminates the root cause of a nonconformance",
@@ -1360,7 +1340,6 @@ export const m7: CourseModule = {
           fields: [
             {
               kind: "select",
-              id: "f1",
               label:
                 "This is a brand new part design. The customer has requested comprehensive documentation. Which PPAP level is appropriate?",
               options: ["Level 1", "Level 2", "Level 3", "Level 5"],
@@ -1368,7 +1347,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f2",
               label:
                 "The heat sink's thermal conductivity must meet a minimum of 180 W/m·K. Which PPAP element specifically documents this?",
               options: [
@@ -1381,7 +1359,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f3",
               label:
                 "The initial process study shows Cpk = 1.15 for the critical mounting hole position. What is the expected customer response?",
               options: [
@@ -1394,7 +1371,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f4",
               label:
                 "The supplier uses an outside laboratory for salt spray corrosion testing. Which PPAP element must confirm the laboratory's qualifications?",
               options: [
@@ -1407,7 +1383,6 @@ export const m7: CourseModule = {
             },
             {
               kind: "select",
-              id: "f5",
               label:
                 "After PPAP approval, the supplier changes the CNC machine used for machining the heat sink fins. What is required?",
               options: [
