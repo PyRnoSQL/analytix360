@@ -36,7 +36,7 @@ const EXTRUSION: number[][] = [
 
 // Lesson 1 — I-MR chart: tensile strength of rebar (MPa), one test per batch, 20 batches.
 // Batch 16 is abnormally high (wrong alloy charge).
-const REBAR: number[] = [
+const _REBAR: number[] = [
   485, 492, 488, 491, 487, 493, 490, 486, 494, 489,
   491, 487, 493, 488, 490, 518, 486, 492, 489, 491,
 ];

@@ -155,9 +155,9 @@ export const m7: CourseModule = {
           title: "Reliability testing equipment",
           items: [
             {
-              key: "inspection-booth",
-              label: "Inspection booth",
-              note: "Controlled environment for reliability inspections during burn-in testing and post-failure examination of returned components.",
+              art: "inspection-booth",
+              name: "Inspection booth",
+              caption: "Controlled environment for reliability inspections during burn-in testing and post-failure examination of returned components.",
             },
           ],
         },
@@ -195,7 +195,7 @@ export const m7: CourseModule = {
               label:
                 "A repairable compressor at a Kribi fish processing plant averages 2 400 operating hours between breakdowns",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
-              answer: "MTBF",
+              answer: 0,
             },
             {
               type: "select",
@@ -203,7 +203,7 @@ export const m7: CourseModule = {
               label:
                 "A single-use pressure relief valve lasts an average of 8 760 hours before it must be replaced",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
-              answer: "MTTF",
+              answer: 1,
             },
             {
               type: "select",
@@ -211,7 +211,7 @@ export const m7: CourseModule = {
               label:
                 "The maintenance crew takes an average of 4.5 hours to restore a failed motor",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
-              answer: "MTTR",
+              answer: 2,
             },
             {
               type: "select",
@@ -219,7 +219,7 @@ export const m7: CourseModule = {
               label:
                 "A batch of circuit boards experiences 0.0005 failures per hour",
               options: ["MTBF", "MTTF", "MTTR", "Failure rate"],
-              answer: "Failure rate",
+              answer: 3,
             },
           ],
           hint: "MTBF applies to repairable items; MTTF to non-repairable. MTTR measures repair duration, not operating time.",
@@ -307,9 +307,9 @@ export const m7: CourseModule = {
           title: "Probability plotting tools",
           items: [
             {
-              key: "stat-normality",
-              label: "Statistical normality and probability plotting",
-              note: "Weibull probability plots follow the same ranking and plotting logic as normal probability plots: rank failure times, compute median ranks, and plot on special axes where the Weibull CDF appears as a straight line.",
+              art: "stat-normality",
+              name: "Statistical normality and probability plotting",
+              caption: "Weibull probability plots follow the same ranking and plotting logic as normal probability plots: rank failure times, compute median ranks, and plot on special axes where the Weibull CDF appears as a straight line.",
             },
           ],
         },
@@ -411,7 +411,7 @@ export const m7: CourseModule = {
                 "Wear-out failure",
                 "No failure pattern",
               ],
-              answer: "Wear-out failure",
+              answer: 2,
             },
             {
               type: "select",
@@ -419,7 +419,7 @@ export const m7: CourseModule = {
               label:
                 "The characteristic life η = 12 000 hours. What percentage of bearings are expected to fail by 12 000 hours?",
               options: ["36.8 %", "50.0 %", "63.2 %", "90.0 %"],
-              answer: "63.2 %",
+              answer: 2,
             },
             {
               type: "select",
@@ -432,7 +432,7 @@ export const m7: CourseModule = {
                 "Burn-in testing to screen weak units",
                 "Increase incoming inspection stringency",
               ],
-              answer: "Scheduled replacement before the characteristic life",
+              answer: 1,
             },
             {
               type: "select",
@@ -445,8 +445,7 @@ export const m7: CourseModule = {
                 "B5 is longer than η",
                 "B5 cannot be determined from Weibull parameters",
               ],
-              answer:
-                "B5 is much shorter than η (perhaps 30–40 % of η)",
+              answer: 1,
             },
           ],
           hint: "At η, F(t) = 1 − e^(−1) ≈ 0.632 regardless of β. B5 life is always shorter than η because only 5 % have failed.",
@@ -547,14 +546,14 @@ export const m7: CourseModule = {
           title: "PPAP documentation tools",
           items: [
             {
-              key: "ppap-package",
-              label: "PPAP submission package",
-              note: "Standardised folder structure and document templates for assembling all 18 PPAP elements, including Part Submission Warrant (PSW), dimensional layout, and capability study templates.",
+              art: "ppap-package",
+              name: "PPAP submission package",
+              caption: "Standardised folder structure and document templates for assembling all 18 PPAP elements, including Part Submission Warrant (PSW), dimensional layout, and capability study templates.",
             },
             {
-              key: "calibration-label",
-              label: "Calibration label",
-              note: "Applied to all gages and measurement equipment referenced in PPAP element 8 (MSA) and element 16 (Checking aids) to confirm calibration currency.",
+              art: "calibration-label",
+              name: "Calibration label",
+              caption: "Applied to all gages and measurement equipment referenced in PPAP element 8 (MSA) and element 16 (Checking aids) to confirm calibration currency.",
             },
           ],
         },
@@ -599,7 +598,7 @@ export const m7: CourseModule = {
               label:
                 "This is a new part from a new supplier. Which submission level should be used as the default?",
               options: ["Level 1", "Level 2", "Level 3", "Level 5"],
-              answer: "Level 3",
+              answer: 2,
             },
             {
               type: "select",
@@ -612,7 +611,7 @@ export const m7: CourseModule = {
                 "Element 17: Customer-specific requirements",
                 "Element 12: Qualified laboratory documentation",
               ],
-              answer: "Element 13: Appearance approval report (AAR)",
+              answer: 1,
             },
             {
               type: "select",
@@ -625,7 +624,7 @@ export const m7: CourseModule = {
                 "Element 16: Checking aids",
                 "Element 14: Sample production parts",
               ],
-              answer: "Element 16: Checking aids",
+              answer: 2,
             },
             {
               type: "select",
@@ -638,7 +637,7 @@ export const m7: CourseModule = {
                 "Rejected",
                 "Conditional rejection",
               ],
-              answer: "Interim approval",
+              answer: 1,
             },
           ],
           hint: "Level 3 is the default for new parts. Visible parts require AAR. Interim approval permits shipment with conditions that must be met by a deadline.",
@@ -817,19 +816,19 @@ export const m7: CourseModule = {
           title: "Incoming inspection tools",
           items: [
             {
-              key: "inspection-booth",
-              label: "Inspection booth",
-              note: "Dedicated station for incoming material inspection with controlled lighting, reference samples, and documented sampling plans for each supplier-part combination.",
+              art: "inspection-booth",
+              name: "Inspection booth",
+              caption: "Dedicated station for incoming material inspection with controlled lighting, reference samples, and documented sampling plans for each supplier-part combination.",
             },
             {
-              key: "nc-tags",
-              label: "Non-conformance tags",
-              note: "Red tags applied to rejected incoming lots. Tags reference the lot number, supplier, defect description, and disposition (return, sort, use-as-is with concession).",
+              art: "nc-tags",
+              name: "Non-conformance tags",
+              caption: "Red tags applied to rejected incoming lots. Tags reference the lot number, supplier, defect description, and disposition (return, sort, use-as-is with concession).",
             },
             {
-              key: "quarantine-area",
-              label: "Quarantine area",
-              note: "Physically segregated storage for incoming lots awaiting inspection results or held pending supplier corrective action. Prevents accidental use of unapproved material.",
+              art: "quarantine-area",
+              name: "Quarantine area",
+              caption: "Physically segregated storage for incoming lots awaiting inspection results or held pending supplier corrective action. Prevents accidental use of unapproved material.",
             },
           ],
         },
@@ -889,7 +888,7 @@ export const m7: CourseModule = {
                 "Switch to reduced inspection",
                 "Switch to skip-lot inspection",
               ],
-              answer: "Switch to skip-lot inspection",
+              answer: 3,
             },
             {
               type: "select",
@@ -902,8 +901,7 @@ export const m7: CourseModule = {
                 "Switch to a different scoring methodology",
                 "Accept the risk and continue ordering",
               ],
-              answer:
-                "Initiate a supplier development programme with specific quality targets",
+              answer: 1,
             },
             {
               type: "select",
@@ -916,8 +914,7 @@ export const m7: CourseModule = {
                 "Increase the order quantity to test the new oven",
                 "Reduce the scorecard delivery score",
               ],
-              answer:
-                "Request updated PPAP submission because of the process change",
+              answer: 1,
             },
           ],
           hint: "10+ consecutive accepted lots under normal can move to skip-lot. Process equipment changes trigger PPAP resubmission.",
@@ -1037,19 +1034,19 @@ export const m7: CourseModule = {
           title: "CAPA documentation tools",
           items: [
             {
-              key: "a3-report",
-              label: "A3 report",
-              note: "Single-page structured problem-solving report (Toyota format) used to document the CAPA process from problem identification through root cause analysis to verification. Fits on A3 paper for visual management boards.",
+              art: "a3-report",
+              name: "A3 report",
+              caption: "Single-page structured problem-solving report (Toyota format) used to document the CAPA process from problem identification through root cause analysis to verification. Fits on A3 paper for visual management boards.",
             },
             {
-              key: "pfmea-worksheet",
-              label: "PFMEA worksheet",
-              note: "Process FMEA template updated as part of D7 (prevent recurrence). New failure modes discovered during CAPA are added with revised severity, occurrence, and detection ratings.",
+              art: "pfmea-worksheet",
+              name: "PFMEA worksheet",
+              caption: "Process FMEA template updated as part of D7 (prevent recurrence). New failure modes discovered during CAPA are added with revised severity, occurrence, and detection ratings.",
             },
             {
-              key: "control-plan-form",
-              label: "Control plan form",
-              note: "Updated alongside PFMEA when CAPA introduces new process controls, inspection methods, or reaction plans.",
+              art: "control-plan-form",
+              name: "Control plan form",
+              caption: "Updated alongside PFMEA when CAPA introduces new process controls, inspection methods, or reaction plans.",
             },
           ],
         },
@@ -1272,8 +1269,7 @@ export const m7: CourseModule = {
                 "Average time required to restore a failed system",
                 "The probability of surviving to a specified time",
               ],
-              answer:
-                "Average operating time between successive failures for repairable systems",
+              answer: 1,
             },
             {
               type: "select",
@@ -1285,8 +1281,7 @@ export const m7: CourseModule = {
                 "Approximately constant failure rate — random failures",
                 "Zero failure rate under ideal conditions",
               ],
-              answer:
-                "Approximately constant failure rate — random failures",
+              answer: 2,
             },
             {
               type: "select",
@@ -1298,8 +1293,7 @@ export const m7: CourseModule = {
                 "The time at which 63.2 % of units have failed",
                 "The time at which 90 % of units have failed",
               ],
-              answer:
-                "The time at which 63.2 % of units have failed",
+              answer: 2,
             },
             {
               type: "select",
@@ -1311,8 +1305,7 @@ export const m7: CourseModule = {
                 "A supplier scorecard used for annual evaluation",
                 "A corrective action report issued after a customer complaint",
               ],
-              answer:
-                "A formal cover document summarising PPAP submission and declaring conformance",
+              answer: 1,
             },
             {
               type: "select",
@@ -1324,8 +1317,7 @@ export const m7: CourseModule = {
                 "An immediate action to stop defective product from reaching the customer",
                 "A long-term system improvement added to the FMEA",
               ],
-              answer:
-                "An immediate action to stop defective product from reaching the customer",
+              answer: 2,
             },
           ],
           hint: "MTBF is for repairable systems; MTTF is for non-repairable. Containment protects the customer immediately but does not address root cause.",
@@ -1373,7 +1365,7 @@ export const m7: CourseModule = {
               label:
                 "This is a brand new part design. The customer has requested comprehensive documentation. Which PPAP level is appropriate?",
               options: ["Level 1", "Level 2", "Level 3", "Level 5"],
-              answer: "Level 3",
+              answer: 2,
             },
             {
               type: "select",
@@ -1386,7 +1378,7 @@ export const m7: CourseModule = {
                 "Element 11: Initial process studies",
                 "Element 14: Sample production parts",
               ],
-              answer: "Element 10: Material / performance test results",
+              answer: 1,
             },
             {
               type: "select",
@@ -1399,8 +1391,7 @@ export const m7: CourseModule = {
                 "Rejected — Cpk must be at least 2.0 for automotive",
                 "Not applicable — Cpk is not part of PPAP",
               ],
-              answer:
-                "Interim approval — Cpk is below the typical 1.33 minimum with a required improvement plan",
+              answer: 1,
             },
             {
               type: "select",
@@ -1413,7 +1404,7 @@ export const m7: CourseModule = {
                 "Element 12: Qualified laboratory documentation",
                 "Element 17: Customer-specific requirements",
               ],
-              answer: "Element 12: Qualified laboratory documentation",
+              answer: 2,
             },
             {
               type: "select",
@@ -1426,8 +1417,7 @@ export const m7: CourseModule = {
                 "Submit a new PPAP because production equipment has changed",
                 "Only update the control plan internally",
               ],
-              answer:
-                "Submit a new PPAP because production equipment has changed",
+              answer: 2,
             },
           ],
           hint: "Performance specifications (thermal conductivity) are element 10. Cpk below 1.33 typically receives interim approval. Equipment changes trigger PPAP resubmission.",
@@ -1524,7 +1514,7 @@ export const m7: CourseModule = {
     questions: [
       {
         id: "aqe-m7-q1",
-        text: "A system has three components in series with reliabilities of 0.96, 0.93, and 0.98. What is the system reliability?",
+        question: "A system has three components in series with reliabilities of 0.96, 0.93, and 0.98. What is the system reliability?",
         options: [
           "0.874",
           "0.957",
@@ -1537,7 +1527,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q2",
-        text: "In the bathtub curve, which region is characterised by a decreasing failure rate?",
+        question: "In the bathtub curve, which region is characterised by a decreasing failure rate?",
         options: [
           "Useful life period",
           "Wear-out period",
@@ -1550,7 +1540,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q3",
-        text: "A Weibull analysis yields β = 2.8 and η = 5 000 hours. What is the approximate B10 life?",
+        question: "A Weibull analysis yields β = 2.8 and η = 5 000 hours. What is the approximate B10 life?",
         options: [
           "500 hours",
           "1 850 hours",
@@ -1563,7 +1553,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q4",
-        text: "Which PPAP element documents the statistical capability of the manufacturing process?",
+        question: "Which PPAP element documents the statistical capability of the manufacturing process?",
         options: [
           "Element 7: Control plan",
           "Element 9: Dimensional results",
@@ -1576,7 +1566,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q5",
-        text: "A supplier has delivered 12 consecutive lots accepted under normal inspection. According to standard switching rules, the buyer may now move to:",
+        question: "A supplier has delivered 12 consecutive lots accepted under normal inspection. According to standard switching rules, the buyer may now move to:",
         options: [
           "Tightened inspection",
           "Reduced inspection only",
@@ -1589,7 +1579,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q6",
-        text: "In the 8D methodology, which discipline specifically addresses preventing recurrence by updating system documents like FMEAs and control plans?",
+        question: "In the 8D methodology, which discipline specifically addresses preventing recurrence by updating system documents like FMEAs and control plans?",
         options: [
           "D3: Interim containment actions",
           "D5: Permanent corrective actions",
@@ -1602,7 +1592,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q7",
-        text: "What is the default PPAP submission level for a new part from a new supplier?",
+        question: "What is the default PPAP submission level for a new part from a new supplier?",
         options: [
           "Level 1",
           "Level 2",
@@ -1615,7 +1605,7 @@ export const m7: CourseModule = {
       },
       {
         id: "aqe-m7-q8",
-        text: "A quality engineer sorts 100 % of a quarantined lot to separate conforming from non-conforming parts. This action is best classified as:",
+        question: "A quality engineer sorts 100 % of a quarantined lot to separate conforming from non-conforming parts. This action is best classified as:",
         options: [
           "Preventive action",
           "Corrective action",

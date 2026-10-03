@@ -14,7 +14,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-l1",
-      number: 1,
       title: "Probability fundamentals and counting rules",
       minutes: 30,
       objectives: [
@@ -226,7 +225,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-l2",
-      number: 2,
       title: "Discrete probability distributions",
       minutes: 30,
       objectives: [
@@ -378,13 +376,6 @@ export const m2: CourseModule = {
             {
               art: "stat-normality",
               caption: "Statistical software output showing distribution fit comparison — learn to read the distribution type selector, parameter estimates, goodness-of-fit statistics, and probability plot overlay.",
-              callouts: [
-                "Distribution type selector — choose Normal, Binomial, Poisson, Weibull or others",
-                "Parameter estimates — mean, std dev for Normal; n, p for Binomial; lambda for Poisson",
-                "Goodness-of-fit p-value — above 0.05 suggests the distribution fits the data",
-                "Probability plot — points following the reference line indicate a good fit",
-                "Anderson-Darling statistic — smaller values indicate better fit",
-              ],
             },
           ],
         },
@@ -471,7 +462,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-l3",
-      number: 3,
       title: "Continuous distributions and the normal curve",
       minutes: 35,
       objectives: [
@@ -704,7 +694,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-l4",
-      number: 4,
       title: "Descriptive statistics and graphical methods",
       minutes: 25,
       objectives: [
@@ -926,7 +915,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-l5",
-      number: 5,
       title: "Hypothesis testing and confidence intervals",
       minutes: 35,
       objectives: [
@@ -1198,7 +1186,6 @@ export const m2: CourseModule = {
        ====================================================================== */
     {
       id: "aqe-m2-practice",
-      number: 6,
       title: "Practice — Probability, statistics, and data analysis",
       minutes: 30,
       objectives: [
@@ -1424,7 +1411,7 @@ export const m2: CourseModule = {
     questions: [
       {
         id: "aqe-m2-q1",
-        text: "A lot of 1 000 items has a 2 % defect rate. If 5 items are independently sampled, what is the probability that none is defective?",
+        question: "A lot of 1 000 items has a 2 % defect rate. If 5 items are independently sampled, what is the probability that none is defective?",
         options: [
           "0.98^5 = 0.9039",
           "0.02^5 = 0.0000003",
@@ -1437,7 +1424,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q2",
-        text: "Which distribution is most appropriate for modelling the number of paint defects per car body, given an average of 1.4 defects per body?",
+        question: "Which distribution is most appropriate for modelling the number of paint defects per car body, given an average of 1.4 defects per body?",
         options: [
           "Binomial",
           "Poisson",
@@ -1450,7 +1437,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q3",
-        text: "The z-score for a measurement of 45.6 from a process with mean 44.0 and standard deviation 0.8 is:",
+        question: "The z-score for a measurement of 45.6 from a process with mean 44.0 and standard deviation 0.8 is:",
         options: ["1.0", "1.6", "2.0", "2.4"],
         answer: 2,
         explain:
@@ -1458,7 +1445,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q4",
-        text: "According to the central limit theorem, as sample size n increases, the sampling distribution of the sample mean:",
+        question: "According to the central limit theorem, as sample size n increases, the sampling distribution of the sample mean:",
         options: [
           "Becomes more skewed",
           "Approaches a normal distribution regardless of the population shape",
@@ -1471,7 +1458,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q5",
-        text: "For a data set: 12, 15, 15, 18, 20. What is the sample standard deviation?",
+        question: "For a data set: 12, 15, 15, 18, 20. What is the sample standard deviation?",
         options: [
           "2.83",
           "3.16",
@@ -1484,7 +1471,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q6",
-        text: "A hypothesis test yields p = 0.03. If alpha = 0.05, the correct decision is to:",
+        question: "A hypothesis test yields p = 0.03. If alpha = 0.05, the correct decision is to:",
         options: [
           "Fail to reject H0 because 0.03 is a small probability",
           "Reject H0 because p < alpha",
@@ -1497,7 +1484,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q7",
-        text: "In a quality context, a Type II error occurs when:",
+        question: "In a quality context, a Type II error occurs when:",
         options: [
           "A good lot is rejected (false alarm)",
           "A bad lot is accepted (missed signal)",
@@ -1510,7 +1497,7 @@ export const m2: CourseModule = {
       },
       {
         id: "aqe-m2-q8",
-        text: "A 95 % confidence interval for a process mean is (49.2, 50.8). Which statement is correct?",
+        question: "A 95 % confidence interval for a process mean is (49.2, 50.8). Which statement is correct?",
         options: [
           "95 % of individual measurements fall between 49.2 and 50.8",
           "There is a 95 % probability that the true mean is between 49.2 and 50.8",

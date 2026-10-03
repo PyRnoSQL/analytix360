@@ -11,7 +11,7 @@ const AIAG = "AIAG";
 const ISO_SRC = "ISO";
 const ASQ = "ASQ";
 
-const PFD_SYMBOLS = [
+const _PFD_SYMBOLS = [
   { label: "Operation", desc: "Rectangle — a step that changes the product" },
   { label: "Inspection", desc: "Circle — a check or measurement" },
   { label: "Transport", desc: "Arrow — movement of material" },

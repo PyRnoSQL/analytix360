@@ -27,7 +27,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: L1_ID,
-      number: 1,
       title: "Quality management principles and the process approach",
       minutes: 25,
       objectives: [
@@ -118,8 +117,8 @@ export const m1: CourseModule = {
           items: [
             {
               art: "process-flow-chart",
-              label: "Process flow chart",
-              desc: "A process flow chart documents the sequence of operations, decision points, inspections, and material movements. It is a key documented information requirement in ISO 9001 clause 8.1 and is essential for FMEA, control plan development, and auditing.",
+              name: "Process flow chart",
+              caption: "A process flow chart documents the sequence of operations, decision points, inspections, and material movements. It is a key documented information requirement in ISO 9001 clause 8.1 and is essential for FMEA, control plan development, and auditing.",
             },
           ],
         },
@@ -290,7 +289,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: L2_ID,
-      number: 2,
       title: "ISO 9001:2015 requirements for the quality engineer",
       minutes: 30,
       objectives: [
@@ -506,7 +504,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: L3_ID,
-      number: 3,
       title: "Sector-specific standards: IATF 16949, AS9100 and ISO 13485",
       minutes: 25,
       objectives: [
@@ -544,8 +541,8 @@ export const m1: CourseModule = {
           items: [
             {
               art: "ppap-package",
-              label: "PPAP submission package",
-              desc: "The Production Part Approval Process package contains 18 elements including design records, engineering change documents, DFMEA, process flow diagram, PFMEA, control plan, MSA results, dimensional results, material/performance test results, initial process studies, qualified laboratory documentation, appearance approval report, sample parts, master sample, checking aids, customer-specific requirements, part submission warrant (PSW), and bulk material requirements (if applicable).",
+              name: "PPAP submission package",
+              caption: "The Production Part Approval Process package contains 18 elements including design records, engineering change documents, DFMEA, process flow diagram, PFMEA, control plan, MSA results, dimensional results, material/performance test results, initial process studies, qualified laboratory documentation, appearance approval report, sample parts, master sample, checking aids, customer-specific requirements, part submission warrant (PSW), and bulk material requirements (if applicable).",
             },
           ],
         },
@@ -715,7 +712,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: L4_ID,
-      number: 4,
       title: "Auditing: planning, conducting and reporting",
       minutes: 30,
       objectives: [
@@ -785,8 +781,8 @@ export const m1: CourseModule = {
           items: [
             {
               art: "a3-report",
-              label: "A3 audit summary report",
-              desc: "The A3 format (named after the A3 paper size) provides a structured, single-page summary ideal for presenting audit findings to management. The left side captures background, current condition, and root-cause analysis. The right side shows target condition, countermeasures, implementation plan, and follow-up actions. Using A3 for audit summaries forces conciseness and visual clarity.",
+              name: "A3 audit summary report",
+              caption: "The A3 format (named after the A3 paper size) provides a structured, single-page summary ideal for presenting audit findings to management. The left side captures background, current condition, and root-cause analysis. The right side shows target condition, countermeasures, implementation plan, and follow-up actions. Using A3 for audit summaries forces conciseness and visual clarity.",
             },
           ],
         },
@@ -959,7 +955,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: L5_ID,
-      number: 5,
       title: "Quality costs, metrics and the quality engineer's role",
       minutes: 25,
       objectives: [
@@ -1182,13 +1177,13 @@ export const m1: CourseModule = {
           items: [
             {
               art: "qc-pareto",
-              label: "Pareto chart",
-              desc: "The Pareto chart ranks defect categories or cost drivers in descending order with a cumulative percentage line. Quality engineers use Pareto analysis to apply the 80/20 rule — focusing improvement efforts on the vital few causes that account for the majority of defects or costs. When presenting quality costs to management, a Pareto of failure costs by category is one of the most effective visual communication tools.",
+              name: "Pareto chart",
+              caption: "The Pareto chart ranks defect categories or cost drivers in descending order with a cumulative percentage line. Quality engineers use Pareto analysis to apply the 80/20 rule — focusing improvement efforts on the vital few causes that account for the majority of defects or costs. When presenting quality costs to management, a Pareto of failure costs by category is one of the most effective visual communication tools.",
             },
             {
               art: "stat-capability",
-              label: "Process capability analysis",
-              desc: "Process capability indices (Cp, Cpk, Pp, Ppk) quantify how well a process meets specification limits. A Cpk of 1.33 means the process mean is at least 4 standard deviations from the nearest specification limit — the minimum acceptable capability for most industries. IATF 16949 often requires Cpk ≥ 1.67 for safety-critical characteristics.",
+              name: "Process capability analysis",
+              caption: "Process capability indices (Cp, Cpk, Pp, Ppk) quantify how well a process meets specification limits. A Cpk of 1.33 means the process mean is at least 4 standard deviations from the nearest specification limit — the minimum acceptable capability for most industries. IATF 16949 often requires Cpk ≥ 1.67 for safety-critical characteristics.",
             },
           ],
         },
@@ -1228,7 +1223,6 @@ export const m1: CourseModule = {
        ================================================================ */
     {
       id: PRACTICE_ID,
-      number: 6,
       title: "Practice: quality management systems",
       minutes: 30,
       objectives: [
@@ -1496,7 +1490,7 @@ export const m1: CourseModule = {
     questions: [
       {
         id: "aqe-m1-q1",
-        text: "Which ISO 9000:2015 quality management principle states that 'decisions based on the analysis and evaluation of data and information are more likely to produce desired results'?",
+        question: "Which ISO 9000:2015 quality management principle states that 'decisions based on the analysis and evaluation of data and information are more likely to produce desired results'?",
         options: [
           "Customer focus",
           "Process approach",
@@ -1509,7 +1503,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q2",
-        text: "In ISO 9001:2015, the term 'retain documented information' refers to:",
+        question: "In ISO 9001:2015, the term 'retain documented information' refers to:",
         options: [
           "Keeping procedures and policies up to date",
           "Maintaining the quality manual in a controlled location",
@@ -1522,7 +1516,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q3",
-        text: "A Bonabéri automotive parts supplier must submit a PPAP package to its OEM customer. Which sector-specific standard mandates this requirement?",
+        question: "A Bonabéri automotive parts supplier must submit a PPAP package to its OEM customer. Which sector-specific standard mandates this requirement?",
         options: [
           "ISO 9001:2015",
           "IATF 16949",
@@ -1535,7 +1529,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q4",
-        text: "According to ISO 19011, which of the following is NOT one of the audit principles?",
+        question: "According to ISO 19011, which of the following is NOT one of the audit principles?",
         options: [
           "Integrity",
           "Independence",
@@ -1548,7 +1542,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q5",
-        text: "An audit finding states: 'During review of 30 inspection records, 4 were found without the required dimensional measurement for critical characteristic #3, contrary to inspection instruction WI-INS-015 section 5.4.' This finding is best classified as:",
+        question: "An audit finding states: 'During review of 30 inspection records, 4 were found without the required dimensional measurement for critical characteristic #3, contrary to inspection instruction WI-INS-015 section 5.4.' This finding is best classified as:",
         options: [
           "Major nonconformity",
           "Minor nonconformity",
@@ -1561,7 +1555,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q6",
-        text: "In the PAF (prevention–appraisal–failure) model, which category does 'calibration of measuring instruments' belong to?",
+        question: "In the PAF (prevention–appraisal–failure) model, which category does 'calibration of measuring instruments' belong to?",
         options: [
           "Prevention",
           "Appraisal",
@@ -1574,7 +1568,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q7",
-        text: "A four-step process has first-pass yields of 98 %, 95 %, 97 %, and 99 %. The rolled throughput yield (RTY) is approximately:",
+        question: "A four-step process has first-pass yields of 98 %, 95 %, 97 %, and 99 %. The rolled throughput yield (RTY) is approximately:",
         options: [
           "97.3 %",
           "89.4 %",
@@ -1587,7 +1581,7 @@ export const m1: CourseModule = {
       },
       {
         id: "aqe-m1-q8",
-        text: "ISO 13485 differs from ISO 9001 in that ISO 13485:",
+        question: "ISO 13485 differs from ISO 9001 in that ISO 13485:",
         options: [
           "Does not require a quality policy",
           "Replaces the emphasis on continual improvement with maintaining QMS effectiveness",

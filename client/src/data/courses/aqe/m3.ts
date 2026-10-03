@@ -6,7 +6,7 @@ import type { CourseModule } from "../../../lms/types";
 
 // ── Gage R&R range-method data: 5 parts × 2 operators × 2 trials ──
 // Brake disc thickness (mm), nominal 22.00 mm, tolerance ±0.05 mm.
-const GRR_RANGE_DATA = {
+const _GRR_RANGE_DATA = {
   operatorA: [
     [22.014, 22.018], // Part 1, trials 1 & 2
     [21.986, 21.990], // Part 2
@@ -25,7 +25,7 @@ const GRR_RANGE_DATA = {
 
 // ── Gage R&R ANOVA data: 10 parts × 3 operators × 3 trials ──
 // Piston pin diameter (mm), nominal 18.000 mm, tolerance ±0.008 mm.
-const GRR_ANOVA_DATA = {
+const _GRR_ANOVA_DATA = {
   operatorA: [
     [18.002, 18.004, 18.003], [17.998, 17.997, 17.999], [18.006, 18.005, 18.007],
     [17.994, 17.995, 17.993], [18.001, 18.000, 18.002], [18.008, 18.007, 18.009],
@@ -48,15 +48,15 @@ const GRR_ANOVA_DATA = {
 
 // ── Attribute MSA data: 30 parts × 3 appraisers × 2 trials ──
 // Pass/Fail inspection of welded joints (0 = fail, 1 = pass).
-const ATTR_REFERENCE = [1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1];
-const ATTR_APPRAISER_A = [[1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1]];
-const ATTR_APPRAISER_B = [[1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,0,1,0,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1]];
-const ATTR_APPRAISER_C = [[1,1,0,1,0,0,1,1,1,1,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,1,1,1,0,1,0,1,1,0,1,0,1]];
+const _ATTR_REFERENCE =[1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1];
+const _ATTR_APPRAISER_A =[[1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1]];
+const _ATTR_APPRAISER_B =[[1,1,0,1,1,0,1,1,1,0,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,0,1,0,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1]];
+const _ATTR_APPRAISER_C =[[1,1,0,1,0,0,1,1,1,1,1,0,1,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1,0,1],[1,1,0,1,0,0,1,1,1,0,1,0,1,1,0,0,1,1,1,1,1,0,1,0,1,1,0,1,0,1]];
 
 // ── Bias and linearity data ──
 // Reference values and measured values (5 reference points, 12 measurements each).
-const BIAS_REF = [2.00, 4.00, 6.00, 8.00, 10.00];
-const BIAS_MEAS = [
+const _BIAS_REF =[2.00, 4.00, 6.00, 8.00, 10.00];
+const _BIAS_MEAS = [
   [2.02, 1.98, 2.01, 1.99, 2.03, 2.00, 2.01, 1.97, 2.02, 2.00, 2.01, 1.99],
   [4.04, 4.02, 4.05, 4.01, 4.03, 4.02, 4.04, 4.00, 4.03, 4.01, 4.02, 4.03],
   [6.08, 6.06, 6.05, 6.07, 6.09, 6.06, 6.07, 6.05, 6.08, 6.06, 6.07, 6.06],

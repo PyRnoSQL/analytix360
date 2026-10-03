@@ -125,7 +125,6 @@ export const m5: CourseModule = {
           title: "DOE Software and Tools",
           items: [
             {
-              id: "stat-doe-main",
               name: "DOE Analysis Toolkit",
               desc: "Software for designing experiments, generating run orders, calculating effects and producing interaction plots. Essential for factorial and fractional factorial analysis.",
             },
@@ -358,7 +357,6 @@ export const m5: CourseModule = {
           title: "Analysis Tools for Factorial Designs",
           items: [
             {
-              id: "stat-doe-main",
               name: "DOE Analysis Toolkit",
               desc: "Used here for generating contrast matrices, computing effects, and producing normal probability plots and interaction plots.",
             },
@@ -463,7 +461,6 @@ export const m5: CourseModule = {
     // ===== LESSON 3 =====
     {
       id: "aqe-m5-l3",
-      number: 3,
       title: "Fractional factorial and screening designs",
       duration: 30,
       objectives: [
@@ -774,7 +771,6 @@ export const m5: CourseModule = {
           title: "Regression and RSM Tools",
           items: [
             {
-              id: "stat-regression",
               name: "Regression Analysis Module",
               desc: "Fits linear and polynomial regression models, computes R², residual analysis, and generates contour and surface plots for RSM.",
             },
@@ -1015,12 +1011,10 @@ export const m5: CourseModule = {
           title: "Statistical Tools for DOE Analysis",
           items: [
             {
-              id: "stat-doe-main",
               name: "DOE Analysis Toolkit",
               desc: "Computes ANOVA tables, generates effect estimates, and performs confirmation-run analysis for factorial experiments.",
             },
             {
-              id: "stat-normality",
               name: "Normality Testing Module",
               desc: "Performs Anderson-Darling, Shapiro-Wilk and normal probability plot analysis on residuals from DOE models to verify assumptions.",
             },
@@ -1138,7 +1132,6 @@ export const m5: CourseModule = {
     // ===== PRACTICE LESSON =====
     {
       id: "aqe-m5-practice",
-      number: 6,
       title: "Practice: Design of Experiments",
       duration: 30,
       objectives: [
@@ -1338,7 +1331,7 @@ export const m5: CourseModule = {
     questions: [
       {
         id: "aqe-m5-q1",
-        text: "What is the main disadvantage of the one-factor-at-a-time (OFAT) approach compared to factorial designs?",
+        question: "What is the main disadvantage of the one-factor-at-a-time (OFAT) approach compared to factorial designs?",
         options: [
           "OFAT requires more runs than a factorial design",
           "OFAT cannot detect interactions between factors",
@@ -1351,7 +1344,7 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q2",
-        text: "In a 2² factorial with responses (standard order) y₁ = 30, y₂ = 50, y₃ = 25, y₄ = 55, what is the interaction effect AB?",
+        question: "In a 2² factorial with responses (standard order) y₁ = 30, y₂ = 50, y₃ = 25, y₄ = 55, what is the interaction effect AB?",
         options: ["5.0", "10.0", "25.0", "5.0 but negative"],
         answer: 0,
         explain:
@@ -1359,14 +1352,14 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q3",
-        text: "A 2³ full factorial design has how many runs per replicate?",
+        question: "A 2³ full factorial design has how many runs per replicate?",
         options: ["6", "8", "9", "12"],
         answer: 1,
         explain: "A 2³ design tests all combinations of 3 factors at 2 levels each: 2 × 2 × 2 = 8 runs.",
       },
       {
         id: "aqe-m5-q4",
-        text: "In a 2^(4−1) design with generator D = ABC and defining relation I = ABCD, what is the resolution?",
+        question: "In a 2^(4−1) design with generator D = ABC and defining relation I = ABCD, what is the resolution?",
         options: ["Resolution II", "Resolution III", "Resolution IV", "Resolution V"],
         answer: 2,
         explain:
@@ -1374,7 +1367,7 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q5",
-        text: "What is the primary purpose of centre points in a Central Composite Design?",
+        question: "What is the primary purpose of centre points in a Central Composite Design?",
         options: [
           "To increase the number of factorial points",
           "To estimate pure error and detect curvature",
@@ -1387,7 +1380,7 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q6",
-        text: "Which design avoids the extreme corner points of the factor space and uses only three levels per factor?",
+        question: "Which design avoids the extreme corner points of the factor space and uses only three levels per factor?",
         options: [
           "Central Composite Design (CCD)",
           "Plackett-Burman design",
@@ -1400,7 +1393,7 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q7",
-        text: "In an ANOVA table for a 2³ factorial, a factor has SS = 6.4, df = 1, and the error MS = 0.25. What is the F-ratio for this factor?",
+        question: "In an ANOVA table for a 2³ factorial, a factor has SS = 6.4, df = 1, and the error MS = 0.25. What is the F-ratio for this factor?",
         options: ["6.4", "25.6", "0.039", "3.2"],
         answer: 1,
         explain:
@@ -1408,7 +1401,7 @@ export const m5: CourseModule = {
       },
       {
         id: "aqe-m5-q8",
-        text: "After optimising a process with DOE, the predicted response at optimal settings is 78.5 with a 95% prediction interval of [74.2, 82.8]. Four confirmation runs yield: 76.1, 79.3, 77.8, 80.0. Is the model confirmed?",
+        question: "After optimising a process with DOE, the predicted response at optimal settings is 78.5 with a 95% prediction interval of [74.2, 82.8]. Four confirmation runs yield: 76.1, 79.3, 77.8, 80.0. Is the model confirmed?",
         options: [
           "No — the individual values differ from 78.5",
           "No — the confirmation mean is below the prediction",
