@@ -112,11 +112,6 @@ export const m1: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Marketing mix interaction map",
-              callouts: [
-                "Each P feeds data into the analytics pipeline",
-                "Changes in Price affect Place (channel margin) and Promotion (messaging)",
-                "Process efficiency directly impacts customer satisfaction metrics",
-              ],
             },
           ],
         },
@@ -244,11 +239,6 @@ export const m1: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Journey funnel showing drop-off at each stage",
-              callouts: [
-                "Awareness: 10,000 impressions enter the funnel",
-                "Purchase: only 150 convert — a 1.5 % overall conversion rate",
-                "Analytics identifies the biggest drop-off between Consideration and Purchase",
-              ],
             },
           ],
         },
@@ -390,11 +380,6 @@ export const m1: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Data flow from collection to insight",
-              callouts: [
-                "Sources: CRM, GA4, social APIs, POS terminals feed raw data",
-                "Pipeline: ETL processes clean, transform, and load into the warehouse",
-                "Outputs: dashboards, reports, and predictive models serve decisions",
-              ],
             },
           ],
         },
@@ -568,11 +553,6 @@ export const m1: CourseModule = {
             {
               art: "stat-regression",
               caption: "How CAC and CLV interact to determine profitability",
-              callouts: [
-                "CLV:CAC ratio above 3:1 signals sustainable growth",
-                "A ratio below 1:1 means each customer costs more to acquire than they will ever return",
-                "ROAS measures campaign-level efficiency; CLV:CAC measures customer-level sustainability",
-              ],
             },
           ],
         },
@@ -733,12 +713,6 @@ export const m1: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Marketing data governance lifecycle",
-              callouts: [
-                "Collect: consent-based, purpose-limited data collection",
-                "Store: encrypted, access-controlled, retention-managed",
-                "Use: only for stated purposes, with audit trails",
-                "Delete: automated expiry based on retention policy",
-              ],
             },
           ],
         },
@@ -985,24 +959,20 @@ export const m1: CourseModule = {
           ],
         },
 
-        /* --- Expert: chart — visualise and analyse marketing funnel --- */
+        /* --- Expert: marketing funnel analysis --- */
         {
-          type: "chart",
-          id: "mas-m1-practice-chart",
-          level: "expert",
+          type: "form",
+          id: "mas-m1-practice-expert",
+          level: "expert" as const,
           title: "Marketing funnel analysis — Cameroon e-commerce",
-          data: [
-            { label: "Website visitors", value: 45000 },
-            { label: "Product page views", value: 18000 },
-            { label: "Add to cart", value: 5400 },
-            { label: "Begin checkout", value: 2700 },
-            { label: "Complete purchase", value: 1350 },
+          task: "A fictional Cameroonian e-commerce site recorded these funnel metrics: 45,000 website visitors → 18,000 product page views → 5,400 add to cart → 2,700 begin checkout → 1,350 complete purchase. Analyse the funnel and answer the questions below.",
+          fields: [
+            { kind: "text" as const, label: "What is the overall conversion rate from visitors to purchase? (e.g. 3.0%)", accept: ["3.0%", "3%", "3.0 %", "3 %"], explain: "1,350 ÷ 45,000 = 3.0 %" },
+            { kind: "select" as const, label: "At which stage does the largest absolute drop-off occur?", options: ["Visitors → Product page views (−27,000)", "Product page views → Add to cart (−12,600)", "Add to cart → Begin checkout (−2,700)", "Begin checkout → Purchase (−1,350)"], answer: 0, explain: "The largest absolute drop is 45,000 → 18,000, a loss of 27,000 users." },
+            { kind: "text" as const, label: "If the page-to-cart rate improved from 30 % to 40 %, how many additional purchases would result (assuming downstream rates stay constant)?", accept: ["450"], explain: "New carts = 18,000 × 0.40 = 7,200. Checkout rate = 50 % → 3,600. Purchase rate = 50 % → 1,800. Additional = 1,800 − 1,350 = 450." },
+            { kind: "select" as const, label: "Which metric best captures the compounding effect of funnel improvements?", options: ["Click-through rate", "Overall funnel conversion rate", "Impressions", "Bounce rate"], answer: 1, explain: "The overall funnel conversion rate captures how improvements at any stage compound through downstream stages to affect final outcomes." },
           ],
-          unit: "users",
-          kinds: ["bar", "line"],
-          best: "bar",
-          question: "What is the overall conversion rate (visitors to purchase), and at which stage does the largest absolute drop-off occur? If the company could improve the product-page-to-cart rate from 30 % to 40 %, how many additional purchases would result (assuming downstream rates stay constant)?",
-          explain: "Overall conversion = 1,350 ÷ 45,000 = 3.0 %. The largest absolute drop-off is from Website visitors (45,000) to Product page views (18,000) — a loss of 27,000 users. If the product-page-to-cart rate improves from 30 % (5,400 ÷ 18,000) to 40 %, carts = 18,000 × 0.40 = 7,200. Downstream rates: checkout = 50 % of cart = 3,600; purchase = 50 % of checkout = 1,800. Additional purchases = 1,800 − 1,350 = 450. This funnel analysis demonstrates how identifying and improving specific stage conversion rates compounds into significant revenue impact.",
+          hint: "Calculate each stage's conversion rate separately, then trace how improving one rate flows through the downstream stages.",
         },
       ],
     },

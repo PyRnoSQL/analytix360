@@ -351,14 +351,14 @@ export const m3: CourseModule = {
         },
 
         { type: "h", text: "Exercise 2: Choose the right chart" },
-        { type: "chart", id: "mas-m3-pr-chart", level: "intermediate" as const, title: "Monthly website sessions over 6 months", data: [
-          { label: "April", value: 12400 },
-          { label: "May", value: 14800 },
-          { label: "June", value: 13200 },
-          { label: "July", value: 16500 },
-          { label: "August", value: 18900 },
-          { label: "September", value: 21300 },
-        ], unit: "sessions", kinds: ["bar", "line", "pie"], best: "line", question: "This data shows website traffic over 6 consecutive months. Which chart type best reveals the trend?", explain: "A line chart is the standard choice for time-series data. It emphasises the direction and rate of change over consecutive periods. A bar chart could work but de-emphasises the trend. A pie chart is inappropriate because months do not represent parts of a whole." },
+        { type: "form", id: "mas-m3-pr-chart-form", level: "intermediate" as const, title: "Choose the right chart for the data", task: "A fictional website in Cameroon recorded monthly sessions over 6 months: April 12,400 — May 14,800 — June 13,200 — July 16,500 — August 18,900 — September 21,300. Choose the appropriate visualisation and interpret the data.",
+          fields: [
+            { kind: "select" as const, label: "Which chart type best reveals the trend over time?", options: ["Pie chart", "Line chart", "Stacked bar chart", "Scatter plot"], answer: 1, explain: "A line chart is the standard choice for time-series data. It emphasises direction and rate of change over consecutive periods." },
+            { kind: "select" as const, label: "Why is a pie chart inappropriate for this data?", options: ["There are too many data points", "Months do not represent parts of a whole", "Pie charts cannot show numbers above 10,000", "The values are too similar"], answer: 1, explain: "Pie charts show proportions of a total. Monthly sessions are independent observations over time, not parts of a single quantity." },
+            { kind: "select" as const, label: "What is the approximate month-over-month growth rate from August to September?", options: ["8.5 %", "10.2 %", "12.7 %", "15.0 %"], answer: 2, explain: "(21,300 − 18,900) ÷ 18,900 ≈ 12.7 %. The website is accelerating its growth." },
+          ],
+          hint: "Think about what the data represents: independent time-ordered observations, not parts of a whole.",
+        },
 
         { type: "h", text: "Exercise 3: Interpret descriptive statistics" },
         { type: "form", id: "mas-m3-pr-stats", level: "advanced" as const, title: "Calculate and interpret descriptive statistics", task: "A fictional mobile phone retailer in Bafoussam recorded these daily sales figures (units) for one week: 45, 52, 48, 120, 50, 47, 51. Answer the questions below.",

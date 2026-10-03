@@ -6,6 +6,7 @@ import { DAS_PRACTICE, type PracticeSet } from "../data/courses/das-practice";
 import { MOSP_PRACTICE } from "../data/courses/mosp-practice";
 import { MEAL_COURSE } from "../data/courses/meal";
 import { MAS_COURSE } from "../data/courses/mas";
+import { MAS_COURSE } from "../data/courses/mas";
 import { QT_COURSE } from "../data/courses/qt";
 
 // Adds a practice lesson at the end of each open module that has one.
@@ -75,6 +76,7 @@ export const COURSES: Record<string, LmsCourse> = {
   mosp: withPractice(MOSP_COURSE, MOSP_PRACTICE),
   meal: MEAL_COURSE,
   "meal-cert": MEAL_COURSE,
+  mas: MAS_COURSE,
   mas: MAS_COURSE,
   qt: QT_COURSE,
   das: fromLegacy(DAS_COURSE as unknown as LegacyCourse, {

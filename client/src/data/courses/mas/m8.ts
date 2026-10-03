@@ -1,4 +1,4 @@
-import type { CourseModule } from "../../../../lms/qq/lms/types";
+import type { CourseModule } from "../../../lms/types";
 
 const m8: CourseModule = {
   id: "mas-m8",
@@ -30,7 +30,7 @@ const m8: CourseModule = {
         },
         {
           type: "table",
-          columns: ["RACE Stage", "Objective", "Key Tactics", "Primary KPI"],
+          head: ["RACE Stage", "Objective", "Key Tactics", "Primary KPI"],
           rows: [
             ["Reach", "Build awareness", "SEO, social ads, PR, display", "Impressions / reach"],
             ["Act", "Drive interaction", "Content marketing, landing pages", "Visits / bounce rate"],
@@ -70,46 +70,44 @@ const m8: CourseModule = {
           type: "sheet",
           id: "mas-m8-l1-budget",
           title: "Campaign Budget Allocator",
-          columns: [
-            { key: "channel", label: "Channel", width: 160 },
-            { key: "allocation_pct", label: "Allocation %", width: 100 },
-            { key: "budget_fcfa", label: "Budget (FCFA)", width: 130 },
-            { key: "expected_reach", label: "Expected Reach", width: 120 },
-            { key: "cpm", label: "CPM (FCFA)", width: 100 },
-            { key: "expected_conversions", label: "Est. Conversions", width: 120 },
-            { key: "cpa", label: "CPA (FCFA)", width: 100 },
-          ],
+          task: "Review the budget allocation across channels for a 5,000,000 FCFA campaign. Adjust the Allocation % column so the total stays at 100 % and verify that Budget FCFA and CPA update correctly.",
           data: [
-            { channel: "Facebook/Instagram Ads", allocation_pct: 35, budget_fcfa: 1750000, expected_reach: 250000, cpm: 7000, expected_conversions: 875, cpa: 2000 },
-            { channel: "Google Search Ads", allocation_pct: 25, budget_fcfa: 1250000, expected_reach: 50000, cpm: 25000, expected_conversions: 1250, cpa: 1000 },
-            { channel: "Radio Spots", allocation_pct: 15, budget_fcfa: 750000, expected_reach: 180000, cpm: 4167, expected_conversions: 300, cpa: 2500 },
-            { channel: "SMS Campaign", allocation_pct: 10, budget_fcfa: 500000, expected_reach: 100000, cpm: 5000, expected_conversions: 500, cpa: 1000 },
-            { channel: "Influencer Partnership", allocation_pct: 10, budget_fcfa: 500000, expected_reach: 75000, cpm: 6667, expected_conversions: 375, cpa: 1333 },
-            { channel: "Experimental / Reserve", allocation_pct: 5, budget_fcfa: 250000, expected_reach: 0, cpm: 0, expected_conversions: 0, cpa: 0 },
+            ["Channel", "Allocation %", "Budget (FCFA)", "Expected Reach", "CPM (FCFA)", "Est. Conversions", "CPA (FCFA)"],
+            ["Facebook/Instagram Ads", 35, 1750000, 250000, 7000, 875, 2000],
+            ["Google Search Ads", 25, 1250000, 50000, 25000, 1250, 1000],
+            ["Radio Spots", 15, 750000, 180000, 4167, 300, 2500],
+            ["SMS Campaign", 10, 500000, 100000, 5000, 500, 1000],
+            ["Influencer Partnership", 10, 500000, 75000, 6667, 375, 1333],
+            ["Experimental / Reserve", 5, 250000, 0, 0, 0, 0],
           ],
+          editable: ["B2", "B3", "B4", "B5", "B6", "B7"],
+          checks: [
+            { cell: "B8", equals: 100, tol: 1 },
+          ],
+          hint: "The total allocation must remain at 100 %. Adjusting one channel means reducing another.",
         },
         {
-          type: "check",
+          type: "check", id: "mas-m8-ck1",
           question: "In the RACE framework, which stage focuses on converting visitors into customers through tactics like email nurture and retargeting?",
           options: ["Reach", "Act", "Convert", "Engage"],
           answer: 2,
-          hint: "This stage is about turning interest into action — the moment a prospect becomes a customer.",
+          explain: "This stage is about turning interest into action — the moment a prospect becomes a customer.",
         },
         {
           type: "form",
           id: "mas-m8-l1-lab1",
           title: "Lab: Campaign Brief Builder",
           level: "intermediate" as const,
-          scenario:
+          task:
             "A microfinance institution in Douala wants to launch a campaign to increase mobile savings account sign-ups among market vendors aged 25-45. Total budget: 5,000,000 FCFA over 8 weeks. Design the campaign brief.",
           fields: [
-            { key: "objective", label: "Campaign Objective (SMART format)", type: "textarea" as const },
-            { key: "target", label: "Target Audience Description", type: "textarea" as const },
-            { key: "value_prop", label: "Value Proposition", type: "text" as const },
-            { key: "primary_channel", label: "Primary Channel", type: "select" as const, options: ["Facebook Ads", "SMS Marketing", "Radio", "Community Events", "WhatsApp Business"] },
-            { key: "secondary_channel", label: "Secondary Channel", type: "select" as const, options: ["Facebook Ads", "SMS Marketing", "Radio", "Community Events", "WhatsApp Business"] },
-            { key: "primary_kpi", label: "Primary KPI & Target", type: "text" as const },
-            { key: "timeline_weeks", label: "Campaign Duration (weeks)", type: "number" as const },
+            { kind: "text", label: "Campaign Objective (SMART format)" },
+            { kind: "text", label: "Target Audience Description" },
+            { kind: "text", label: "Value Proposition" },
+            { kind: "select", label: "Primary Channel", options: ["Facebook Ads", "SMS Marketing", "Radio", "Community Events", "WhatsApp Business"], answer: 0 },
+            { kind: "select", label: "Secondary Channel", options: ["Facebook Ads", "SMS Marketing", "Radio", "Community Events", "WhatsApp Business"], answer: 0 },
+            { kind: "text", label: "Primary KPI & Target" },
+            { kind: "text", label: "Campaign Duration (weeks)" },
           ],
         },
       ],
@@ -143,7 +141,7 @@ const m8: CourseModule = {
         },
         {
           type: "table",
-          columns: ["Baseline Rate", "MDE (Relative)", "Power 80%", "Power 90%"],
+          head: ["Baseline Rate", "MDE (Relative)", "Power 80%", "Power 90%"],
           rows: [
             ["2%", "25% (→ 2.5%)", "12,548 per variant", "16,810 per variant"],
             ["5%", "20% (→ 6%)", "7,126 per variant", "9,540 per variant"],
@@ -172,7 +170,7 @@ const m8: CourseModule = {
         },
         {
           type: "table",
-          columns: ["Mistake", "Consequence", "Prevention"],
+          head: ["Mistake", "Consequence", "Prevention"],
           rows: [
             ["Peeking at results early", "Inflated false positive rate", "Set fixed evaluation date upfront"],
             ["Stopping at first significance", "Unreliable results", "Run to pre-calculated sample size"],
@@ -185,7 +183,8 @@ const m8: CourseModule = {
           type: "python",
           id: "mas-m8-l2-abtest",
           title: "A/B Test Significance Calculator",
-          code: `# A/B Test Statistical Significance Calculator
+          task: "Run the A/B test calculator with the given campaign data. Then change the variant conversions to 170 and re-run to see how the result changes.",
+          cells: [`# A/B Test Statistical Significance Calculator
 import math
 
 # --- Input your test results ---
@@ -217,10 +216,10 @@ print(f"Z-score:  {z_score:.3f}")
 print(f"P-value:  {p_value:.4f}")
 print(f"Result:   {'SIGNIFICANT (p < 0.05)' if p_value < 0.05 else 'NOT significant'}")
 print()
-print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "Keep control / gather more data")`,
+print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "Keep control / gather more data")`],
         },
         {
-          type: "check",
+          type: "check", id: "mas-m8-ck2",
           question: "Why is it important to calculate sample size before launching an A/B test?",
           options: [
             "To reduce the cost of running the test",
@@ -229,22 +228,22 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
             "To satisfy regulatory requirements",
           ],
           answer: 1,
-          hint: "Think about what happens when you make decisions based on too little data.",
+          explain: "Think about what happens when you make decisions based on too little data.",
         },
         {
           type: "form",
           id: "mas-m8-l2-lab1",
           title: "Lab: A/B Test Design & Analysis",
           level: "advanced" as const,
-          scenario:
+          task:
             "An e-commerce site in Yaoundé wants to test two checkout page designs. Current conversion rate: 3.2%. They want to detect a 20% relative improvement. Design the test and analyze preliminary results.",
           fields: [
-            { key: "hypothesis", label: "Test Hypothesis (H₀ and H₁)", type: "textarea" as const },
-            { key: "sample_size", label: "Required Sample Size per Variant", type: "number" as const },
-            { key: "duration", label: "Estimated Test Duration (days)", type: "number" as const },
-            { key: "primary_metric", label: "Primary Success Metric", type: "text" as const },
-            { key: "guardrail", label: "Guardrail Metric (what must NOT decrease)", type: "text" as const },
-            { key: "segments", label: "Post-hoc Segments to Analyze", type: "textarea" as const },
+            { kind: "text", label: "Test Hypothesis (H₀ and H₁)" },
+            { kind: "text", label: "Required Sample Size per Variant" },
+            { kind: "text", label: "Estimated Test Duration (days)" },
+            { kind: "text", label: "Primary Success Metric" },
+            { kind: "text", label: "Guardrail Metric (what must NOT decrease)" },
+            { kind: "text", label: "Post-hoc Segments to Analyze" },
           ],
         },
       ],
@@ -274,7 +273,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
         },
         {
           type: "table",
-          columns: ["Layer", "Content", "Update Frequency", "Audience"],
+          head: ["Layer", "Content", "Update Frequency", "Audience"],
           rows: [
             ["Executive Summary", "3-5 KPIs with trend arrows, overall health score", "Daily / Weekly", "C-Suite, Board"],
             ["Channel Performance", "Channel-level metrics, budget vs. actual, ROAS", "Weekly", "Marketing Director"],
@@ -327,7 +326,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
           },
         },
         {
-          type: "check",
+          type: "check", id: "mas-m8-ck3",
           question: "According to the Pyramid Principle, what should come first in a marketing report to executives?",
           options: [
             "Detailed methodology and data sources",
@@ -336,22 +335,22 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
             "A chronological account of campaign activities",
           ],
           answer: 1,
-          hint: "Think about how busy executives read — they want the answer first, then the support.",
+          explain: "Think about how busy executives read — they want the answer first, then the support.",
         },
         {
           type: "form",
           id: "mas-m8-l3-lab1",
           title: "Lab: Executive Dashboard Wireframe",
           level: "intermediate" as const,
-          scenario:
+          task:
             "The CMO of a telecom company in Douala wants a monthly marketing dashboard. The company runs campaigns across SMS, social media, radio, and retail promotions. Design the dashboard layout.",
           fields: [
-            { key: "top_kpis", label: "Top 5 KPIs for Summary Row", type: "textarea" as const },
-            { key: "chart1", label: "Primary Chart (type + metric)", type: "text" as const },
-            { key: "chart2", label: "Secondary Chart (type + metric)", type: "text" as const },
-            { key: "table_content", label: "Detail Table Content", type: "textarea" as const },
-            { key: "alert_rules", label: "Automated Alert Rules (when to flag)", type: "textarea" as const },
-            { key: "refresh", label: "Data Refresh Frequency", type: "select" as const, options: ["Real-time", "Daily", "Weekly", "Monthly"] },
+            { kind: "text", label: "Top 5 KPIs for Summary Row" },
+            { kind: "text", label: "Primary Chart (type + metric)" },
+            { kind: "text", label: "Secondary Chart (type + metric)" },
+            { kind: "text", label: "Detail Table Content" },
+            { kind: "text", label: "Automated Alert Rules (when to flag)" },
+            { kind: "select", label: "Data Refresh Frequency", options: ["Real-time", "Daily", "Weekly", "Monthly"], answer: 0 },
           ],
         },
       ],
@@ -376,7 +375,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
         },
         {
           type: "table",
-          columns: ["Audience", "Format", "Length", "Focus", "Metrics Level"],
+          head: ["Audience", "Format", "Length", "Focus", "Metrics Level"],
           rows: [
             ["Board / CEO", "Executive summary", "1 page", "Business impact & strategic direction", "Revenue, market share, CLV"],
             ["CMO / VP Marketing", "Performance review", "3-5 pages", "Channel effectiveness & budget optimization", "ROAS, CPA, pipeline contribution"],
@@ -405,7 +404,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
         },
         {
           type: "table",
-          columns: ["Attribution Model", "Best For", "Limitation", "How to Explain"],
+          head: ["Attribution Model", "Best For", "Limitation", "How to Explain"],
           rows: [
             ["Last Touch", "Short sales cycles, direct response", "Ignores awareness channels", "Credits the final interaction before purchase"],
             ["First Touch", "Brand awareness campaigns", "Ignores conversion optimization", "Credits the channel that introduced the customer"],
@@ -415,7 +414,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
           ],
         },
         {
-          type: "check",
+          type: "check", id: "mas-m8-ck4",
           question: "What does the 'so-what' test require for every data point in a marketing report?",
           options: [
             "Statistical significance at p < 0.05",
@@ -424,22 +423,22 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
             "Visualization in chart format",
           ],
           answer: 2,
-          hint: "Think about what separates data from insight.",
+          explain: "Think about what separates data from insight.",
         },
         {
           type: "form",
           id: "mas-m8-l4-lab1",
           title: "Lab: Monthly Marketing Report",
           level: "advanced" as const,
-          scenario:
+          task:
             "Write the executive summary section of a monthly marketing report for a beverage distributor in Cameroon. Q3 digital spend was 8,000,000 FCFA. Results: 2,400 new customers acquired (target: 2,000), CPA of 3,333 FCFA (target: 4,000), but retention rate dropped from 65% to 52%.",
           fields: [
-            { key: "headline", label: "Report Headline (complete sentence)", type: "text" as const },
-            { key: "summary", label: "Executive Summary (3-4 sentences)", type: "textarea" as const },
-            { key: "wins", label: "Key Wins (with data)", type: "textarea" as const },
-            { key: "concerns", label: "Key Concerns (with data)", type: "textarea" as const },
-            { key: "recommendations", label: "Top 3 Recommendations", type: "textarea" as const },
-            { key: "next_steps", label: "Immediate Next Steps", type: "textarea" as const },
+            { kind: "text", label: "Report Headline (complete sentence)" },
+            { kind: "text", label: "Executive Summary (3-4 sentences)" },
+            { kind: "text", label: "Key Wins (with data)" },
+            { kind: "text", label: "Key Concerns (with data)" },
+            { kind: "text", label: "Top 3 Recommendations" },
+            { kind: "text", label: "Immediate Next Steps" },
           ],
         },
       ],
@@ -461,7 +460,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
         },
         {
           type: "table",
-          columns: ["Level", "Stage", "Capabilities", "Typical Tools", "Team Size"],
+          head: ["Level", "Stage", "Capabilities", "Typical Tools", "Team Size"],
           rows: [
             ["1", "Ad Hoc", "Manual reporting, spreadsheet analysis, gut-feel decisions", "Excel, basic Google Analytics", "0-1 analysts"],
             ["2", "Descriptive", "Automated dashboards, standardized KPIs, historical trend analysis", "Google Analytics, Tableau, SQL", "2-3 analysts"],
@@ -496,7 +495,7 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
         },
         {
           type: "table",
-          columns: ["Level", "Role", "Key Skills", "Experience", "Salary Range (FCFA/year)"],
+          head: ["Level", "Role", "Key Skills", "Experience", "Salary Range (FCFA/year)"],
           rows: [
             ["Entry", "Marketing Analyst", "Excel, SQL, basic statistics, reporting", "0-2 years", "3,000,000 - 5,000,000"],
             ["Mid", "Senior Marketing Analyst", "Python/R, A/B testing, segmentation, dashboards", "2-5 years", "5,000,000 - 9,000,000"],
@@ -526,27 +525,27 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
           ],
         },
         {
-          type: "check",
+          type: "check", id: "mas-m8-ck5",
           question: "An organization has automated dashboards and standardized KPIs but has not yet implemented customer segmentation or attribution modeling. What maturity level is it at?",
           options: ["Level 1 — Ad Hoc", "Level 2 — Descriptive", "Level 3 — Diagnostic", "Level 4 — Predictive"],
           answer: 1,
-          hint: "Match the described capabilities to the maturity model. Automated dashboards and standard KPIs are characteristic of a specific level.",
+          explain: "Match the described capabilities to the maturity model. Automated dashboards and standard KPIs are characteristic of a specific level.",
         },
         {
           type: "form",
           id: "mas-m8-l5-lab1",
           title: "Lab: Analytics Maturity Assessment & Roadmap",
           level: "advanced" as const,
-          scenario:
+          task:
             "You are hired as the first marketing analyst at a growing agribusiness company in Cameroon. They currently track sales in Excel and run Facebook ads with no conversion tracking. Assess their maturity and create a 12-month roadmap.",
           fields: [
-            { key: "current_level", label: "Current Maturity Level (1-5)", type: "number" as const },
-            { key: "target_level", label: "Target Level in 12 Months", type: "number" as const },
-            { key: "q1_priorities", label: "Q1 Priorities (quick wins)", type: "textarea" as const },
-            { key: "q2_priorities", label: "Q2 Priorities (foundation)", type: "textarea" as const },
-            { key: "tools_needed", label: "Tools to Implement (prioritized)", type: "textarea" as const },
-            { key: "budget_case", label: "Business Case for Investment (1 paragraph)", type: "textarea" as const },
-            { key: "skills_gap", label: "Skills to Develop or Hire", type: "textarea" as const },
+            { kind: "text", label: "Current Maturity Level (1-5)" },
+            { kind: "text", label: "Target Level in 12 Months" },
+            { kind: "text", label: "Q1 Priorities (quick wins)" },
+            { kind: "text", label: "Q2 Priorities (foundation)" },
+            { kind: "text", label: "Tools to Implement (prioritized)" },
+            { kind: "text", label: "Business Case for Investment (1 paragraph)" },
+            { kind: "text", label: "Skills to Develop or Hire" },
           ],
         },
       ],
@@ -588,15 +587,15 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
           id: "mas-m8-practice-lab2",
           title: "Lab 2: Multi-Channel Campaign Analysis (Intermediate)",
           level: "intermediate" as const,
-          scenario:
+          task:
             "A retail chain in Douala ran a 4-week holiday campaign across 3 channels. Facebook: 2,000,000 FCFA spend → 45,000 clicks → 1,800 purchases. Google: 1,500,000 FCFA spend → 12,000 clicks → 960 purchases. SMS: 500,000 FCFA spend → 25,000 delivered → 750 purchases. Average order value: 15,000 FCFA. Analyze performance and recommend budget reallocation.",
           fields: [
-            { key: "fb_roas", label: "Facebook ROAS", type: "number" as const },
-            { key: "google_roas", label: "Google ROAS", type: "number" as const },
-            { key: "sms_roas", label: "SMS ROAS", type: "number" as const },
-            { key: "best_channel", label: "Best Performing Channel & Why", type: "textarea" as const },
-            { key: "reallocation", label: "Recommended Budget Reallocation", type: "textarea" as const },
-            { key: "test_proposal", label: "A/B Test Proposal for Next Campaign", type: "textarea" as const },
+            { kind: "text", label: "Facebook ROAS" },
+            { kind: "text", label: "Google ROAS" },
+            { kind: "text", label: "SMS ROAS" },
+            { kind: "text", label: "Best Performing Channel & Why" },
+            { kind: "text", label: "Recommended Budget Reallocation" },
+            { kind: "text", label: "A/B Test Proposal for Next Campaign" },
           ],
         },
         {
@@ -604,34 +603,30 @@ print("Recommendation:", "Deploy variant" if p_value < 0.05 and lift > 0 else "K
           id: "mas-m8-practice-lab3",
           level: "advanced" as const,
           title: "Lab 3: Campaign ROI Dashboard (Advanced)",
-          columns: [
-            { key: "campaign", label: "Campaign", width: 150 },
-            { key: "channel", label: "Channel", width: 120 },
-            { key: "spend", label: "Spend (FCFA)", width: 120 },
-            { key: "impressions", label: "Impressions", width: 110 },
-            { key: "clicks", label: "Clicks", width: 80 },
-            { key: "conversions", label: "Conversions", width: 100 },
-            { key: "revenue", label: "Revenue (FCFA)", width: 130 },
-            { key: "ctr", label: "CTR %", width: 80 },
-            { key: "cvr", label: "CVR %", width: 80 },
-            { key: "roas", label: "ROAS", width: 80 },
-          ],
+          task: "You have campaign data for three Cameroonian campaigns. Calculate the overall ROAS for each campaign by combining its channels, then identify which individual channel entry has the highest ROAS.",
           data: [
-            { campaign: "Back to School", channel: "Facebook", spend: 1200000, impressions: 180000, clicks: 5400, conversions: 324, revenue: 4860000, ctr: 3.0, cvr: 6.0, roas: 4.05 },
-            { campaign: "Back to School", channel: "Google", spend: 800000, impressions: 40000, clicks: 3200, conversions: 256, revenue: 3840000, ctr: 8.0, cvr: 8.0, roas: 4.80 },
-            { campaign: "Back to School", channel: "SMS", spend: 300000, impressions: 50000, clicks: 2500, conversions: 175, revenue: 2625000, ctr: 5.0, cvr: 7.0, roas: 8.75 },
-            { campaign: "Holiday Promo", channel: "Facebook", spend: 2000000, impressions: 300000, clicks: 9000, conversions: 450, revenue: 9000000, ctr: 3.0, cvr: 5.0, roas: 4.50 },
-            { campaign: "Holiday Promo", channel: "Radio", spend: 1500000, impressions: 200000, clicks: 0, conversions: 180, revenue: 3600000, ctr: 0, cvr: 0, roas: 2.40 },
-            { campaign: "New Year Sale", channel: "Facebook", spend: 1000000, impressions: 150000, clicks: 6000, conversions: 360, revenue: 5400000, ctr: 4.0, cvr: 6.0, roas: 5.40 },
-            { campaign: "New Year Sale", channel: "WhatsApp", spend: 200000, impressions: 30000, clicks: 4500, conversions: 270, revenue: 4050000, ctr: 15.0, cvr: 6.0, roas: 20.25 },
+            ["Campaign", "Channel", "Spend (FCFA)", "Impressions", "Clicks", "Conversions", "Revenue (FCFA)", "CTR %", "CVR %", "ROAS"],
+            ["Back to School", "Facebook", 1200000, 180000, 5400, 324, 4860000, 3.0, 6.0, 4.05],
+            ["Back to School", "Google", 800000, 40000, 3200, 256, 3840000, 8.0, 8.0, 4.80],
+            ["Back to School", "SMS", 300000, 50000, 2500, 175, 2625000, 5.0, 7.0, 8.75],
+            ["Holiday Promo", "Facebook", 2000000, 300000, 9000, 450, 9000000, 3.0, 5.0, 4.50],
+            ["Holiday Promo", "Radio", 1500000, 200000, 0, 180, 3600000, 0, 0, 2.40],
+            ["New Year Sale", "Facebook", 1000000, 150000, 6000, 360, 5400000, 4.0, 6.0, 5.40],
+            ["New Year Sale", "WhatsApp", 200000, 30000, 4500, 270, 4050000, 15.0, 6.0, 20.25],
           ],
+          editable: ["J9"],
+          checks: [
+            { cell: "J9", equals: 20.25, tol: 0.1 },
+          ],
+          hint: "ROAS = Revenue ÷ Spend. Check the WhatsApp channel row.",
         },
         {
           type: "python",
           id: "mas-m8-practice-lab4",
           level: "expert" as const,
           title: "Lab 4: Strategic Marketing Analytics Assessment (Expert)",
-          code: `# Marketing Analytics Maturity Scorer & Strategy Generator
+          task: "Run the maturity assessment for the default scores. Then change the scores to reflect a company that has invested heavily in data infrastructure (score 4) but has weak experimentation culture (score 1). Re-run and compare the action plan.",
+          cells: [`# Marketing Analytics Maturity Scorer & Strategy Generator
 # Assess an organization and generate recommendations
 
 print("=" * 60)
@@ -739,24 +734,26 @@ for i, (name, info) in enumerate(priorities[:3], 1):
 
 print()
 print("Modify the scores above to assess different organizations.")
-print("Each dimension is scored 1-5 based on current capabilities.")`,
+print("Each dimension is scored 1-5 based on current capabilities.")`],
         },
       ],
     },
   ],
   quiz: {
     id: "mas-m8-quiz",
+    title: "Module 8 Quiz",
     passPct: 70,
     questions: [
       {
         id: "mas-m8-q1",
-        text: "In the RACE framework, which stage focuses on building long-term customer relationships through loyalty programs and community building?",
+        question: "In the RACE framework, which stage focuses on building long-term customer relationships through loyalty programs and community building?",
         options: ["Reach", "Act", "Convert", "Engage"],
         answer: 3,
+        explain: "Engage is the final RACE stage — it focuses on nurturing existing customers through loyalty programs, email nurture, community building, and repeat-purchase incentives.",
       },
       {
         id: "mas-m8-q2",
-        text: "What is the recommended budget allocation split for mature marketing teams according to the 70-20-10 rule?",
+        question: "What is the recommended budget allocation split for mature marketing teams according to the 70-20-10 rule?",
         options: [
           "70% digital, 20% traditional, 10% events",
           "70% proven channels, 20% emerging channels, 10% experimental",
@@ -764,10 +761,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "70% media spend, 20% creative, 10% analytics",
         ],
         answer: 1,
+        explain: "The 70-20-10 rule allocates 70% of budget to proven channels with predictable ROI, 20% to emerging channels showing promise, and 10% to experimental approaches for learning.",
       },
       {
         id: "mas-m8-q3",
-        text: "Why is it dangerous to peek at A/B test results before reaching the pre-calculated sample size?",
+        question: "Why is it dangerous to peek at A/B test results before reaching the pre-calculated sample size?",
         options: [
           "It violates data privacy regulations",
           "It increases the cost of running the test",
@@ -775,10 +773,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "It reduces the conversion rate of the variant",
         ],
         answer: 2,
+        explain: "Peeking inflates the false positive rate because early results are noisy. With multiple looks, you increase the chance of seeing a 'significant' result that is actually random variation.",
       },
       {
         id: "mas-m8-q4",
-        text: "What does the '5-second rule' mean in executive dashboard design?",
+        question: "What does the '5-second rule' mean in executive dashboard design?",
         options: [
           "Dashboards should load within 5 seconds",
           "A well-designed dashboard should communicate its key message within 5 seconds",
@@ -786,10 +785,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "Data should refresh every 5 seconds",
         ],
         answer: 1,
+        explain: "The 5-second rule means an executive should grasp the key message — are we on track, where are the problems — within 5 seconds of looking at the dashboard, without needing to read fine print.",
       },
       {
         id: "mas-m8-q5",
-        text: "According to the Pyramid Principle, marketing reports should be structured:",
+        question: "According to the Pyramid Principle, marketing reports should be structured:",
         options: [
           "Chronologically, from campaign start to end",
           "By channel, from highest spend to lowest",
@@ -797,10 +797,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "Bottom-up: raw data first, then analysis, then recommendations",
         ],
         answer: 2,
+        explain: "The Pyramid Principle structures communication top-down: lead with the conclusion, then supporting arguments, then evidence. Executives read from the top; analysts read deeper.",
       },
       {
         id: "mas-m8-q6",
-        text: "What does the 'so-what' test require for data points in a marketing report?",
+        question: "What does the 'so-what' test require for data points in a marketing report?",
         options: [
           "Each data point must be statistically significant",
           "Each data point must have a visual representation",
@@ -808,10 +809,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "Each data point must be compared to industry benchmarks",
         ],
         answer: 2,
+        explain: "The so-what test ensures every data point is connected to a business implication and a recommended action. Data without context or actionability is noise in a report.",
       },
       {
         id: "mas-m8-q7",
-        text: "An organization has basic Google Analytics tracking and Excel-based reporting but no automated dashboards or standardized KPIs. What maturity level is it at?",
+        question: "An organization has basic Google Analytics tracking and Excel-based reporting but no automated dashboards or standardized KPIs. What maturity level is it at?",
         options: [
           "Level 1 — Ad Hoc",
           "Level 2 — Descriptive",
@@ -819,10 +821,11 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "Level 4 — Predictive",
         ],
         answer: 0,
+        explain: "Level 1 (Ad Hoc) is characterised by basic tracking and manual spreadsheet analysis without standardised processes or automated reporting.",
       },
       {
         id: "mas-m8-q8",
-        text: "Which attribution model is best suited for organizations with large datasets and sophisticated analytics teams?",
+        question: "Which attribution model is best suited for organizations with large datasets and sophisticated analytics teams?",
         options: [
           "Last Touch attribution",
           "Linear attribution",
@@ -830,6 +833,7 @@ print("Each dimension is scored 1-5 based on current capabilities.")`,
           "Data-Driven attribution",
         ],
         answer: 3,
+        explain: "Data-Driven attribution uses machine learning to assign credit based on actual conversion patterns. It requires large datasets and analytics expertise but gives the most accurate results.",
       },
     ],
   },

@@ -49,11 +49,11 @@ export const m7: CourseModule = {
         { type: "p", text: "A good MMM also controls for factors outside the marketing team's control: **seasonality** (Ramadan, Christmas, back-to-school), **weather** (rainy season depresses outdoor consumption in Douala), **economic indicators** (FCFA exchange rate, fuel price), and **competitor actions** (a rival's heavy promotion or price cut). Without these controls, the model may wrongly credit or blame your marketing for effects caused by the market environment." },
         { type: "callout", tone: "workplace", title: "Cameroon seasonality patterns", text: "In Central Africa, key seasonal peaks include Ramadan (shifting dates), the Christmas/New Year period, and back-to-school in September. The rainy season (June-October in Douala) depresses sales of outdoor-consumed products but boosts in-home categories. Always include these as dummy or seasonal variables in your MMM." },
         { type: "check", id: "mas-m7-l1-c2", question: "An MMM for a Yaounde food brand shows that TV advertising has a decay rate of 0.75. What does this mean?", options: ["75% of TV budget is wasted", "Each week, 75% of the previous week's advertising effect carries into the next week", "TV generates 75% of total revenue", "The model explains 75% of the variance"], answer: 1, explain: "A decay rate of 0.75 means 75% of the previous period's adstock carries forward. The advertising effect diminishes gradually over several weeks rather than disappearing immediately." },
-        { type: "form", id: "mas-m7-l1-lab1", title: "Lab: Identify MMM components", level: "beginner" as const, scenario: "A fictional telecom provider in Cameroon wants to build its first marketing mix model. Monthly revenue is 850 million FCFA. They spend on TV, radio, digital, and billboards. Identify the model components.", fields: [
-          { key: "dependent", label: "Dependent variable", type: "text" as const },
-          { key: "independent", label: "List 4 independent variables (marketing channels)", type: "textarea" as const },
-          { key: "controls", label: "List 3 control variables (external factors)", type: "textarea" as const },
-          { key: "base_estimate", label: "If marketing drove 35% of revenue, estimate base revenue (M FCFA)", type: "number" as const },
+        { type: "form", id: "mas-m7-l1-lab1", title: "Lab: Identify MMM components", level: "beginner" as const, task: "A fictional telecom provider in Cameroon wants to build its first marketing mix model. Monthly revenue is 850 million FCFA. They spend on TV, radio, digital, and billboards. Identify the model components.", fields: [
+          { kind: "text", label: "Dependent variable" },
+          { kind: "text", label: "List 4 independent variables (marketing channels)" },
+          { kind: "text", label: "List 3 control variables (external factors)" },
+          { kind: "text", label: "If marketing drove 35% of revenue, estimate base revenue (M FCFA)" },
         ] },
       ],
     },

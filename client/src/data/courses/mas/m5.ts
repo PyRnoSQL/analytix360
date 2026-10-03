@@ -714,25 +714,20 @@ export const m5: CourseModule = {
           hint: "Think about which channel each metric is native to. Some metrics (like CTR) exist across channels, but each has a primary home.",
         },
 
-        /* --- Expert: chart — Visualise channel performance --- */
+        /* --- Expert: channel ROAS analysis --- */
         {
-          type: "chart",
-          id: "mas-m5-practice-chart",
-          level: "expert",
-          title: "Channel ROAS comparison — Cameroon insurance company Q3",
-          data: [
-            { label: "Google Search", value: 8.0 },
-            { label: "Facebook Ads", value: 5.6 },
-            { label: "Instagram", value: 3.6 },
-            { label: "Email", value: 24.0 },
-            { label: "Display Ads", value: 1.2 },
-            { label: "YouTube", value: 2.8 },
+          type: "form",
+          id: "mas-m5-practice-expert",
+          level: "expert" as const,
+          title: "Channel ROAS analysis — Cameroon insurance company Q3",
+          task: "A fictional insurance company in Cameroon ran Q3 campaigns across six channels. ROAS by channel: Google Search 8.0, Facebook Ads 5.6, Instagram 3.6, Email 24.0, Display Ads 1.2, YouTube 2.8. Analyse the data and recommend a reallocation strategy.",
+          fields: [
+            { kind: "select" as const, label: "Which channel has the highest ROAS?", options: ["Google Search (8.0)", "Facebook Ads (5.6)", "Email (24.0)", "YouTube (2.8)"], answer: 2, explain: "Email has a ROAS of 24:1, far above all other channels." },
+            { kind: "select" as const, label: "Which channel is barely profitable and should be reconsidered?", options: ["Instagram (3.6)", "Display Ads (1.2)", "YouTube (2.8)", "Facebook Ads (5.6)"], answer: 1, explain: "Display Ads at 1.2:1 barely covers the cost of goods. After accounting for margins, it may be losing money." },
+            { kind: "select" as const, label: "Why is ROAS alone insufficient for budget allocation decisions?", options: ["ROAS does not account for channel scalability, attribution effects, and role in the conversion path", "ROAS is only valid for digital channels", "ROAS requires at least 12 months of data", "ROAS does not work for insurance products"], answer: 0, explain: "ROAS ignores scalability (email may have a list-size ceiling), attribution model biases (last-touch over-credits search), the role of display in awareness, and CLV differences by channel." },
+            { kind: "text" as const, label: "Name one additional metric you would examine before cutting Display Ads budget.", accept: ["assisted conversions", "view-through conversions", "brand lift", "CLV", "customer lifetime value"], explain: "Assisted conversions or view-through conversions would show whether Display Ads contribute to conversions attributed to other channels." },
           ],
-          unit: "ROAS",
-          kinds: ["bar", "pie"],
-          best: "bar",
-          question: "Based on ROAS alone, which channel should receive increased budget and which should be reconsidered? What additional context would you need before making a final recommendation?",
-          explain: "Email (ROAS 24:1) and Google Search (8:1) are the top performers by ROAS. Display Ads (1.2:1) is barely profitable and may not cover the cost of goods. However, ROAS alone is insufficient — you need to consider: (1) scalability — email may have a ceiling on list size; (2) attribution model used — last-touch may over-credit search; (3) the role of display in awareness/assisted conversions; (4) customer lifetime value differences by channel.",
+          hint: "Consider what ROAS cannot tell you: scalability, attribution effects, and the role of upper-funnel channels.",
         },
       ],
     },

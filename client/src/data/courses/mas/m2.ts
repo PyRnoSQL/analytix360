@@ -150,11 +150,6 @@ export const m2: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Standard questionnaire flow from screening to close",
-              callouts: [
-                "Screening questions filter out ineligible respondents early",
-                "Core questions move from general to specific (funnel approach)",
-                "Sensitive or demographic questions placed last to avoid priming",
-              ],
             },
           ],
         },
@@ -351,11 +346,6 @@ export const m2: CourseModule = {
             {
               art: "stat-normality",
               caption: "Normal distribution showing confidence interval width",
-              callouts: [
-                "95 % confidence captures values within ±1.96 standard deviations",
-                "Doubling sample size reduces margin of error by a factor of √2, not by half",
-                "Diminishing returns: going from n = 400 to n = 1,600 cuts MoE by only half",
-              ],
             },
           ],
         },
@@ -497,11 +487,6 @@ export const m2: CourseModule = {
             {
               art: "qc-histogram",
               caption: "Distribution of conversion rates under null hypothesis vs observed difference",
-              callouts: [
-                "The null hypothesis assumes no difference between A and B",
-                "If the observed difference falls far enough from zero, we reject the null",
-                "p < 0.05 means the observed result would occur by chance less than 5 % of the time",
-              ],
             },
           ],
         },
@@ -616,11 +601,6 @@ export const m2: CourseModule = {
             {
               art: "qc-flowchart",
               caption: "Data flow from user action to GA4 report",
-              callouts: [
-                "User action triggers a JavaScript event sent to GA4 servers",
-                "Events are processed, enriched with user properties, and stored",
-                "Reports aggregate events into dimensions and metrics for analysis",
-              ],
             },
           ],
         },
@@ -779,11 +759,6 @@ export const m2: CourseModule = {
             {
               art: "qc-control-chart",
               caption: "Monitoring data quality metrics over time",
-              callouts: [
-                "Track completeness rate weekly — flag drops below 90 % threshold",
-                "Monitor duplicate rate after each data import batch",
-                "Set up automated validation rules to catch invalid entries at the point of collection",
-              ],
             },
           ],
         },
@@ -936,7 +911,6 @@ export const m2: CourseModule = {
        ================================================================ */
     {
       id: PRACTICE_ID,
-      number: 6,
       title: "Practice: data collection and market research",
       minutes: 30,
       objectives: [

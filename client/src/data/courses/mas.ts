@@ -20,9 +20,6 @@ export const MAS_COURSE: LmsCourse = {
     "Master data-driven marketing: from research design and customer analytics to predictive modeling, campaign optimization, and executive reporting.",
   accent: "#1a73e8",
   hours: 48,
-  certification: {
-    title: "Marketing Analytics Specialist (MAS)",
-    body: "Professional Certificate in Marketing Analytics",
-  },
+  certification: "Marketing Analytics Specialist (MAS) — Professional Certificate in Marketing Analytics",
   modules: [m1, m2, m3, m4, m5, m6, m7, m8],
 };
