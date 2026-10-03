@@ -13908,4 +13908,14 @@ export const FR: Record<string, string> = {
   "Predictive Analytics & Statistical Modeling": "Analytique prédictive et modélisation statistique",
   "Marketing Mix Modeling & Budget Optimization": "Modélisation du mix marketing et optimisation budgétaire",
   "Campaign Management, Reporting & Strategy": "Gestion de campagnes, reporting et stratégie",
+  // ---- Associate Quality Engineer course ----
+  "Associate Quality Engineer": "Ingénieur qualité associé",
+  "Statistical methods, measurement systems, FMEA, DOE, SPC and continuous improvement for quality engineers": "Méthodes statistiques, systèmes de mesure, AMDEC, plans d'expériences, MSP et amélioration continue pour ingénieurs qualité",
+  "Quality Management Systems and Leadership": "Systèmes de management de la qualité et leadership",
+  "Probability, Statistics and Data Analysis": "Probabilités, statistiques et analyse de données",
+  "Statistical Process Control and Process Capability": "Maîtrise statistique des procédés et capabilité",
+  "Design of Experiments": "Plans d'expériences",
+  "FMEA, Control Plans and Inspection Planning": "AMDEC, plans de contrôle et planification d'inspection",
+  "Reliability Engineering and Supplier Quality": "Ingénierie de la fiabilité et qualité fournisseur",
+  "Lean Six Sigma and Continuous Improvement": "Lean Six Sigma et amélioration continue",
 };
