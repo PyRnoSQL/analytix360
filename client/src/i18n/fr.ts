@@ -13898,4 +13898,14 @@ export const FR: Record<string, string> = {
   "The tolerance of the characteristic": "La tolérance de la caractéristique",
   "The severity rating taken from the PFMEA": "La cote de gravité reprise de l'AMDEC processus",
   "The reaction plan tells the operator exactly what to do: stop or adjust the process, isolate the product made since the last good check, and alert the right people.": "Le plan de réaction indique exactement à l'opérateur quoi faire : arrêter ou régler le procédé, isoler le produit fabriqué depuis le dernier contrôle bon et alerter les bonnes personnes.",
+  // ---- Marketing Analytics Specialist course ----
+  "Master data-driven marketing: from research design and customer analytics to predictive modeling, campaign optimization, and executive reporting.": "Maîtrisez le marketing axé sur les données : de la conception de recherche et l'analytique client à la modélisation prédictive, l'optimisation de campagnes et le reporting exécutif.",
+  "Marketing Fundamentals & the Data Landscape": "Fondamentaux du marketing et paysage des données",
+  "Data Collection & Market Research": "Collecte de données et études de marché",
+  "Descriptive Analytics & Data Visualization": "Analytique descriptive et visualisation des données",
+  "Customer Analytics & Segmentation": "Analytique client et segmentation",
+  "Digital Marketing Analytics": "Analytique du marketing numérique",
+  "Predictive Analytics & Statistical Modeling": "Analytique prédictive et modélisation statistique",
+  "Marketing Mix Modeling & Budget Optimization": "Modélisation du mix marketing et optimisation budgétaire",
+  "Campaign Management, Reporting & Strategy": "Gestion de campagnes, reporting et stratégie",
 };
