@@ -126,7 +126,7 @@ export const m5: CourseModule = {
           items: [
             {
               name: "DOE Analysis Toolkit",
-              desc: "Software for designing experiments, generating run orders, calculating effects and producing interaction plots. Essential for factorial and fractional factorial analysis.",
+              caption: "Software for designing experiments, generating run orders, calculating effects and producing interaction plots. Essential for factorial and fractional factorial analysis.",
             },
           ],
         },
@@ -358,7 +358,7 @@ export const m5: CourseModule = {
           items: [
             {
               name: "DOE Analysis Toolkit",
-              desc: "Used here for generating contrast matrices, computing effects, and producing normal probability plots and interaction plots.",
+              caption: "Used here for generating contrast matrices, computing effects, and producing normal probability plots and interaction plots.",
             },
           ],
         },
@@ -462,7 +462,7 @@ export const m5: CourseModule = {
     {
       id: "aqe-m5-l3",
       title: "Fractional factorial and screening designs",
-      duration: 30,
+      minutes: 30,
       objectives: [
         "Explain why fractional factorial designs are needed when the number of factors is large",
         "Construct a 2^(k−p) fractional factorial using generators and the defining relation",
@@ -772,7 +772,7 @@ export const m5: CourseModule = {
           items: [
             {
               name: "Regression Analysis Module",
-              desc: "Fits linear and polynomial regression models, computes R², residual analysis, and generates contour and surface plots for RSM.",
+              caption: "Fits linear and polynomial regression models, computes R², residual analysis, and generates contour and surface plots for RSM.",
             },
           ],
         },
@@ -1012,11 +1012,11 @@ export const m5: CourseModule = {
           items: [
             {
               name: "DOE Analysis Toolkit",
-              desc: "Computes ANOVA tables, generates effect estimates, and performs confirmation-run analysis for factorial experiments.",
+              caption: "Computes ANOVA tables, generates effect estimates, and performs confirmation-run analysis for factorial experiments.",
             },
             {
               name: "Normality Testing Module",
-              desc: "Performs Anderson-Darling, Shapiro-Wilk and normal probability plot analysis on residuals from DOE models to verify assumptions.",
+              caption: "Performs Anderson-Darling, Shapiro-Wilk and normal probability plot analysis on residuals from DOE models to verify assumptions.",
             },
           ],
         },
@@ -1133,7 +1133,7 @@ export const m5: CourseModule = {
     {
       id: "aqe-m5-practice",
       title: "Practice: Design of Experiments",
-      duration: 30,
+      minutes: 30,
       objectives: [
         "Apply DOE terminology and concepts across a range of difficulty levels",
         "Calculate and interpret factorial effects from experimental data",

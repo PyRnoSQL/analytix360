@@ -11,15 +11,6 @@ const AIAG = "AIAG";
 const ISO_SRC = "ISO";
 const ASQ = "ASQ";
 
-const _PFD_SYMBOLS = [
-  { label: "Operation", desc: "Rectangle — a step that changes the product" },
-  { label: "Inspection", desc: "Circle — a check or measurement" },
-  { label: "Transport", desc: "Arrow — movement of material" },
-  { label: "Delay", desc: "D-shape — waiting between steps" },
-  { label: "Storage", desc: "Inverted triangle — planned storage" },
-  { label: "Decision", desc: "Diamond — yes/no branch in the flow" },
-];
-
 const AP_TABLE = [
   ["High (H)", "S >= 8 and O >= 4 and D >= 4, or any combination with very high risk", "Mandatory action required"],
   ["Medium (M)", "Moderate combination of S, O, D not reaching High threshold", "Action recommended"],

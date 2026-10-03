@@ -190,7 +190,7 @@ export const m7: CourseModule = {
           task: "Match each reliability scenario to the correct metric.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label:
                 "A repairable compressor at a Kribi fish processing plant averages 2 400 operating hours between breakdowns",
@@ -198,7 +198,7 @@ export const m7: CourseModule = {
               answer: 0,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label:
                 "A single-use pressure relief valve lasts an average of 8 760 hours before it must be replaced",
@@ -206,7 +206,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label:
                 "The maintenance crew takes an average of 4.5 hours to restore a failed motor",
@@ -214,7 +214,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f4",
               label:
                 "A batch of circuit boards experiences 0.0005 failures per hour",
@@ -401,7 +401,7 @@ export const m7: CourseModule = {
           task: "A Weibull analysis of electric motor bearings at a Garoua flour mill produced the following results. Interpret them.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label:
                 "The Weibull plot slope (β) is 3.4. What failure mode does this represent?",
@@ -414,7 +414,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label:
                 "The characteristic life η = 12 000 hours. What percentage of bearings are expected to fail by 12 000 hours?",
@@ -422,7 +422,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label:
                 "Given β = 3.4 (wear-out), which maintenance strategy is most appropriate?",
@@ -435,7 +435,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f4",
               label:
                 "If the mill requires 95 % reliability (B5 life), approximately how does B5 compare to η?",
@@ -593,7 +593,7 @@ export const m7: CourseModule = {
           task: "A Cameroon plastics supplier has been asked to provide PPAP for a dashboard ventilation trim piece. Determine the correct requirements.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label:
                 "This is a new part from a new supplier. Which submission level should be used as the default?",
@@ -601,7 +601,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label:
                 "The part is visible to the vehicle occupant. Which additional PPAP element is specifically required?",
@@ -614,7 +614,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label:
                 "The supplier's dimensional inspection uses a custom fixture. Which PPAP element documents this?",
@@ -627,7 +627,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f4",
               label:
                 "The customer approved the PPAP but required the supplier to improve Cpk from 1.2 to 1.33 within 90 days. What disposition is this?",
@@ -878,7 +878,7 @@ export const m7: CourseModule = {
           task: "Review the following supplier scenarios and determine the appropriate action.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label:
                 "Supplier A has delivered 12 consecutive lots with zero defects under normal inspection. What incoming inspection change is appropriate?",
@@ -891,7 +891,7 @@ export const m7: CourseModule = {
               answer: 3,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label:
                 "Supplier B scored 4.2 / 10 on the quality dimension for three consecutive quarters. What is the priority action?",
@@ -904,7 +904,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label:
                 "During a surveillance audit, you discover the supplier changed their heat treatment oven without notifying you. What is required?",
@@ -937,7 +937,6 @@ export const m7: CourseModule = {
     /* ------------------------------------------------------------------ */
     {
       id: "aqe-m7-l5",
-      number: 5,
       title: "CAPA: corrective and preventive action",
       minutes: 25,
       objectives: [
@@ -1260,7 +1259,7 @@ export const m7: CourseModule = {
           task: "Select the correct definition for each reliability and supplier quality term.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label: "MTBF",
               options: [
@@ -1272,7 +1271,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label: "Bathtub curve — useful life region",
               options: [
@@ -1284,7 +1283,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label: "Characteristic life (η) in Weibull analysis",
               options: [
@@ -1296,7 +1295,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f4",
               label: "Part Submission Warrant (PSW)",
               options: [
@@ -1308,7 +1307,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f5",
               label: "Containment action",
               options: [
@@ -1360,7 +1359,7 @@ export const m7: CourseModule = {
           task: "A Douala supplier is submitting PPAP for a newly designed aluminium heat sink used in an automotive LED headlamp assembly. Determine the correct documentation requirements.",
           fields: [
             {
-              type: "select",
+              kind: "select",
               id: "f1",
               label:
                 "This is a brand new part design. The customer has requested comprehensive documentation. Which PPAP level is appropriate?",
@@ -1368,7 +1367,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f2",
               label:
                 "The heat sink's thermal conductivity must meet a minimum of 180 W/m·K. Which PPAP element specifically documents this?",
@@ -1381,7 +1380,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f3",
               label:
                 "The initial process study shows Cpk = 1.15 for the critical mounting hole position. What is the expected customer response?",
@@ -1394,7 +1393,7 @@ export const m7: CourseModule = {
               answer: 1,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f4",
               label:
                 "The supplier uses an outside laboratory for salt spray corrosion testing. Which PPAP element must confirm the laboratory's qualifications?",
@@ -1407,7 +1406,7 @@ export const m7: CourseModule = {
               answer: 2,
             },
             {
-              type: "select",
+              kind: "select",
               id: "f5",
               label:
                 "After PPAP approval, the supplier changes the CNC machine used for machining the heat sink fins. What is required?",

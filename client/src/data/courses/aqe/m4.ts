@@ -34,13 +34,6 @@ const EXTRUSION: number[][] = [
   [40.02, 39.98, 40.01, 40.00, 39.97],
 ];
 
-// Lesson 1 — I-MR chart: tensile strength of rebar (MPa), one test per batch, 20 batches.
-// Batch 16 is abnormally high (wrong alloy charge).
-const _REBAR: number[] = [
-  485, 492, 488, 491, 487, 493, 490, 486, 494, 489,
-  491, 487, 493, 488, 490, 518, 486, 492, 489, 491,
-];
-
 // Lesson 2 — p chart: nonconforming PVC pipes per sample of 150 from Plastiques de Douala.
 // Sample 11 has a spike (raw material contamination).
 const PIPES_DEF: number[] = [
