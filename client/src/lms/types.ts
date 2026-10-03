@@ -74,6 +74,7 @@ export type Block =
   | { type: "pareto"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; threshold?: number; categories: { label: string; count: number }[] }
   | { type: "capability"; id: string; level?: LabLevel; title: string; task: string; hint?: string; unit?: string; lsl: number; usl: number; mean: number; sigma: number; adjust: ("mean" | "sigma")[]; goal: number; meanRange?: [number, number]; sigmaRange?: [number, number] }
   | { type: "equip"; title?: string; items: EquipItem[] }
+  | { type: "statlab"; id: string; level?: LabLevel; title: string; task: string; hint?: string; dataset: { name: string; type: "numeric" | "text"; values: (number | string)[] }[]; analyses: ("descriptives" | "frequencies" | "crosstab")[]; expected: { analysis: string; checks: Record<string, number | string> }[] }
   | { type: "links"; items: { label: string; url: string; source: string }[] };
 
 export interface Lesson {
